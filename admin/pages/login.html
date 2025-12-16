@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - HTVC</title>
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+</head>
+
+<body>
+
+    <div class="login">
+        <div class="login-card">
+            <h1 class="login-title">HTVC Admin</h1>
+            <p class="login-sub">Chỉ dành cho Chủ sân</p>
+
+            <form id="loginForm" class="login-form">
+                <label>Email</label>
+                <input id="email" class="input" type="email" placeholder="owner@gmail.com" required />
+
+                <label>Mật khẩu</label>
+                <input id="password" class="input" type="password" placeholder="••••••••" required />
+
+                <button class="btn btn--danger" type="submit">Đăng nhập</button>
+
+                <p id="err" class="login-error"></p>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="/admin/js/login.js"></script>
+</body>
+
+</html>
