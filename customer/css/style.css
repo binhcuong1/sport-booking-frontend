@@ -343,6 +343,24 @@ ol {
 /*---------------------
   Header
 -----------------------*/
+/* Cột chứa logo */
+.logo {
+    height: 100%;
+    display: flex;
+    align-items: center;   /* căn giữa theo chiều dọc */
+}
+
+/* Link logo */
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+/* Ảnh logo */
+.logo img {
+    max-width: 150px;
+    height: auto;
+}
 
 .header__top .ht-info ul li {
 	list-style: none;
@@ -386,11 +404,23 @@ ol {
 }
 
 .header__nav {
-	background: #dd1515;
+    background: #dd1515;
+    height: 140px;
+    width: 100%;
+    position: relative;
+    z-index: 100;
+}
+
+.header__nav .row {
+    display: flex;
+    align-items: center;
 }
 
 .header__nav .logo {
-	padding: 30px 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .header__nav .logo a {
@@ -398,7 +428,10 @@ ol {
 }
 
 .header__nav .nav-menu {
-	text-align: right;
+    text-align: left;
+}
+.header__nav .main-menu {
+    margin-left: 40px; /* khoảng cách logo – menu */
 }
 
 .header__nav .nav-menu .main-menu {
@@ -415,7 +448,7 @@ ol {
 .header__nav .nav-menu .main-menu li .dropdown {
 	position: absolute;
 	left: 0;
-	top: 115px;
+	top: 50px;
 	width: 180px;
 	background: #ffffff;
 	z-index: 99;
@@ -506,6 +539,64 @@ ol {
 .offcanvas-menu-wrapper {
 	display: none;
 }
+.account-menu {
+    position: relative;
+}
+
+.account-menu .dropdown {
+    position: absolute;
+    top: 48px;          /* sát icon */
+    right: 0;
+    width: 180px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    padding: 8px 0;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s ease;
+}
+
+.account-menu:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.account-menu .dropdown li a {
+    padding: 10px 18px;
+    font-size: 14px;
+    color: #222;
+    display: block;
+}
+
+.account-menu .dropdown li a:hover {
+    background: #f5f5f5;
+    color: #dd1515;
+}
+.account-menu > a i {
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.main-menu li.search-switch i {
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.main-menu li.search-switch {
+    margin-right: 20px;
+}
+
+.main-menu li.account-menu {
+    margin-right: 0;
+}
+
 
 /*---------------------
   Hero
