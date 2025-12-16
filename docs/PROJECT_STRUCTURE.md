@@ -1,51 +1,48 @@
 # 📁 Cấu trúc project Frontend – Sport Booking
 
-Project frontend được tổ chức theo mô hình **2 khu riêng biệt trong cùng 1 repo**:
+Project frontend được tổ chức theo mô hình **2 khu riêng biệt trong cùng 1 repository**:
 
 - **Customer (Khách hàng)**: giao diện đặt sân
-- **Admin (Chủ sân)**: giao diện quản trị
+- **Admin (Chủ sân)**: giao diện quản trị sân
 
-Mục tiêu:
-
-- Không trộn lẫn UI/logic
-- Dễ bảo trì – dễ mở rộng
-- Tránh xung đột CSS/JS
+Mục tiêu thiết kế:
+- Không trộn UI/logic giữa khách hàng và chủ sân
+- Dễ bảo trì, dễ mở rộng
+- Áp dụng mô hình SPA đơn giản cho admin bằng **router-lite**
 
 ---
 
-## 🌳 Cây thư mục tổng thể
+## 🌳 Cây thư mục tổng thể (hiện tại)
 
 ```text
 sport-booking-frontend/
-├─ admin/                # Khu dành cho CHỦ SÂN (Admin)
+├─ admin/                         # Khu dành cho CHỦ SÂN (Admin)
 │  ├─ css/
-│  │  └─ admin.css       # CSS riêng cho admin (đỏ–đen–trắng)
+│  │  └─ admin.css                # CSS riêng cho admin (tone đỏ – đen – trắng)
 │  ├─ js/
-│  │  └─ (admin.js)      # JS cho admin (sẽ bổ sung sau)
+│  │  ├─ router-lite.js           # Router SPA đơn giản (hash-based)
+│  │  └─ page-inits.js            # Logic JS cho từng trang admin
 │  └─ pages/
-│     └─ admin.html      # Trang dashboard admin
+│     ├─ admin.html               # Shell admin (sidebar + topbar + router mount)
+│     └─ partials/                # Các trang con load bằng router
+│        ├─ dashboard.html        # Trang Dashboard
+│        └─ club-sport-type.html  # CRUD Club_SportType (đã triển khai)
 │
-├─ customer/             # Khu dành cho KHÁCH HÀNG
+├─ customer/                      # Khu dành cho KHÁCH HÀNG
 │  ├─ css/
-│  │  └─ style.css       # CSS giao diện khách hàng
-│  ├─ fonts/             # Font dùng cho customer
-│  ├─ img/               # Hình ảnh customer (logo, club, banner…)
+│  ├─ fonts/
+│  ├─ img/
 │  ├─ js/
-│  │  ├─ jquery-3.3.1.min.js
-│  │  ├─ bootstrap.min.js
-│  │  ├─ owl.carousel.min.js
-│  │  ├─ jquery.slicknav.js
-│  │  ├─ jquery.magnific-popup.min.js
-│  │  └─ main.js         # JS giao diện customer
 │  └─ pages/
-│     └─ index.html      # Trang chủ khách hàng
+│     └─ index.html               # Trang chủ đặt sân
 │
-├─ shared/               # Thành phần dùng CHUNG
+├─ shared/                        # Thành phần dùng CHUNG cho customer
 │  ├─ js/
-│  │  └─ include.js      # Script include header/footer
+│  │  └─ include.js               # Include header/footer bằng JS
 │  └─ partials/
-│     ├─ header.html     # Header cho customer
-│     └─ footer.html     # Footer cho customer
+│     ├─ header.html
+│     └─ footer.html
 │
-└─ PROJECT_STRUCTURE.md  # Tài liệu mô tả cấu trúc project
-```
+├─ docs/                          # Tài liệu dự án (DB, API, hướng dẫn…)
+│
+└─ PROJECT_STRUCTURE.md           # Tài liệu mô tả cấu trúc project
