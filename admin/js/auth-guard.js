@@ -27,3 +27,31 @@
         window.location.replace("/admin/pages/login.html");
     });
 })();
+
+(function () {
+    const accRaw = localStorage.getItem("account");
+    if (!accRaw) return;
+
+    let acc;
+    try {
+        acc = JSON.parse(accRaw);
+    } catch {
+        return;
+    }
+
+    // Gắn email
+    const emailEl = document.getElementById("adminEmail");
+    if (emailEl) emailEl.textContent = acc.email || "owner";
+
+    // Gắn role
+    const roleEl = document.getElementById("adminRole");
+    if (roleEl) {
+        roleEl.textContent = acc.role === "owner" ? "Chủ sân" : acc.role;
+    }
+
+    // Avatar: lấy chữ cái đầu email
+    const avatarEl = document.getElementById("adminAvatar");
+    if (avatarEl && acc.email) {
+        avatarEl.textContent = acc.email.charAt(0).toUpperCase();
+    }
+})();
