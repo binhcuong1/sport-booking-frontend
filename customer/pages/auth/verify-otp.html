@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Xác thực OTP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e7d43, #4bb36a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .otp-wrapper {
+      width: 420px;
+    }
+
+    .otp-title {
+      text-align: center;
+      color: #fff;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .otp-box {
+      background: #fff;
+      padding: 36px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .otp-desc {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 22px;
+    }
+
+    .otp-inputs {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .otp-inputs input {
+      width: 50px;
+      height: 56px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      border-radius: 10px;
+      border: 1px solid #dcdcdc;
+    }
+
+    .otp-inputs input:focus {
+      outline: none;
+      border-color: #1e7d43;
+    }
+
+    .btn-verify {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      border: none;
+      background: #0f6d3a;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-verify:hover {
+      background: #0c5a30;
+    }
+
+    .resend {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #0f5f34;
+    }
+
+    .resend span {
+      font-weight: 700;
+    }
+
+    .resend a {
+      color: #0f6d3a;
+      font-weight: 600;
+      text-decoration: none;
+      display: none;
+      cursor: pointer;
+    }
+
+    .back-login {
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .back-login a {
+      color: #0f6d3a;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="otp-wrapper">
+    <div class="otp-title">Xác thực OTP</div>
+
+    <div class="otp-box">
+      <div class="otp-desc">
+        Vui lòng nhập mã OTP gồm 6 chữ số<br>
+        đã được gửi tới email của bạn
+      </div>
+
+      <div class="otp-inputs">
+        <input maxlength="1">
+        <input maxlength="1">
+        <input maxlength="1">
+        <input maxlength="1">
+        <input maxlength="1">
+        <input maxlength="1">
+      </div>
+
+      <!--  GỌI JS -->
+      <button class="btn-verify" onclick="verifyOtp()">XÁC THỰC</button>
+
+      <div class="resend">
+        Gửi lại mã sau <span id="countdown">60</span>s
+        <a id="resendLink">Gửi lại OTP</a>
+      </div>
+
+      <div class="back-login">
+        <a href="login.html">← Quay lại đăng nhập</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script type="module" src="../../js/auth/verify-otp.js"></script>
+
+</body>
+</html>
