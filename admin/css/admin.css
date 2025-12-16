@@ -596,3 +596,92 @@ input {
         width: min(360px, 70vw);
     }
 }
+
+/* ===== Helpers for CRUD pages (simple) ===== */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.input {
+    width: 360px;
+    max-width: 100%;
+    border: 1px solid var(--border);
+    background: var(--panel2);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: 12px;
+    outline: none;
+}
+
+.input:focus {
+    border-color: rgba(214, 0, 0, 0.5);
+}
+
+/* ===== Modal (simple) ===== */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 999;
+}
+
+.modal.is-open {
+    display: block;
+}
+
+.modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.modal__dialog {
+    position: relative;
+    width: min(520px, 92vw);
+    margin: 8vh auto 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal__header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.modal__body {
+    padding: 14px;
+}
+
+.modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 12px 14px;
+    border-top: 1px solid var(--border);
+}
+
+.form-grid {
+    display: grid;
+    gap: 12px;
+}
+
+.form-row label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+}

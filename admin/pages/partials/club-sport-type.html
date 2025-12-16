@@ -1,0 +1,64 @@
+<div class="page-title">
+    <h1>CRUD Club_SportType</h1>
+    <div class="page-title__meta">
+        <span class="pill pill--danger"><i class="fa fa-link"></i> Mapping Club ↔ Sport</span>
+    </div>
+</div>
+
+<div class="card">
+    <div class="toolbar">
+        <div class="toolbar__left">
+            <input id="cstFilter" class="input" placeholder="Tìm theo club hoặc môn thể thao..." />
+        </div>
+        <div class="toolbar__right">
+            <button class="btn btn--danger" type="button" id="btnAddCst">
+                <i class="fa fa-plus"></i> Thêm liên kết
+            </button>
+        </div>
+    </div>
+
+    <div class="table-wrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Club</th>
+                    <th>Môn thể thao</th>
+                    <th class="text-right">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="cstTbody"></tbody>
+        </table>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="cstModal">
+    <div class="modal__overlay"></div>
+    <div class="modal__dialog">
+        <div class="modal__header">
+            <h3 id="cstModalTitle">Thêm Club_SportType</h3>
+            <button class="icon-btn" type="button" data-close-modal title="Đóng">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+        <form id="cstForm" class="modal__body">
+            <div class="form-grid">
+                <div class="form-row">
+                    <label>Club</label>
+                    <select id="cstClub" class="input"></select>
+                </div>
+
+                <div class="form-row">
+                    <label>Môn thể thao</label>
+                    <select id="cstSport" class="input"></select>
+                </div>
+            </div>
+
+            <div class="modal__footer">
+                <button class="btn btn--ghost" type="button" data-close-modal>Hủy</button>
+                <button class="btn btn--danger" type="submit">Lưu</button>
+            </div>
+        </form>
+    </div>
+</div>
