@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Đăng ký</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icon -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e7d43, #4bb36a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .register-box {
+      background: #fff;
+      width: 420px;
+      padding: 32px;
+      border-radius: 16px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e7d43;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #1e7d43;
+      margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      padding: 14px 44px 14px 14px;
+      border-radius: 10px;
+      border: 1px solid #dcdcdc;
+      font-size: 15px;
+    }
+
+    .input-wrapper input:focus {
+      outline: none;
+      border-color: #1e7d43;
+    }
+
+    .input-wrapper i {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #1e7d43;
+      cursor: pointer;
+    }
+
+    .btn-register {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      border: none;
+      background: #0f6d3a;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .btn-register:hover {
+      background: #0c5a30;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #1e7d43;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-box">
+    <h1>Đăng ký</h1>
+
+    <!-- EMAIL -->
+    <div class="form-group">
+      <label>Email của bạn?</label>
+      <div class="input-wrapper">
+        <input id="email" type="email" placeholder="Nhập email của bạn (*)">
+        <i class="fa-solid fa-circle-xmark"></i>
+      </div>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="form-group">
+      <label>Mật khẩu (*)</label>
+      <div class="input-wrapper">
+        <input id="password" type="password" placeholder="Nhập mật khẩu (*)">
+        <i class="fa-solid fa-eye-slash"></i>
+      </div>
+    </div>
+
+    <!-- CONFIRM PASSWORD -->
+    <div class="form-group">
+      <label>Nhập mật khẩu (*)</label>
+      <div class="input-wrapper">
+        <input id="confirm" type="password" placeholder="Nhập lại mật khẩu (*)">
+        <i class="fa-solid fa-eye-slash"></i>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <button class="btn-register" onclick="register()">ĐĂNG KÝ</button>
+
+    <div class="login-link">
+      Bạn đã có tài khoản?
+      <a href="login.html">Đăng nhập</a>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script type="module" src="../../js/auth/register.js"></script>
+
+</body>
+</html>
