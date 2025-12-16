@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTVC Admin - Chủ sân</title>
+
+    <!-- Nếu project bạn đã có font-awesome local thì dùng dòng dưới -->
+    <!-- <link rel="stylesheet" href="css/font-awesome.min.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+</head>
+
+<body>
+    <div class="admin">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand__logo">
+                    <i class="fa fa-futbol-o"></i>
+                </div>
+                <div class="brand__text">
+                    <div class="brand__name">HTVC ADMIN</div>
+                    <div class="brand__role">Chủ sân</div>
+                </div>
+            </div>
+
+            <div class="sidebar__section">BẢNG ĐIỀU KHIỂN</div>
+            <a class="nav-item is-active" href="#">
+                <span class="nav-item__icon"><i class="fa fa-dashboard"></i></span>
+                <span class="nav-item__text">Dashboard</span>
+            </a>
+
+            <div class="sidebar__section">QUẢN LÝ</div>
+
+            <div class="nav-group">
+                <div class="nav-group__title">
+                    <span><i class="fa fa-folder-open"></i> Danh mục</span>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="nav-group__items">
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> CRUD Club_SportType</a>
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> CRUD Loại sân</a>
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> CRUD Dịch vụ</a>
+                </div>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group__title">
+                    <span><i class="fa fa-building"></i> Câu lạc bộ</span>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="nav-group__items">
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> CRUD Club</a>
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> CRUD Sân</a>
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> CRUD Hình ảnh</a>
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> CRUD Thông tin</a>
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> CRUD Điều khoản dịch vụ</a>
+                </div>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group__title">
+                    <span><i class="fa fa-shopping-cart"></i> Đơn đặt</span>
+                    <i class="fa fa-angle-down"></i>
+                </div>
+                <div class="nav-group__items">
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> Duyệt đơn</a>
+                    <a class="nav-item" href="#"><span class="nav-item__dot"></span> Lịch sử đơn</a>
+                </div>
+            </div>
+
+            <a class="nav-item" href="#">
+                <span class="nav-item__icon"><i class="fa fa-line-chart"></i></span>
+                <span class="nav-item__text">Thống kê doanh thu</span>
+            </a>
+
+            <div class="sidebar__footer">
+                <button class="btn btn--ghost" type="button">
+                    <i class="fa fa-sign-out"></i> Đăng xuất
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main">
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div class="topbar__left">
+                    <button class="icon-btn" type="button" title="Menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="search">
+                        <i class="fa fa-search"></i>
+                        <input type="text" placeholder="Tìm club, sân, đơn đặt..." />
+                    </div>
+                </div>
+
+                <div class="topbar__right">
+                    <button class="icon-btn has-badge" type="button" title="Thông báo">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+
+                    <button class="icon-btn has-badge" type="button" title="Tin nhắn">
+                        <i class="fa fa-envelope"></i>
+                        <span class="badge">7</span>
+                    </button>
+
+                    <div class="user">
+                        <div class="user__info">
+                            <div class="user__email">owner@htvc.vn</div>
+                            <div class="user__name">Chủ sân</div>
+                        </div>
+                        <div class="user__avatar">O</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTENT -->
+            <section class="content">
+                <div class="page-title">
+                    <h1>Bảng điều khiển</h1>
+                    <div class="page-title__meta">
+                        <span class="pill pill--danger"><i class="fa fa-calendar"></i> Hôm nay</span>
+                        <span class="pill">15/12/2025</span>
+                    </div>
+                </div>
+
+                <!-- STATS CARDS -->
+                <div class="grid grid--4">
+                    <div class="card card--stat">
+                        <div class="card__head">
+                            <div class="card__label">TỔNG CLUB</div>
+                            <div class="card__icon"><i class="fa fa-building"></i></div>
+                        </div>
+                        <div class="card__value">12</div>
+                        <div class="card__sub">Đang hoạt động</div>
+                        <div class="card__accent"></div>
+                    </div>
+
+                    <div class="card card--stat">
+                        <div class="card__head">
+                            <div class="card__label">TỔNG SÂN</div>
+                            <div class="card__icon"><i class="fa fa-map-marker"></i></div>
+                        </div>
+                        <div class="card__value">48</div>
+                        <div class="card__sub">Tất cả sân</div>
+                        <div class="card__accent"></div>
+                    </div>
+
+                    <div class="card card--stat">
+                        <div class="card__head">
+                            <div class="card__label">ĐƠN CHỜ DUYỆT</div>
+                            <div class="card__icon"><i class="fa fa-hourglass-half"></i></div>
+                        </div>
+                        <div class="card__value">9</div>
+                        <div class="card__sub">Cần xử lý</div>
+                        <div class="card__accent"></div>
+                    </div>
+
+                    <div class="card card--stat">
+                        <div class="card__head">
+                            <div class="card__label">DOANH THU THÁNG</div>
+                            <div class="card__icon"><i class="fa fa-money"></i></div>
+                        </div>
+                        <div class="card__value">128.500.000 ₫</div>
+                        <div class="card__sub">Tạm tính</div>
+                        <div class="card__accent"></div>
+                    </div>
+                </div>
+
+                <!-- SECOND ROW -->
+                <div class="grid grid--2">
+                    <!-- Approvals -->
+                    <div class="card">
+                        <div class="card__title">
+                            <h3>Duyệt đơn (mới nhất)</h3>
+                            <div class="card__actions">
+                                <button class="btn btn--danger" type="button"><i class="fa fa-filter"></i> Lọc</button>
+                                <button class="btn btn--dark" type="button"><i class="fa fa-refresh"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mã</th>
+                                        <th>Khách</th>
+                                        <th>Club</th>
+                                        <th>Ngày</th>
+                                        <th>Giờ</th>
+                                        <th>Tiền</th>
+                                        <th>Trạng thái</th>
+                                        <th class="text-right">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#BK1021</td>
+                                        <td>Dương Bình Cương</td>
+                                        <td>Pickleball 18 Cộng Hoà</td>
+                                        <td>15/12</td>
+                                        <td>18:00 - 19:00</td>
+                                        <td>220.000</td>
+                                        <td><span class="status status--pending">Chờ duyệt</span></td>
+                                        <td class="text-right">
+                                            <button class="btn btn--success btn--sm" type="button">Duyệt</button>
+                                            <button class="btn btn--ghost btn--sm" type="button">Xem</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#BK1020</td>
+                                        <td>Nguyễn A</td>
+                                        <td>Sky Pickleball</td>
+                                        <td>15/12</td>
+                                        <td>19:00 - 20:00</td>
+                                        <td>250.000</td>
+                                        <td><span class="status status--pending">Chờ duyệt</span></td>
+                                        <td class="text-right">
+                                            <button class="btn btn--success btn--sm" type="button">Duyệt</button>
+                                            <button class="btn btn--ghost btn--sm" type="button">Xem</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#BK1019</td>
+                                        <td>Trần B</td>
+                                        <td>Phong Sơn Lý Tự Trọng</td>
+                                        <td>14/12</td>
+                                        <td>20:00 - 21:00</td>
+                                        <td>180.000</td>
+                                        <td><span class="status status--approved">Đã duyệt</span></td>
+                                        <td class="text-right">
+                                            <button class="btn btn--ghost btn--sm" type="button">Xem</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Revenue -->
+                    <div class="card">
+                        <div class="card__title">
+                            <h3>Thống kê doanh thu</h3>
+                            <div class="card__actions">
+                                <button class="btn btn--danger" type="button"><i class="fa fa-calendar"></i> Chọn
+                                    khoảng</button>
+                            </div>
+                        </div>
+
+                        <div class="chart">
+                            <div class="chart__placeholder">
+                                <i class="fa fa-area-chart"></i>
+                                <p>Biểu đồ doanh thu (placeholder)</p>
+                                <small>Sau này bạn thay bằng Chart.js / ECharts</small>
+                            </div>
+                        </div>
+
+                        <div class="kpi-row">
+                            <div class="kpi">
+                                <div class="kpi__label">Hôm nay</div>
+                                <div class="kpi__value">6.200.000 ₫</div>
+                            </div>
+                            <div class="kpi">
+                                <div class="kpi__label">7 ngày</div>
+                                <div class="kpi__value">38.900.000 ₫</div>
+                            </div>
+                            <div class="kpi">
+                                <div class="kpi__label">30 ngày</div>
+                                <div class="kpi__value">128.500.000 ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MANAGE SHORTCUTS -->
+                <div class="card">
+                    <div class="card__title">
+                        <h3>Truy cập nhanh</h3>
+                        <div class="card__actions">
+                            <button class="btn btn--dark" type="button"><i class="fa fa-cog"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="quick grid grid--6">
+                        <a class="quick__item" href="#"><i class="fa fa-sitemap"></i><span>Club_SportType</span></a>
+                        <a class="quick__item" href="#"><i class="fa fa-building"></i><span>Club</span></a>
+                        <a class="quick__item" href="#"><i class="fa fa-map-marker"></i><span>Sân</span></a>
+                        <a class="quick__item" href="#"><i class="fa fa-cutlery"></i><span>Dịch vụ</span></a>
+                        <a class="quick__item" href="#"><i class="fa fa-picture-o"></i><span>Hình ảnh</span></a>
+                        <a class="quick__item" href="#"><i class="fa fa-file-text-o"></i><span>Điều khoản</span></a>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
