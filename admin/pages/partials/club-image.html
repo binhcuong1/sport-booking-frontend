@@ -1,0 +1,104 @@
+<div class="card">
+  <div class="card__header">
+    <h3>Club Images</h3>
+
+    <div class="card__header">
+      <div class="toolbar">
+        <div class="toolbar__left">
+          <input
+            id="csFilter"
+            class="input"
+            placeholder="Tìm theo loại ảnh / URL..."
+          />
+        </div>
+        <div class="toolbar__right">
+          <button id="btnAddCs" class="btn btn--danger" type="button">
+            <i class="fa fa-plus"></i> Thêm ảnh
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card__body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Loại ảnh</th>
+          <th>Preview</th>
+          <th>URL</th>
+          <th>Trạng thái</th>
+          <th class="text-right">Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="ciTbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PREVIEW MODAL -->
+<div id="imgPreviewModal" class="modal">
+  <div class="modal__overlay">
+    <div class="modal__dialog" style="max-width: 900px">
+      <div class="modal__header">
+        <h3 id="imgPreviewTitle">Preview</h3>
+        <button class="btn btn--dark btn--sm" type="button" data-close-preview>
+          &times;
+        </button>
+      </div>
+
+      <div class="modal__body" style="display: flex; justify-content: center">
+        <img
+          id="imgPreviewEl"
+          src=""
+          alt="preview"
+          style="max-width: 100%; border-radius: 12px"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="ciModal">
+  <div class="modal__overlay"></div>
+
+  <div class="modal__dialog">
+    <div class="modal__header">
+      <h3 id="ciModalTitle">Thêm ảnh</h3>
+
+      <button class="icon-btn" type="button" data-close-modal title="Đóng">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <form id="ciForm" class="modal__body">
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Loại ảnh (Image Type)</label>
+          <select id="ciImageType" class="input"></select>
+        </div>
+
+        <div class="form-row" style="grid-column: 1 / -1">
+          <label>Image URL</label>
+          <input id="ciUrl" class="input" placeholder="https://..." required />
+        </div>
+
+        <div class="form-row">
+          <label>Ẩn (is_deleted)</label>
+          <select id="ciDeleted" class="input">
+            <option value="false">Hiển thị</option>
+            <option value="true">Ẩn</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal__footer">
+        <button class="btn btn--ghost" type="button" data-close-modal>
+          Hủy
+        </button>
+        <button class="btn btn--danger" type="submit">Lưu</button>
+      </div>
+    </form>
+  </div>
+</div>
