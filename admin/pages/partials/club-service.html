@@ -1,0 +1,96 @@
+<div class="card">
+  <div class="card__header">
+    <h3>Club Services</h3>
+
+    <div class="card__header">
+      <div class="toolbar">
+        <div class="toolbar__left">
+          <input
+            id="csFilter"
+            class="input"
+            placeholder="Tìm theo tên dịch vụ / loại dịch vụ..."
+          />
+        </div>
+        <div class="toolbar__right">
+          <button id="btnAddCs" class="btn btn--danger" type="button">
+            <i class="fa fa-plus"></i> Thêm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card__body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Loại dịch vụ</th>
+          <th>Tên</th>
+          <th>Mô tả</th>
+          <th>Trạng thái</th>
+          <th class="text-right">Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="csTbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="csModal">
+  <div class="modal__overlay"></div>
+
+  <div class="modal__dialog">
+    <div class="modal__header">
+      <h3 id="csModalTitle">Thêm Club Service</h3>
+
+      <button class="icon-btn" type="button" data-close-modal title="Đóng">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <form id="csForm" class="modal__body">
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Loại dịch vụ</label>
+          <select id="csServiceType" class="input"></select>
+        </div>
+
+        <div class="form-row">
+          <label>Tên dịch vụ</label>
+          <input
+            id="csName"
+            class="input"
+            placeholder="VD: Nước suối / Thuê vợt..."
+            required
+          />
+        </div>
+
+        <div class="form-row" style="grid-column: 1 / -1">
+          <label>Mô tả</label>
+          <textarea
+            id="csDesc"
+            class="input"
+            rows="3"
+            placeholder="VD: 10k/chai..."
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <label>Ẩn (is_deleted)</label>
+          <select id="csDeleted" class="input">
+            <option value="false">Hiển thị</option>
+            <option value="true">Ẩn</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal__footer">
+        <button class="btn btn--ghost" type="button" data-close-modal>
+          Hủy
+        </button>
+        <button class="btn btn--danger" type="submit">Lưu</button>
+      </div>
+    </form>
+  </div>
+</div>
