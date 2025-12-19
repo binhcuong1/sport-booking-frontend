@@ -3478,3 +3478,298 @@ booking-card .booking-info span,
     color: #ffffff;
     font-weight: 700;
 }
+
+/* =========================
+   CLUB DETAIL PAGE
+========================= */
+
+/* Card */
+.club-detail-card {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    color: #fff;
+    position: relative;
+}
+
+/* Rating list */
+.rating-item {
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.rating-stars {
+    color: #ffc107;
+    margin-left: 8px;
+}
+
+/* Star select */
+.star-rating i {
+    font-size: 24px;
+    color: #444;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: color 0.2s ease;
+}
+
+.star-rating i.active {
+    color: #ffc107;
+}
+
+/* Service list */
+.service-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.service-list li {
+    margin-bottom: 6px;
+}
+
+/* Sticky info box */
+.sticky-box {
+    position: sticky;
+    top: 100px;
+}
+
+/* ===== CLUB IMAGE BOX ===== */
+.club-image-box {
+    width: 100%;
+    height: 420px;             
+    overflow: hidden;
+    border-radius: 14px;
+    background: #000;
+}
+
+/* Ảnh fill khung */
+.club-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        
+    display: block;
+}
+/* ===== PAGE FIX ===== */
+.booking-customer-page .match-section {
+    padding-bottom: 90px;
+}
+
+/* Card */
+.customer-card {
+    background: rgba(0,0,0,.7);
+    padding: 35px;
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,.4);
+}
+
+/* Form */
+.customer-card label {
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.customer-card .form-control {
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+.customer-card .form-control::placeholder {
+    color: #9ca3af;
+}
+
+.customer-card .form-control:focus {
+    border-color: #dd1515;
+    box-shadow: none;
+}
+
+/* Actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.btn-back {
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    color: #dd1515;
+}
+
+/* ===== PAGE FIX ===== */
+.booking-confirm-page .match-section {
+    padding-bottom: 90px;
+}
+
+/* CARD */
+.confirm-card {
+    background: rgba(0,0,0,.7);
+    padding: 22px 24px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,.35);
+}
+
+.confirm-card h5 {
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+/* INFO ROW */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.info-row span {
+    color: #d1d5db;
+}
+
+.info-row strong {
+    font-weight: 600;
+}
+
+/* PRICE */
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.price {
+    color: #ff4d4f;
+    font-weight: 700;
+}
+
+/* PAYMENT */
+.payment-method label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #111;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #333;
+    margin-bottom: 10px;
+}
+
+.payment-method input {
+    accent-color: #dd1515;
+}
+
+/* ===== PAGE ===== */
+.payment-success-page .match-section {
+    padding-bottom: 90px;
+}
+
+/* CARD */
+.success-card {
+    background: rgba(0,0,0,.75);
+    padding: 50px 40px;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 10px 35px rgba(0,0,0,.45);
+}
+
+/* ICON */
+.success-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.success-icon i {
+    font-size: 42px;
+    color: #fff;
+}
+
+/* TITLE */
+.success-card h3 {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.success-card .sub {
+    color: #d1d5db;
+    font-size: 15px;
+}
+
+/* DIVIDER */
+.success-divider {
+    height: 1px;
+    background: rgba(255,255,255,.15);
+    margin: 30px 0;
+}
+
+/* INFO */
+.success-info {
+    text-align: left;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.info-row span {
+    color: #d1d5db;
+}
+
+.info-row strong {
+    font-weight: 600;
+}
+
+.price {
+    color: #ff4d4f;
+    font-weight: 700;
+}
+
+/* ACTION */
+.success-actions {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+}
+
+.success-actions .primary-btn {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+}
+
+.back-home {
+    color: #fff;
+    font-size: 14px;
+}
+
+.back-home:hover {
+    color: #dd1515;
+}
+
+/* RESPONSIVE */
+@media (max-width: 575px) {
+    .success-card {
+        padding: 35px 20px;
+    }
+}

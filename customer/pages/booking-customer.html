@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin khách hàng | HTVC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/customer/css/style.css">
+
+    <!-- FIX CSS -->
+    <link rel="stylesheet" href="/customer/css/booking-customer.css">
+</head>
+
+<body class="booking-customer-page">
+
+<!-- HEADER -->
+<div data-include="/shared/partials/header.html"></div>
+
+<section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
+    <div class="container">
+
+        <!-- TITLE -->
+        <div class="section-title text-white">
+            <h3>Thông tin <span>khách hàng</span></h3>
+            <p>Vui lòng kiểm tra & cập nhật trước khi đặt sân</p>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="customer-card">
+
+                    <form id="customerForm">
+
+                        <div class="form-group">
+                            <label>Họ và tên</label>
+                            <input type="text"
+                                   class="form-control"
+                                   value="Nguyễn Văn A"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            <input type="text"
+                                   class="form-control"
+                                   value="0909 111 222"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email"
+                                   class="form-control"
+                                   value="user@gmail.com"
+                                   readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ghi chú (tuỳ chọn)</label>
+                            <textarea class="form-control"
+                                      rows="3"
+                                      placeholder="Ví dụ: cần sân gần lối vào..."></textarea>
+                        </div>
+
+                        <!-- ACTION -->
+                        <div class="form-actions">
+                            <a href="./schedule.html" class="btn-back">
+                                ← Quay lại
+                            </a>
+
+                            <button type="submit" class="primary-btn">
+                                TIẾP TỤC
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<div data-include="/shared/partials/footer.html"></div>
+
+<script src="/shared/js/include.js"></script>
+
+<script>
+document.getElementById('customerForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    // TODO: lưu info vào session / localStorage
+    // redirect sang booking-confirm.html
+    window.location.href = './booking-confirm.html';
+});
+</script>
+
+</body>
+</html>
