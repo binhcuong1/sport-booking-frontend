@@ -1,47 +1,92 @@
-    <!DOCTYPE html>
-    <html lang="zxx">
+<!DOCTYPE html>
+<html lang="zxx">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="HTVC Sport">
-        <meta name="keywords" content="Specer, unica, creative, html">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>HTVC Đặt sân thể thao</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="HTVC Sport">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu lạc bộ | HTVC</title>
 
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
 
-        <!-- Css Styles -->
-        <link rel="stylesheet" href="/customer/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="/customer/css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="/customer/css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="/customer/css/magnific-popup.css" type="text/css">
-        <link rel="stylesheet" href="/customer/css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="/customer/css/style.css" type="text/css">
-    </head>
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/customer/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/customer/css/magnific-popup.css">
+    <link rel="stylesheet" href="/customer/css/slicknav.min.css">
+    <link rel="stylesheet" href="/customer/css/style.css">
+</head>
 
-    <body>
-        <!-- Page Preloder -->
-        <div id="preloder">
-            <div class="loader"></div>
-        </div>
+<body>
 
-        <!-- Render Header -->
-        <div data-include="/shared/partials/header.html"></div>
+    <!-- Preloader -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
-        <!-- Match Section Begin -->
-        <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-white">
-                            <h3> Câu lạc bộ <span>nổi bật</span></h3>
-                        </div>
+    <!-- Header -->
+    <div data-include="/shared/partials/header.html"></div>
+
+    <!-- CLUB PAGE -->
+    <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
+        <div class="container">
+
+            <!-- TITLE -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title text-white">
+                        <h3><span> Câu lạc bộ </span></h3>
+                        <p>Khám phá các câu lạc bộ thể thao hàng đầu tại TP.HCM</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="row club-grid ">
+            <!-- FILTER -->
+            <div class="row mb-4">
+                <div class="col-lg-12">
+                    <div class="club-filter-box">
+
+                        <div class="filter-item">
+                            <input type="text" class="form-control"
+                                placeholder="🔍 Tìm kiếm câu lạc bộ...">
+                        </div>
+
+                        <div class="filter-item">
+                            <select class="form-control">
+                                <option>Tất cả môn</option>
+                                <option>Pickleball</option>
+                                <option>Cầu lông</option>
+                                <option>Tennis</option>
+                                <option>Bóng đá</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-item">
+                            <select class="form-control">
+                                <option>Tất cả quận</option>
+                                <option>Tân Bình</option>
+                                <option>Quận 10</option>
+                                <option>Quận 3</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-item">
+                            <select class="form-control">
+                                <option>Tất cả giá</option>
+                                <option>Dưới 200k</option>
+                                <option>200k - 500k</option>
+                                <option>Trên 500k</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLUB GRID -->
+            <div class="row club-grid ">
                     <!-- item 1 -->
                     <div class="col-lg-3 col-md-6 mt-3 d-flex ">
                         <div class="club-card">
@@ -274,22 +319,20 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- Match Section End -->
+        </div>
+    </section>
 
+    <!-- Footer -->
+    <div data-include="/shared/partials/footer.html"></div>
 
-        <!-- Render Footer -->
-        <div data-include="/shared/partials/footer.html"></div>
+    <!-- JS -->
+    <script src="/customer/js/jquery-3.3.1.min.js"></script>
+    <script src="/customer/js/bootstrap.min.js"></script>
+    <script src="/customer/js/jquery.magnific-popup.min.js"></script>
+    <script src="/customer/js/jquery.slicknav.js"></script>
+    <script src="/customer/js/owl.carousel.min.js"></script>
+    <script src="/customer/js/main.js"></script>
+    <script src="/shared/js/include.js"></script>
 
-        <!-- Js Plugins -->
-        <script src="/customer/js/jquery-3.3.1.min.js"></script>
-        <script src="/customer/js/bootstrap.min.js"></script>
-        <script src="/customer/js/jquery.magnific-popup.min.js"></script>
-        <script src="/customer/js/jquery.slicknav.js"></script>
-        <script src="/customer/js/owl.carousel.min.js"></script>
-        <script src="/customer/js/main.js"></script>
-        <script src="/shared/js/include.js"></script>
-    </body>
-
-    </html>
+</body>
+</html>
