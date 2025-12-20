@@ -27,6 +27,7 @@ window.PageInits.club = async function () {
 
     const clubName = document.querySelector("#clubName");
     const clubAddress = document.querySelector("#clubAddress");
+    const clubContactPhone = document.querySelector("#clubContactPhone");
     const clubOpenTime = document.querySelector("#clubOpenTime");
     const clubCloseTime = document.querySelector("#clubCloseTime");
     const clubDeleted = document.querySelector("#clubDeleted");
@@ -58,6 +59,7 @@ window.PageInits.club = async function () {
 
         clubName.value = club.clubName || "";
         clubAddress.value = club.address || "";
+        clubContactPhone.value = club.contactPhone || "";
         clubOpenTime.value = club.openTime || "";
         clubCloseTime.value = club.closeTime || "";
         clubDeleted.value = String(!!club.isDeleted);
@@ -78,6 +80,7 @@ window.PageInits.club = async function () {
         const payload = {
             clubName: clubName.value.trim(),
             address: clubAddress.value.trim(),
+            contactPhone: clubContactPhone.value,
             description: descInput.value,
             openTime: clubOpenTime.value || null,
             closeTime: clubCloseTime.value || null,
