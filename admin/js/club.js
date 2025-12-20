@@ -1,8 +1,6 @@
 import { API_BASE } from "../../config/config.js";
 
 window.PageInits.club = async function () {
-    console.log("PageInits.club START");
-
     const clubId = Number(localStorage.getItem("sb_current_club_id"));
     if (!clubId) {
         alert("Chưa chọn club ở dashboard!");
@@ -22,17 +20,27 @@ window.PageInits.club = async function () {
     }
 
     const form = document.querySelector("#clubForm");
-    const btnDelete = document.querySelector("#btnDeleteClub");
+    if (!form) {
+        console.warn("Club form not found");
+        return;
+    }
 
     const clubName = document.querySelector("#clubName");
     const clubAddress = document.querySelector("#clubAddress");
     const clubOpenTime = document.querySelector("#clubOpenTime");
     const clubCloseTime = document.querySelector("#clubCloseTime");
     const clubDeleted = document.querySelector("#clubDeleted");
+    const btnDelete = document.querySelector("#btnDeleteClub");
 
-    if (!form) {
-        console.warn("Club form not found");
-        return;
+    const descInput = document.querySelector("#Description");
+    const editorEl = document.querySelector("#OverviewEditor");
+
+    let overviewEditor = null;
+    if (editorEl) {
+        overviewEditor = new Quill(editorEl, {
+            theme: "snow",
+            placeholder: "Nhập mô tả club..."
+        });
     }
 
     async function loadClub() {
@@ -53,14 +61,24 @@ window.PageInits.club = async function () {
         clubOpenTime.value = club.openTime || "";
         clubCloseTime.value = club.closeTime || "";
         clubDeleted.value = String(!!club.isDeleted);
+
+        if (overviewEditor) {
+            overviewEditor.root.innerHTML = club.description || "";
+            descInput.value = club.description || "";
+        }
     }
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
+        if (overviewEditor) {
+            descInput.value = overviewEditor.root.innerHTML;
+        }
+
         const payload = {
             clubName: clubName.value.trim(),
             address: clubAddress.value.trim(),
+            description: descInput.value,
             openTime: clubOpenTime.value || null,
             closeTime: clubCloseTime.value || null,
             isDeleted: clubDeleted.value === "true"
@@ -86,7 +104,6 @@ window.PageInits.club = async function () {
         }
 
         alert("Cập nhật club thành công");
-        syncLocalClubs(clubId, payload.clubName);
     });
 
     if (btnDelete) {
