@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Xác nhận đặt sân | HTVC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+
+    <!-- CSS CORE -->
+    <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/customer/css/style.css">
+
+    <!-- FIX RIÊNG -->
+    <link rel="stylesheet" href="/customer/css/booking-confirm.css">
+</head>
+
+<body class="booking-confirm-page">
+
+<!-- HEADER -->
+<div data-include="/shared/partials/header.html"></div>
+
+<section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
+    <div class="container">
+
+        <!-- TITLE -->
+        <div class="section-title text-white">
+            <h3>Xác nhận <span>đặt sân</span></h3>
+            <p>Kiểm tra thông tin trước khi thanh toán</p>
+        </div>
+
+        <div class="row">
+
+            <!-- LEFT -->
+            <div class="col-lg-8">
+
+                <!-- CUSTOMER INFO -->
+                <div class="confirm-card">
+                    <h5>Thông tin khách hàng</h5>
+
+                    <div class="info-row">
+                        <span>Họ tên:</span>
+                        <strong>Nguyễn Văn A</strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>Số điện thoại:</span>
+                        <strong>0909 111 222</strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>Email:</span>
+                        <strong>user@gmail.com</strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>Ghi chú:</span>
+                        <strong>Không có</strong>
+                    </div>
+                </div>
+
+                <!-- BOOKING INFO -->
+                <div class="confirm-card">
+                    <h5>Thông tin đặt sân</h5>
+
+                    <div class="info-row">
+                        <span>Câu lạc bộ:</span>
+                        <strong>CLB Cầu Lông 18B Cộng Hòa</strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>Sân:</span>
+                        <strong>Sân A</strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>Ngày:</span>
+                        <strong>20/12/2025</strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>Thời gian:</span>
+                        <strong>18:00 - 19:30</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-lg-4">
+
+                <!-- PAYMENT -->
+                <div class="confirm-card sticky-box">
+                    <h5>Thanh toán</h5>
+
+                    <div class="price-row">
+                        <span>Tổng tiền</span>
+                        <strong class="price">150.000đ</strong>
+                    </div>
+
+                    <div class="payment-method">
+                        <label>
+                            <input type="radio" name="payment" checked>
+                            <img src="https://developers.momo.vn/v3/assets/images/logo.png" alt="MoMo">
+                            Ví MoMo
+                        </label>
+
+                        <label>
+                            <input type="radio" name="payment">
+                            <img src="https://vnpay.vn/assets/images/logo-vnpay.png" alt="VNPay">
+                            VNPay
+                        </label>
+                    </div>
+
+                    <button class="primary-btn btn-block mt-3">
+                        XÁC NHẬN ĐẶT SÂN
+                    </button>
+
+                    <a href="./booking-customer.html" class="back-link">
+                        ← Quay lại
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<div data-include="/shared/partials/footer.html"></div>
+
+<script src="/shared/js/include.js"></script>
+
+</body>
+</html>

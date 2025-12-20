@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết câu lạc bộ | HTVC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/customer/css/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div data-include="/shared/partials/header.html"></div>
+
+    <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
+        <div class="container">
+
+            <div class="section-title text-white">
+                <h3><span>CLB Cầu Lông 18B Cộng Hòa</span></h3>
+                <p>Thông tin chi tiết câu lạc bộ</p>
+            </div>
+
+            <div class="row">
+
+                <!-- LEFT -->
+                <div class="col-lg-8">
+
+                    <!-- IMAGE -->
+                    <div class="club-detail-card club-image-box mb-4">
+                        <img src="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576-125-0-750-1000-crop-1749827368375622748059.jpg"
+                            alt="CLB image">
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+                    <div class="club-detail-card">
+                        <h5>Giới thiệu</h5>
+                        <p>
+                            CLB Cầu Lông 18B Cộng Hòa sở hữu hệ thống sân hiện đại,
+                            mặt sân chuẩn thi đấu, không gian rộng rãi, thoáng mát.
+                        </p>
+                    </div>
+
+                    <!-- COURTS -->
+                    <div class="club-detail-card">
+                        <h5>Danh sách sân & giá</h5>
+                        <table class="table table-dark table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sân</th>
+                                    <th>Giờ mở</th>
+                                    <th>Giá / giờ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sân A</td>
+                                    <td>06:00 - 23:00</td>
+                                    <td>80.000đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Sân B</td>
+                                    <td>06:00 - 23:00</td>
+                                    <td>90.000đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- SERVICES -->
+                    <div class="club-detail-card">
+                        <h5>Dịch vụ</h5>
+                        <ul class="service-list">
+                            <li>✔️ Bãi giữ xe</li>
+                            <li>✔️ Nước uống</li>
+                            <li>✔️ Nhà vệ sinh</li>
+                            <li>✔️ Cho thuê vợt</li>
+                        </ul>
+                    </div>
+
+                    <!-- RATING -->
+                    <div class="club-detail-card">
+                        <h5>Đánh giá từ người chơi</h5>
+
+                        <div class="rating-item">
+                            <strong>Nguyễn Văn A</strong>
+                            <span class="rating-stars">★★★★★</span>
+                            <p>Sân đẹp, giá hợp lý</p>
+                        </div>
+
+                        <div class="rating-item">
+                            <strong>Trần Thị B</strong>
+                            <span class="rating-stars">★★★★☆</span>
+                            <p>Phục vụ ổn, sẽ quay lại</p>
+                        </div>
+                    </div>
+
+                    <!-- USER REVIEW -->
+                    <div class="club-detail-card">
+                        <h5>Viết đánh giá của bạn</h5>
+
+                        <form id="reviewForm">
+                            <div class="star-rating mb-3">
+                                <i class="fa fa-star" data-value="1"></i>
+                                <i class="fa fa-star" data-value="2"></i>
+                                <i class="fa fa-star" data-value="3"></i>
+                                <i class="fa fa-star" data-value="4"></i>
+                                <i class="fa fa-star" data-value="5"></i>
+                            </div>
+
+                            <input type="hidden" id="ratingValue" value="0">
+
+                            <textarea class="form-control mb-3" rows="4" placeholder="Chia sẻ trải nghiệm của bạn..."
+                                required></textarea>
+
+                            <button type="submit" class="primary-btn">
+                                GỬI ĐÁNH GIÁ
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="col-lg-4">
+                    <div class="club-detail-card sticky-box">
+                        <h5>Thông tin CLB</h5>
+                        <p><i class="fa fa-map-marker"></i> 18B Cộng Hòa, Tân Bình</p>
+                        <p><i class="fa fa-clock-o"></i> 06:00 - 23:00</p>
+                        <p><i class="fa fa-phone"></i> 0909 123 456</p>
+
+                        <a href="./schedule.html" class="primary-btn btn-block mt-3">
+                            ĐẶT SÂN
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div data-include="/shared/partials/footer.html"></div>
+
+    <script src="/shared/js/include.js"></script>
+
+    <script>
+
+        /* Star rating */
+        const stars = document.querySelectorAll('.star-rating i');
+        const ratingInput = document.getElementById('ratingValue');
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('mouseover', () => highlight(star.dataset.value));
+            star.addEventListener('mouseout', () => highlight(selectedRating));
+            star.addEventListener('click', () => {
+                selectedRating = star.dataset.value;
+                ratingInput.value = selectedRating;
+                highlight(selectedRating);
+            });
+        });
+
+        function highlight(val) {
+            stars.forEach(s => s.classList.toggle('active', s.dataset.value <= val));
+        }
+    </script>
+
+</body>
+
+</html>
