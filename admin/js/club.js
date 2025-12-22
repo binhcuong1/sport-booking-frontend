@@ -140,4 +140,169 @@ window.PageInits.club = async function () {
 
     // START
     await loadClub();
+
+    /* =====================================================
+   ========== COURT MANAGEMENT (NEW) ===================
+   ===================================================== */
+
+    const sportTypeSelect = document.querySelector("#sportTypeSelect");
+    const btnAddCourt = document.querySelector("#btnAddCourt");
+    const courtTableBody = document.querySelector("#courtTableBody");
+
+    const courtModal = document.querySelector("#courtModal");
+    const courtModalTitle = document.querySelector("#courtModalTitle");
+    const courtNameInput = document.querySelector("#courtName");
+    const courtDeletedSelect = document.querySelector("#courtDeleted");
+    const btnSaveCourt = document.querySelector("#btnSaveCourt");
+    const btnCloseCourtModal = document.querySelector("#btnCloseCourtModal");
+
+    let currentSportTypeId = null;
+    let editingCourtId = null;
+
+    // ===== LOAD SPORT TYPES OF CLUB =====
+    async function loadSportTypes() {
+        const res = await fetch(`${API_BASE}/clubs/${clubId}/sport-types`, {
+            headers: authHeaders()
+        });
+        
+        if (!res.ok) return;
+
+        const list = await res.json();
+        console.table(list);
+        sportTypeSelect.innerHTML = `<option value="">-- Chọn loại sân --</option>`;
+
+        list.forEach(st => {
+            const opt = document.createElement("option");
+            opt.value = st.sport_type_id;
+            opt.textContent = st.sport_name;
+            sportTypeSelect.appendChild(opt);
+        });
+    }
+
+    // ===== LOAD COURTS BY SPORT TYPE =====
+    async function loadCourts() {
+        if (!currentSportTypeId) return;
+
+        const res = await fetch(
+            `${API_BASE}/clubs/${clubId}/sport-types/${currentSportTypeId}/courts`,
+            { headers: authHeaders() }
+        );
+
+        if (!res.ok) return;
+
+        const courts = await res.json();
+        courtTableBody.innerHTML = "";
+
+        if (!courts.length) {
+            courtTableBody.innerHTML =
+                `<tr><td colspan="3">Chưa có sân</td></tr>`;
+            return;
+        }
+
+        courts.forEach(c => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${c.courtName}</td>
+                <td>${c.isDeleted ? "Ẩn" : "Hoạt động"}</td>
+                <td>
+                    <button class="btn btn--small btn-edit">Sửa</button>
+                    <button class="btn btn--small btn--danger btn-delete">Xóa</button>
+                </td>
+            `;
+
+            tr.querySelector(".btn-edit").onclick = () => openEditCourt(c);
+            tr.querySelector(".btn-delete").onclick = () => deleteCourt(c.courtId);
+
+            courtTableBody.appendChild(tr);
+        });
+    }
+
+    // ===== EVENT: SELECT SPORT TYPE =====
+    sportTypeSelect.addEventListener("change", () => {
+        currentSportTypeId = sportTypeSelect.value;
+        btnAddCourt.disabled = !currentSportTypeId;
+
+        if (currentSportTypeId) {
+            loadCourts();
+        } else {
+            courtTableBody.innerHTML =
+                `<tr><td colspan="3">Chưa chọn loại sân</td></tr>`;
+        }
+    });
+
+    // ===== ADD COURT =====
+    btnAddCourt.addEventListener("click", () => {
+        editingCourtId = null;
+        courtNameInput.value = "";
+        courtDeletedSelect.value = "false";
+        courtModalTitle.textContent = "Thêm sân";
+        courtModal.style.display = "block";
+    });
+
+    btnCloseCourtModal.addEventListener("click", () => {
+        courtModal.style.display = "none";
+    });
+
+    // ===== SAVE COURT =====
+    btnSaveCourt.addEventListener("click", async () => {
+        const payload = {
+            clubId,
+            sportTypeId: Number(currentSportTypeId),
+            courtName: courtNameInput.value.trim(),
+            isDeleted: courtDeletedSelect.value === "true"
+        };
+
+        if (!payload.courtName) {
+            alert("Tên sân không được để trống");
+            return;
+        }
+
+        const url = editingCourtId
+            ? `${API_BASE}/courts/${editingCourtId}`
+            : `${API_BASE}/courts`;
+
+        const method = editingCourtId ? "PUT" : "POST";
+
+        const res = await fetch(url, {
+            method,
+            headers: {
+                "Content-Type": "application/json",
+                ...authHeaders()
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+            alert("Lưu sân thất bại");
+            return;
+        }
+
+        courtModal.style.display = "none";
+        loadCourts();
+    });
+
+    // ===== EDIT COURT =====
+    function openEditCourt(court) {
+        editingCourtId = court.courtId;
+        courtNameInput.value = court.courtName;
+        courtDeletedSelect.value = String(!!court.isDeleted);
+        courtModalTitle.textContent = "Sửa sân";
+        courtModal.style.display = "block";
+    }
+
+    // ===== DELETE COURT =====
+    async function deleteCourt(courtId) {
+        if (!confirm("Xóa sân này?")) return;
+
+        await fetch(`${API_BASE}/courts/${courtId}`, {
+            method: "DELETE",
+            headers: authHeaders()
+        });
+
+        loadCourts();
+    }
+
+    // INIT COURT SECTION
+    await loadSportTypes();
+
 };
