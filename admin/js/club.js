@@ -36,18 +36,30 @@ window.PageInits.club = async function () {
     const descInput = document.querySelector("#Description");
     const editorEl = document.querySelector("#OverviewEditor");
 
+    // SPORT TYPE MANAGEMENT
+    const btnAddSportType = document.querySelector("#btnAddSportType");
+    const btnRemoveSportType = document.querySelector("#btnRemoveSportType");
+    const sportTypeModal = document.querySelector("#sportTypeModal");
+    const sportTypeMasterSelect = document.querySelector(
+        "#sportTypeMasterSelect"
+    );
+    const btnSaveSportType = document.querySelector("#btnSaveSportType");
+    const btnCloseSportTypeModal = document.querySelector(
+        "#btnCloseSportTypeModal"
+    );
+
     let overviewEditor = null;
     if (editorEl) {
         overviewEditor = new Quill(editorEl, {
             theme: "snow",
-            placeholder: "Nhập mô tả club..."
+            placeholder: "Nhập mô tả club...",
         });
     }
 
     async function loadClub() {
         const res = await fetch(API, {
             headers: authHeaders(),
-            cache: "no-store"
+            cache: "no-store",
         });
 
         if (!res.ok) {
@@ -84,7 +96,7 @@ window.PageInits.club = async function () {
             description: descInput.value,
             openTime: clubOpenTime.value || null,
             closeTime: clubCloseTime.value || null,
-            isDeleted: clubDeleted.value === "true"
+            isDeleted: clubDeleted.value === "true",
         };
 
         if (!payload.clubName) {
@@ -96,9 +108,9 @@ window.PageInits.club = async function () {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                ...authHeaders()
+                ...authHeaders(),
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
         });
 
         if (!res.ok) {
@@ -115,7 +127,7 @@ window.PageInits.club = async function () {
 
             const res = await fetch(API, {
                 method: "DELETE",
-                headers: authHeaders()
+                headers: authHeaders(),
             });
 
             if (!res.ok) {
@@ -131,7 +143,7 @@ window.PageInits.club = async function () {
 
     function syncLocalClubs(clubId, newName) {
         const clubs = JSON.parse(localStorage.getItem("clubs") || "[]");
-        const idx = clubs.findIndex(c => Number(c.id) === Number(clubId));
+        const idx = clubs.findIndex((c) => Number(c.id) === Number(clubId));
         if (idx >= 0) {
             clubs[idx].name = newName;
             localStorage.setItem("clubs", JSON.stringify(clubs));
@@ -142,8 +154,8 @@ window.PageInits.club = async function () {
     await loadClub();
 
     /* =====================================================
-   ========== COURT MANAGEMENT (NEW) ===================
-   ===================================================== */
+     ========== COURT MANAGEMENT (NEW) ===================
+     ===================================================== */
 
     const sportTypeSelect = document.querySelector("#sportTypeSelect");
     const btnAddCourt = document.querySelector("#btnAddCourt");
@@ -162,16 +174,16 @@ window.PageInits.club = async function () {
     // ===== LOAD SPORT TYPES OF CLUB =====
     async function loadSportTypes() {
         const res = await fetch(`${API_BASE}/clubs/${clubId}/sport-types`, {
-            headers: authHeaders()
+            headers: authHeaders(),
         });
-        
+
         if (!res.ok) return;
 
         const list = await res.json();
         console.table(list);
         sportTypeSelect.innerHTML = `<option value="">-- Chọn loại sân --</option>`;
 
-        list.forEach(st => {
+        list.forEach((st) => {
             const opt = document.createElement("option");
             opt.value = st.sport_type_id;
             opt.textContent = st.sport_name;
@@ -194,12 +206,11 @@ window.PageInits.club = async function () {
         courtTableBody.innerHTML = "";
 
         if (!courts.length) {
-            courtTableBody.innerHTML =
-                `<tr><td colspan="3">Chưa có sân</td></tr>`;
+            courtTableBody.innerHTML = `<tr><td colspan="3">Chưa có sân</td></tr>`;
             return;
         }
 
-        courts.forEach(c => {
+        courts.forEach((c) => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
                 <td>${c.courtName}</td>
@@ -217,6 +228,28 @@ window.PageInits.club = async function () {
         });
     }
 
+    async function loadAllSportTypes() {
+        const res = await fetch(`${API_BASE}/sport-types`, {
+            headers: authHeaders(),
+        });
+
+        if (!res.ok) {
+            alert("Không load được danh sách loại sân");
+            return;
+        }
+
+        const list = await res.json();
+
+        sportTypeMasterSelect.innerHTML = `<option value="">-- Chọn loại sân --</option>`;
+
+        list.forEach((st) => {
+            const opt = document.createElement("option");
+            opt.value = st.sport_type_id;
+            opt.textContent = st.sport_name;
+            sportTypeMasterSelect.appendChild(opt);
+        });
+    }
+
     // ===== EVENT: SELECT SPORT TYPE =====
     sportTypeSelect.addEventListener("change", () => {
         currentSportTypeId = sportTypeSelect.value;
@@ -225,10 +258,78 @@ window.PageInits.club = async function () {
         if (currentSportTypeId) {
             loadCourts();
         } else {
-            courtTableBody.innerHTML =
-                `<tr><td colspan="3">Chưa chọn loại sân</td></tr>`;
+            courtTableBody.innerHTML = `<tr><td colspan="3">Chưa chọn loại sân</td></tr>`;
         }
     });
+
+    btnAddSportType?.addEventListener("click", async () => {
+        await loadAllSportTypes();
+        sportTypeModal.style.display = "block";
+    });
+
+    btnCloseSportTypeModal?.addEventListener("click", () => {
+        sportTypeModal.style.display = "none";
+    });
+
+    btnSaveSportType?.addEventListener("click", async () => {
+        const sportTypeId = sportTypeMasterSelect.value;
+
+        if (!sportTypeId) {
+            alert("Chưa chọn loại sân");
+            return;
+        }
+
+        const res = await fetch(
+            `${API_BASE}/clubs/${clubId}/sport-types`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    ...authHeaders()
+                },
+                body: JSON.stringify({ sportTypeId: Number(sportTypeId) })
+            }
+        );
+
+        if (!res.ok) {
+            alert("Loại sân đã tồn tại hoặc có lỗi");
+            return;
+        }
+
+        alert("Đã thêm loại sân");
+        sportTypeModal.style.display = "none";
+
+        // reload dropdown loại sân của club
+        await loadSportTypes();
+    });
+
+    btnRemoveSportType?.addEventListener("click", async () => {
+        if (!currentSportTypeId) {
+            alert("Chưa chọn loại sân để gỡ");
+            return;
+        }
+
+        if (!confirm("Gỡ loại sân này khỏi club?")) return;
+
+        const res = await fetch(
+            `${API_BASE}/clubs/${clubId}/sport-types/${currentSportTypeId}`,
+            {
+                method: "DELETE",
+                headers: authHeaders()
+            }
+        );
+
+        if (!res.ok) {
+            alert("Không thể gỡ loại sân (có thể còn sân)");
+            return;
+        }
+
+        alert("Đã gỡ loại sân");
+
+        currentSportTypeId = null;
+        await loadSportTypes();
+    });
+
 
     // ===== ADD COURT =====
     btnAddCourt.addEventListener("click", () => {
@@ -249,7 +350,7 @@ window.PageInits.club = async function () {
             clubId,
             sportTypeId: Number(currentSportTypeId),
             courtName: courtNameInput.value.trim(),
-            isDeleted: courtDeletedSelect.value === "true"
+            isDeleted: courtDeletedSelect.value === "true",
         };
 
         if (!payload.courtName) {
@@ -267,9 +368,9 @@ window.PageInits.club = async function () {
             method,
             headers: {
                 "Content-Type": "application/json",
-                ...authHeaders()
+                ...authHeaders(),
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
         });
 
         if (!res.ok) {
@@ -296,7 +397,7 @@ window.PageInits.club = async function () {
 
         await fetch(`${API_BASE}/courts/${courtId}`, {
             method: "DELETE",
-            headers: authHeaders()
+            headers: authHeaders(),
         });
 
         loadCourts();
@@ -304,5 +405,4 @@ window.PageInits.club = async function () {
 
     // INIT COURT SECTION
     await loadSportTypes();
-
 };
