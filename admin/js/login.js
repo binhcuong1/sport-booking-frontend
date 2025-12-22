@@ -17,7 +17,7 @@ form.addEventListener("submit", async (e) => {
       { email, password },
       false
     );
-
+    
     // res: { token, account: { id, email, role } }
     if (!res?.token || !res?.account)
       throw new Error("Phản hồi login không hợp lệ");
@@ -25,13 +25,13 @@ form.addEventListener("submit", async (e) => {
     if (res.account.role !== "owner") {
       throw new Error("Tài khoản này không phải Chủ sân.");
     }
-
+    
     localStorage.setItem("token", res.token);
     localStorage.setItem("account", JSON.stringify(res.account));
     localStorage.setItem("clubs", JSON.stringify(res.clubs));
-    if (res.clubs?.length) {
-      setCurrentClubId(res.clubs[0].id);
-    }
+    // if (res.clubs?.length) {
+    //   setCurrentClubId(res.clubs[0].id);
+    // }
 
     window.location.href = "/admin/pages/admin.html";
   } catch (err) {
