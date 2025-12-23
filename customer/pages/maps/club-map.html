@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Club Map</title>
+
+  <!-- Leaflet -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <!-- MarkerCluster -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+  />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ================= SIDEBAR ================= */
+    #sidebar {
+      width: 360px;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid #ddd;
+      padding: 12px;
+      box-sizing: border-box;
+      background: #fff;
+    }
+
+    /* ================= MAP ================= */
+    #map {
+      flex: 1;
+      height: 100vh;
+    }
+
+    /* ================= SEARCH ================= */
+    .search-box input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    /* ================= FILTER ================= */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      font-size: 13px;
+      transition: 0.2s;
+    }
+
+    .filter-btn:hover {
+      background: #f1f1f1;
+    }
+
+    .filter-btn.active {
+      background: #2e7d32;
+      color: #fff;
+      border-color: #2e7d32;
+    }
+
+    /* ================= CLUB LIST ================= */
+    .club-item {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+
+    .club-item:hover {
+      background: #f5f5f5;
+    }
+
+    /* ================= DETAIL ================= */
+    .back-btn {
+      background: none;
+      border: none;
+      color: #1976d2;
+      cursor: pointer;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .club-card h2 {
+      margin-top: 0;
+    }
+
+    .sport-tags {
+      margin: 8px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 12px;
+      margin-right: 6px;
+    }
+
+    .btn-book {
+      margin-top: 12px;
+      width: 100%;
+      padding: 10px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div id="sidebar"></div>
+
+<!-- MAP -->
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- MarkerCluster JS -->
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+<!-- Map JS -->
+<script type="module" src="../../js/map/club-map.js"></script>
+
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+</body>
+</html>
