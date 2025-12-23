@@ -4,36 +4,39 @@
 
 <!-- FORM -->
 <div class="card">
-    <form id="clubForm" class="form">
+    <form id="clubForm" class="form-grid">
 
-        <div class="form-group">
-            <label>Tên club</label>
-            <input type="text" id="clubName" class="input" required />
-        </div><br>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Tên club</label>
+                <input type="text" id="clubName" class="input" required />
+            </div>
 
-        <div class="form-group">
+            <div class="form-group">
+                <label>Số điện thoại</label>
+                <input type="tel" id="clubContactPhone" class="input" placeholder="VD: 0901234567"
+                    pattern="[0-9+ ]{9,15}" required />
+            </div>
+        </div>
+
+        <div class="form-group full">
             <label>Địa chỉ</label>
             <textarea id="clubAddress" class="input" rows="2"></textarea>
         </div>
 
-        <div class="form-group">
-            <label>Số điện thoại</label>
-            <input type="tel" id="clubContactPhone" class="input" placeholder="VD: 0901234567" pattern="[0-9+ ]{9,15}"
-                required />
+        <div class="form-row">
+            <div class="form-group">
+                <label>Giờ mở</label>
+                <input type="time" id="clubOpenTime" class="input" />
+            </div>
+
+            <div class="form-group">
+                <label>Giờ đóng</label>
+                <input type="time" id="clubCloseTime" class="input" />
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>Giờ mở</label>
-            <input type="time" id="clubOpenTime" class="input" />
-        </div>
-
-        <div class="form-group">
-            <label>Giờ đóng</label>
-            <input type="time" id="clubCloseTime" class="input" />
-        </div>
-
-        <!-- MÔ TẢ -->
-        <div class="form-group">
+        <div class="form-group full">
             <label>Mô tả</label>
             <div id="OverviewEditor" style="height:200px;"></div>
             <input type="hidden" id="Description">
@@ -47,7 +50,7 @@
             </select>
         </div>
 
-        <div class="form-actions">
+        <div class="form-actions align-right">
             <button type="submit" class="btn btn--primary">Lưu</button>
             <button type="button" id="btnDeleteClub" class="btn btn--danger">Xóa</button>
         </div>
@@ -63,20 +66,15 @@
     <div class="form-row">
         <div class="form-group">
             <label>Loại sân</label>
-            <select id="sportTypeSelect" class="input">
-                <option value="">-- Chọn loại sân --</option>
-            </select>
+            <select id="sportTypeSelect" class="input"></select>
         </div>
 
         <div class="form-actions">
-            <button type="button" class="btn btn--secondary" id="btnAddSportType">
-                + Thêm loại sân
-            </button>
-            <button type="button" class="btn btn--danger" id="btnRemoveSportType">
-                Gỡ loại sân
-            </button>
+            <button class="btn btn--secondary" id="btnAddSportType">+ Thêm loại sân</button>
+            <button class="btn btn--danger" id="btnRemoveSportType">Gỡ</button>
         </div>
     </div>
+
 
     <div class="form-actions">
         <button type="button" class="btn btn--primary" id="btnAddCourt" disabled>
