@@ -1,107 +1,48 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Sân yêu thích | HTVC</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/customer/css/style.css">
-</head>
+    <link rel="stylesheet" href="/customer/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/customer/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/customer/css/style.css" />
+  </head>
 
-<body class="favorite-page">
+  <body class="favorite-page">
+    <!-- HEADER -->
+    <div data-include="/shared/partials/header.html"></div>
 
-<!-- HEADER -->
-<div data-include="/shared/partials/header.html"></div>
-
-<section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
-    <div class="container">
-
+    <section
+      class="match-section set-bg"
+      data-setbg="/customer/img/match/match-bg.jpg"
+    >
+      <div class="container">
         <!-- TITLE -->
         <div class="section-title text-white">
-            <h3>Sân <span>yêu thích</span></h3>
-            <p>Danh sách các sân bạn đã đánh dấu yêu thích</p>
+          <h3>Sân <span>yêu thích</span></h3>
+          <p>Danh sách các sân bạn đã đánh dấu yêu thích</p>
         </div>
 
-        <!-- LIST -->
-        <div class="row favorite-list">
-
-            <!-- ITEM -->
-            <div class="col-lg-3 col-md-6 mt-3 d-flex">
-                <div class="favorite-card">
-
-                    <div class="favorite-thumb set-bg"
-                         data-setbg="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576.jpg">
-                        <button class="btn-remove">
-                            <i class="fa fa-heart"></i>
-                        </button>
-                    </div>
-
-                    <div class="favorite-body">
-                        <h5>PICKLEBALL 18 CỘNG HÒA</h5>
-                        <p class="meta">
-                            <i class="fa fa-map-marker"></i>
-                            18B Cộng Hoà, Tân Bình
-                        </p>
-                        <p class="meta">
-                            <i class="fa fa-clock-o"></i>
-                            06:00 - 24:00
-                        </p>
-                    </div>
-
-                    <div class="favorite-footer text-center">
-                        <a href="./schedule.html" class="primary-btn">
-                            ĐẶT LỊCH
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- ITEM -->
-            <div class="col-lg-3 col-md-6 mt-3 d-flex">
-                <div class="favorite-card">
-
-                    <div class="favorite-thumb set-bg"
-                         data-setbg="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576.jpg">
-                        <button class="btn-remove">
-                            <i class="fa fa-heart"></i>
-                        </button>
-                    </div>
-
-                    <div class="favorite-body">
-                        <h5>SÂN TENNIS C3</h5>
-                        <p class="meta">
-                            <i class="fa fa-map-marker"></i>
-                            Đường 18E Cộng Hoà
-                        </p>
-                        <p class="meta">
-                            <i class="fa fa-clock-o"></i>
-                            05:00 - 24:00
-                        </p>
-                    </div>
-
-                    <div class="favorite-footer text-center">
-                        <a href="./schedule.html" class="primary-btn">
-                            ĐẶT LỊCH
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
+        <!-- LIST (render bằng JS) -->
+        <div class="row favorite-list" id="favoriteList">
+          <!-- JS sẽ render card ở đây -->
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- FOOTER -->
-<div data-include="/shared/partials/footer.html"></div>
+    <!-- FOOTER -->
+    <div data-include="/shared/partials/footer.html"></div>
 
-<script src="/shared/js/include.js"></script>
-</body>
+    <script src="/shared/js/include.js"></script>
+    <script type="module" src="/customer/js/favorite.js"></script>
+  </body>
 </html>
