@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8" />
   <title>Đăng nhập</title>
@@ -7,7 +8,7 @@
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <!-- Icon -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -21,11 +22,18 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg, #1e7d43, #4bb36a);
+
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url("/customer/img/wallpaper.png") center/cover no-repeat;
+
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100svh;
     }
+
+
 
     .login-wrapper {
       width: 520px;
@@ -43,6 +51,8 @@
       background: #fff;
       padding: 36px;
       border-radius: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
     }
 
     .form-group {
@@ -52,7 +62,7 @@
     .form-group label {
       display: block;
       font-weight: 600;
-      color: #0f5f34;
+      color: #000000;
       margin-bottom: 10px;
       font-size: 18px;
     }
@@ -71,7 +81,7 @@
 
     .input-wrapper input:focus {
       outline: none;
-      border-color: #1e7d43;
+      border-color: #dd1515;
     }
 
     .input-wrapper i {
@@ -79,7 +89,7 @@
       right: 16px;
       top: 50%;
       transform: translateY(-50%);
-      color: #0f6d3a;
+      color: #dd1515;
       cursor: pointer;
       font-size: 18px;
     }
@@ -89,7 +99,7 @@
       padding: 18px;
       border-radius: 12px;
       border: none;
-      background: #0f6d3a;
+      background: #dd1515;
       color: #fff;
       font-size: 18px;
       font-weight: 700;
@@ -98,18 +108,19 @@
     }
 
     .btn-login:hover {
-      background: #0c5a30;
+      background: #dd1515;
     }
 
     .forgot {
       text-align: center;
-      margin: 20px 0;
+      margin-top: -35px;
+      margin-bottom: 0;
       font-size: 15px;
-      color: #0f5f34;
+      color: #000;
     }
 
     .forgot a {
-      color: #0f6d3a;
+      color: #dd1515;
       font-weight: 600;
       text-decoration: none;
     }
@@ -122,7 +133,7 @@
     }
 
     .register-link a {
-      color: #fff;
+      color: #dd1515;
       font-weight: 700;
       text-decoration: underline;
     }
@@ -143,22 +154,76 @@
     }
 
     .google-btn img {
-      width: 26px;
+      width: 30px;
     }
+    /* Wrapper */
+    #googleSignIn {
+      width: 100%;
+    }
+
+    /* Google outer div */
+    #googleSignIn>div {
+      width: 100% !important;
+    }
+
+    /* Google button container */
+    #googleSignIn iframe,
+    #googleSignIn div[role="button"] {
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+
+    /* Fix chiều cao cho đồng bộ nút đăng nhập */
+    #googleSignIn iframe {
+      height: 56px !important;
+    }
+
+    /* Canh giữa nội dung trong nút */
+    #googleSignIn div[role="button"] {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    .notify {
+  display: none;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.notify.success {
+  display: block;
+  background: #e6fffa;
+  color: #065f46;
+}
+
+.notify.error {
+  display: block;
+  background: #fee2e2;
+  color: #991b1b;
+}
   </style>
 </head>
+
 <body>
 
   <div class="login-wrapper">
     <div class="login-title">Đăng nhập</div>
 
-    <div class="login-box">
+    <!-- thêm form để bắt Enter -->
+    <form class="login-box" onsubmit="event.preventDefault(); login();">
 
       <!-- EMAIL -->
       <div class="form-group">
         <label>Email của bạn?</label>
         <div class="input-wrapper">
-          <input id="email" type="email" placeholder="Nhập email của bạn (*)">
+          <input id="email" type="email" placeholder="Nhập email của bạn (*)" required>
           <i class="fa-solid fa-circle-xmark"></i>
         </div>
       </div>
@@ -167,31 +232,39 @@
       <div class="form-group">
         <label>Mật khẩu (*)</label>
         <div class="input-wrapper">
-          <input id="password" type="password" placeholder="Nhập mật khẩu (*)">
+          <input id="password" type="password" placeholder="Nhập mật khẩu (*)" required>
           <i class="fa-solid fa-eye-slash"></i>
         </div>
       </div>
 
       <!-- LOGIN BUTTON -->
-      <button class="btn-login" onclick="login()">ĐĂNG NHẬP</button>
+
+      <div id="notify" class="notify"></div>
+
+      <button type="submit" class="btn-login">ĐĂNG NHẬP</button>
+
       <div id="googleSignIn" style="margin-top:20px;"></div>
+
+      <!-- KHÔNG redirect -->
       <div class="forgot">
         Bạn quên mật khẩu?
         <a href="#">Quên mật khẩu</a>
       </div>
-    </div>
 
+    </form>
+
+    <!-- register giữ nguyên -->
     <div class="register-link">
       Bạn chưa có tài khoản?
       <a href="register.html">Đăng ký</a>
     </div>
 
-   
-    
   </div>
 
   <!-- JS -->
   <script type="module" src="../../js/auth/login.js"></script>
 
 </body>
+
+
 </html>

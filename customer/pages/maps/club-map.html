@@ -3,66 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <title>Club Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Leaflet -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+  <!-- ===== LEAFLET ===== -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <!-- MarkerCluster -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
-  />
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <!-- ===== MARKER CLUSTER ===== -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 
   <style>
+    /* ===== BASE ===== */
     body {
       margin: 0;
       display: flex;
       font-family: Arial, sans-serif;
-    }
-
-    /* ================= SIDEBAR ================= */
-    #sidebar {
-      width: 360px;
       height: 100vh;
-      overflow-y: auto;
-      border-right: 1px solid #ddd;
-      padding: 12px;
-      box-sizing: border-box;
-      background: #fff;
     }
 
-    /* ================= MAP ================= */
     #map {
       flex: 1;
-      height: 100vh;
     }
 
-    /* ================= SEARCH ================= */
+    /* ===== SIDEBAR ===== */
+    #sidebar {
+      width: 360px;
+      background: #fff;
+      border-right: 1px solid #eee;
+      padding: 12px;
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+
+    /* ===== SEARCH ===== */
     .search-box input {
       width: 100%;
       padding: 10px;
-      margin-bottom: 10px;
-      box-sizing: border-box;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
       font-size: 14px;
     }
 
-    /* ================= FILTER ================= */
+    /* ===== FILTER ===== */
     .filter-bar {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .filter-btn {
@@ -72,88 +60,202 @@
       background: #fff;
       cursor: pointer;
       font-size: 13px;
-      transition: 0.2s;
+      transition: .2s;
     }
 
     .filter-btn:hover {
-      background: #f1f1f1;
-    }
-
-    .filter-btn.active {
-      background: #2e7d32;
-      color: #fff;
-      border-color: #2e7d32;
-    }
-
-    /* ================= CLUB LIST ================= */
-    .club-item {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      cursor: pointer;
-    }
-
-    .club-item:hover {
       background: #f5f5f5;
     }
 
-    /* ================= DETAIL ================= */
-    .back-btn {
-      background: none;
-      border: none;
-      color: #1976d2;
-      cursor: pointer;
+    .filter-btn.active {
+      background: #dd1515;
+      color: #fff;
+      border-color: #dd1515;
+    }
+
+    /* ===== LIST CARD ===== */
+    .club-card-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid #eee;
       margin-bottom: 10px;
-      font-size: 14px;
+      cursor: pointer;
+      transition: .2s;
+      background: #fff;
     }
 
-    .club-card h2 {
-      margin-top: 0;
+    .club-card-item:hover {
+      border-color: #dd1515;
+      box-shadow: 0 6px 16px rgba(0,0,0,.08);
     }
 
-    .sport-tags {
-      margin: 8px 0;
+    .club-card-thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .club-card-name {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .club-card-meta {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 6px;
     }
 
     .tag {
       display: inline-block;
-      background: #e8f5e9;
-      color: #2e7d32;
-      padding: 4px 10px;
-      border-radius: 14px;
+      background: #e3f2fd;
+      color: #dd1515;
       font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 12px;
       margin-right: 6px;
+      margin-bottom: 4px;
     }
 
-    .btn-book {
-      margin-top: 12px;
-      width: 100%;
+    /* ===== DETAIL ===== */
+    .detail-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .detail-title {
+      flex: 1;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #f2f2f2;
+      cursor: pointer;
+    }
+
+    .detail-banner {
+      height: 180px;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 10px;
+    }
+
+    .detail-rating {
+      display: inline-block;
+      background: #e6f7f1;
+      color: #dd1515;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .detail-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .detail-info div {
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .detail-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      flex: 1;
       padding: 10px;
-      background: #1976d2;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #dd1515;
       color: #fff;
       border: none;
+    }
+
+    .btn-outline {
+      background: #fff;
+      border: 1px solid #dd1515;
+      color: #dd1515;
+    }
+
+    /* ===== TABS ===== */
+    .detail-tabs {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #eee;
+      margin-top: 10px;
+    }
+
+    .tab {
+      padding: 10px;
+      background: none;
+      border: none;
       cursor: pointer;
-      border-radius: 6px;
       font-size: 14px;
+    }
+
+    .tab.active {
+      color: #dd1515;
+      font-weight: 600;
+      border-bottom: 2px solid #dd1515;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      #sidebar {
+        width: 100%;
+        height: 50%;
+      }
+      body {
+        flex-direction: column;
+      }
+      #map {
+        height: 50%;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- SIDEBAR -->
-<div id="sidebar"></div>
+  <!-- SIDEBAR -->
+  <div id="sidebar"></div>
 
-<!-- MAP -->
-<div id="map"></div>
+  <!-- MAP -->
+  <div id="map"></div>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- ===== JS ===== -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
-<!-- MarkerCluster JS -->
-<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <!-- APP -->
+  <script type="module" src="../../js/map/club-map.js"></script>
 
-<!-- Map JS -->
-<script type="module" src="../../js/map/club-map.js"></script>
-
-<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 </body>
 </html>
