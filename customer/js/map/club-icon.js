@@ -2,7 +2,7 @@
 
 export const SPORT_ICONS = {
   "Bóng đá": L.icon({
-    iconUrl: "/customer/img/icons/football.jpg",
+    iconUrl: "/customer/img/icons/football.png",
     iconSize: [36, 36],
     iconAnchor: [18, 36]
   }),
