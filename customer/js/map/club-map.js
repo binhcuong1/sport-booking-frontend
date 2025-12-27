@@ -162,7 +162,7 @@ function selectClub(club) {
 /* ================= LOAD DATA ================= */
 async function loadClubs() {
   try {
-    const data = await get(`${API_BASE}/club`);
+    const data = await get(`${API_BASE}/clubs`);
     clubs = data.filter((c) => c.latitude != null && c.longitude != null);
 
     renderSearch();

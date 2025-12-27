@@ -11,7 +11,7 @@
                 <label>Tên club</label>
                 <input type="text" id="clubName" class="input" required />
             </div>
-
+<div class="form-row">
             <div class="form-group">
                 <label>Số điện thoại</label>
                 <input type="tel" id="clubContactPhone" class="input" placeholder="VD: 0901234567"
@@ -20,10 +20,28 @@
         </div>
 
         <div class="form-group full">
-            <label>Địa chỉ</label>
-            <textarea id="clubAddress" class="input" rows="2"></textarea>
-        </div>
+            <label>Địa chỉ & Vị trí bản đồ</label>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <textarea id="clubAddress" class="input" rows="2" 
+                          placeholder="Nhập địa chỉ cụ thể (VD: 123 Đường Láng, Hà Nội)..." 
+                          style="flex-grow: 1;"></textarea>
+                
+                <button type="button" id="btnSearchLoc" class="btn btn--secondary" 
+                        style="height: fit-content; white-space: nowrap; margin-top: 5px;">
+                    <i class="fa fa-map-marker"></i> Check vị trí
+                </button>
+            </div>
 
+            <div id="mapContainer" style="height: 350px; width: 100%; border-radius: 4px; border: 1px solid #ccc; margin-bottom: 10px;"></div>
+            
+            <small style="color: #666; display: block; margin-bottom: 5px; font-style: italic;">
+                * Mẹo: Nhập địa chỉ rồi bấm "Check vị trí". Sau đó bạn có thể <b>kéo thả ghim đỏ</b> trên bản đồ để chỉnh vị trí chính xác nhất.
+            </small>
+
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
+        </div>
         <div class="form-row">
             <div class="form-group">
                 <label>Giờ mở</label>

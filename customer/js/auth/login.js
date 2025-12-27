@@ -15,7 +15,7 @@ window.login = async () => {
     localStorage.setItem("account", JSON.stringify(res.account));
 
     alert("Đăng nhập thành công");
-    location.href = "../../index.html";
+    location.href = "../../pages/index.html";
   } catch (e) {
     alert(e.message);
   }

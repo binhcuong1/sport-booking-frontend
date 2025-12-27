@@ -1,4 +1,6 @@
 import { API_BASE } from "../../config/config.js";
+// 1. IMPORT MODULE MAP
+import { initLocationPicker } from "./map-geocoding.js"; 
 
 window.PageInits.club = async function () {
     const clubId = Number(localStorage.getItem("sb_current_club_id"));
@@ -33,6 +35,10 @@ window.PageInits.club = async function () {
     const clubDeleted = document.querySelector("#clubDeleted");
     const btnDelete = document.querySelector("#btnDeleteClub");
 
+    // 2. SELECT CÁC INPUT TỌA ĐỘ
+    const latitudeInput = document.querySelector("#latitude");
+    const longitudeInput = document.querySelector("#longitude");
+
     const descInput = document.querySelector("#Description");
     const editorEl = document.querySelector("#OverviewEditor");
 
@@ -40,13 +46,9 @@ window.PageInits.club = async function () {
     const btnAddSportType = document.querySelector("#btnAddSportType");
     const btnRemoveSportType = document.querySelector("#btnRemoveSportType");
     const sportTypeModal = document.querySelector("#sportTypeModal");
-    const sportTypeMasterSelect = document.querySelector(
-        "#sportTypeMasterSelect"
-    );
+    const sportTypeMasterSelect = document.querySelector("#sportTypeMasterSelect");
     const btnSaveSportType = document.querySelector("#btnSaveSportType");
-    const btnCloseSportTypeModal = document.querySelector(
-        "#btnCloseSportTypeModal"
-    );
+    const btnCloseSportTypeModal = document.querySelector("#btnCloseSportTypeModal");
 
     let overviewEditor = null;
     if (editorEl) {
@@ -76,10 +78,24 @@ window.PageInits.club = async function () {
         clubCloseTime.value = club.closeTime || "";
         clubDeleted.value = String(!!club.isDeleted);
 
+        // 3. GÁN GIÁ TRỊ TỌA ĐỘ VÀO INPUT ẨN
+        if (latitudeInput) latitudeInput.value = club.latitude || "";
+        if (longitudeInput) longitudeInput.value = club.longitude || "";
+
         if (overviewEditor) {
             overviewEditor.root.innerHTML = club.description || "";
             descInput.value = club.description || "";
         }
+
+        // 4. KHỞI TẠO MAP SAU KHI CÓ DỮ LIỆU
+        // Map sẽ tự đọc value từ input #latitude, #longitude để hiển thị marker
+        initLocationPicker({
+            mapId: 'mapContainer',
+            latInputId: 'latitude',
+            lngInputId: 'longitude',
+            addressInputId: 'clubAddress',
+            searchBtnId: 'btnSearchLoc' // ID của nút "Check vị trí" bạn đã thêm ở HTML
+        });
     }
 
     form.addEventListener("submit", async (e) => {
@@ -97,6 +113,9 @@ window.PageInits.club = async function () {
             openTime: clubOpenTime.value || null,
             closeTime: clubCloseTime.value || null,
             isDeleted: clubDeleted.value === "true",
+            // 5. GỬI KÈM TỌA ĐỘ KHI LƯU
+            latitude: latitudeInput ? latitudeInput.value : null,
+            longitude: longitudeInput ? longitudeInput.value : null
         };
 
         if (!payload.clubName) {
@@ -141,21 +160,12 @@ window.PageInits.club = async function () {
         });
     }
 
-    function syncLocalClubs(clubId, newName) {
-        const clubs = JSON.parse(localStorage.getItem("clubs") || "[]");
-        const idx = clubs.findIndex((c) => Number(c.id) === Number(clubId));
-        if (idx >= 0) {
-            clubs[idx].name = newName;
-            localStorage.setItem("clubs", JSON.stringify(clubs));
-        }
-    }
-
     // START
     await loadClub();
 
     /* =====================================================
-     ========== COURT MANAGEMENT (NEW) ===================
-     ===================================================== */
+      ========== COURT MANAGEMENT (GIỮ NGUYÊN) =============
+      ===================================================== */
 
     const sportTypeSelect = document.querySelector("#sportTypeSelect");
     const btnAddCourt = document.querySelector("#btnAddCourt");
@@ -180,7 +190,6 @@ window.PageInits.club = async function () {
         if (!res.ok) return;
 
         const list = await res.json();
-        console.table(list);
         sportTypeSelect.innerHTML = `<option value="">-- Chọn loại sân --</option>`;
 
         list.forEach((st) => {
