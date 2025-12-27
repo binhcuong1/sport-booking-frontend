@@ -2,10 +2,15 @@ import { API_BASE } from "../../../config/config.js";
 import { get } from "../../../config/api.js";
 import { getClubIcon } from "./club-icon.js";
 
-let currentSportFilter = "ALL";
+/* ================= STATE ================= */
+let currentSportFilters = []; // MULTI FILTER
 let userLocation = null;
-let routeLine = null;   // polyline đường đi
-let routeInfo = null;  // popup info (km / phút)
+let routeLine = null;
+let routeInfo = null;
+let clubs = [];
+let selectedClub = null;
+
+const sidebar = document.getElementById("sidebar");
 
 /* ================= MAP INIT ================= */
 const map = L.map("map").setView([10.7769, 106.7009], 12);
@@ -20,10 +25,26 @@ const markerCluster = L.markerClusterGroup({
 });
 map.addLayer(markerCluster);
 
-/* ================= STATE ================= */
-let clubs = [];
-let selectedClub = null;
-const sidebar = document.getElementById("sidebar");
+/* ================= UTILS ================= */
+function normalize(text = "") {
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, "")
+    .replace(/đ/g, "d");
+}
+
+/* ================= FILTER ================= */
+function getFilteredClubs() {
+  if (currentSportFilters.length === 0) return clubs;
+
+  const filters = currentSportFilters.map(normalize);
+
+  return clubs.filter(c =>
+    (c.sportTypes ?? []).some(s =>
+      filters.includes(normalize(s.sport_name))
+    )
+  );
+}
 
 /* ================= RENDER SEARCH ================= */
 function renderSearch() {
@@ -33,58 +54,84 @@ function renderSearch() {
     </div>
 
     <div class="filter-bar">
-      <button data-sport="ALL" class="filter-btn active">Tất cả</button>
-      <button data-sport="Cầu lông" class="filter-btn">Cầu lông</button>
-      <button data-sport="Bóng đá" class="filter-btn">Bóng đá</button>
-      <button data-sport="Bóng rổ" class="filter-btn">Bóng rổ</button>
-      <button data-sport="Pickleball" class="filter-btn">PickleBall</button>
-      <button data-sport="Tennis" class="filter-btn">Tennis</button>
-    </div>
+  <button data-sport="ALL"
+    class="filter-btn ${currentSportFilters.length === 0 ? "active" : ""}">
+    Tất cả
+  </button>
+
+  ${["Cầu lông", "Bóng đá", "Bóng rổ", "Pickleball", "Tennis"].map(sport => `
+    <button data-sport="${sport}"
+      class="filter-btn ${currentSportFilters.includes(sport) ? "active" : ""}">
+      ${sport}
+    </button>
+  `).join("")}
+</div>
+
 
     <div id="clubList">
-      ${getFilteredClubs()
-        .map(
-          (c) => `
-        <div class="club-item" data-id="${c.clubId}">
-          <strong>${c.clubName}</strong><br/>
-          <small>
-  ${c.address ?? ""}
-  ${c.distanceKm != null ? ` • ${c.distanceKm.toFixed(1)} km` : ""}
-</small>
+      ${getFilteredClubs().map(c => `
+        <div class="club-card-item" data-id="${c.clubId}">
+          <div class="club-card-thumb"
+            style="background-image:url('${c.imageUrl || "/customer/img/club-default.jpg"}')">
+          </div>
+
+          <div class="club-card-info">
+            <div class="club-card-name">${c.clubName}</div>
+
+            <div class="club-card-meta">
+              📍 ${c.address ?? ""}
+              ${c.distanceKm != null ? ` • ${c.distanceKm.toFixed(1)} km` : ""}
+            </div>
+
+            <div class="club-card-tags">
+              ${(c.sportTypes ?? []).map(s =>
+                `<span class="tag">${s.sport_name}</span>`
+              ).join("")}
+            </div>
+          </div>
         </div>
-      `
-        )
-        .join("")}
+      `).join("")}
     </div>
   `;
 
-  // click club
-  document.querySelectorAll(".club-item").forEach((el) => {
+  /* click card */
+  document.querySelectorAll(".club-card-item").forEach(el => {
     el.onclick = () => {
-      const club = clubs.find((c) => c.clubId == el.dataset.id);
+      const club = clubs.find(c => c.clubId == el.dataset.id);
       selectClub(club);
     };
   });
 
-  // search
-  document.getElementById("searchInput").oninput = (e) => {
+  /* search text */
+  document.getElementById("searchInput").oninput = e => {
     const kw = e.target.value.toLowerCase();
-    document.querySelectorAll(".club-item").forEach((item) => {
+    document.querySelectorAll(".club-card-item").forEach(item => {
       item.style.display = item.innerText.toLowerCase().includes(kw)
-        ? "block"
+        ? "flex"
         : "none";
     });
   };
 
-  // filter click
-  document.querySelectorAll(".filter-btn").forEach((btn) => {
+  /* filter buttons */
+  document.querySelectorAll(".filter-btn").forEach(btn => {
     btn.onclick = () => {
-      currentSportFilter = btn.dataset.sport;
+      const sport = btn.dataset.sport;
 
-      document
-        .querySelectorAll(".filter-btn")
-        .forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
+      if (sport === "ALL") {
+        currentSportFilters = [];
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      } else {
+        document.querySelector('[data-sport="ALL"]').classList.remove("active");
+
+        if (currentSportFilters.includes(sport)) {
+          currentSportFilters = currentSportFilters.filter(s => s !== sport);
+          btn.classList.remove("active");
+        } else {
+          currentSportFilters.push(sport);
+          btn.classList.add("active");
+        }
+      }
 
       renderSearch();
       renderMarkers();
@@ -92,226 +139,157 @@ function renderSearch() {
   });
 }
 
-/* ================= RENDER DETAIL ================= */
+/* ================= DETAIL ================= */
 function renderDetail(club) {
   sidebar.innerHTML = `
-    <button class="back-btn" id="backBtn">← Quay lại</button>
+    <div class="detail-header">
+      <button class="icon-btn" id="backBtn">←</button>
+      <div class="detail-title">${club.clubName}</div>
+      <div class="detail-header-actions">
+        <button class="icon-btn">♡</button>
+        <button class="icon-btn" id="closeBtn">✕</button>
+      </div>
+    </div>
 
-    <div class="club-card">
+    <div class="detail-banner"
+      style="background-image:url('${club.imageUrl || "/customer/img/club-default.jpg"}')">
+    </div>
+
+    <div class="detail-rating">⭐ Chưa có đánh giá</div>
+
+    <div class="detail-card">
       <h2>${club.clubName}</h2>
 
       <div class="sport-tags">
-        ${(club.sportTypes ?? [])
-          .map((s) => `<span class="tag">${s.sport_name}</span>`)
-          .join("")}
+        ${(club.sportTypes ?? []).map(s =>
+          `<span class="tag">${s.sport_name}</span>`
+        ).join("")}
       </div>
 
-      <p>📍 ${club.address ?? ""}</p>
-      ${
-        club.distanceKm != null
-          ? `<p>📏 ${club.distanceKm.toFixed(1)} km từ bạn</p>`
-          : ""
-      }
-      <p>⏰ ${club.openTime ?? ""} - ${club.closeTime ?? ""}</p>
-      <p>📞 ${club.contactPhone ?? ""}</p>
+      <div class="detail-info">
+        <div>📍 ${club.address ?? ""}</div>
+        ${club.distanceKm != null ? `<div>📏 ${club.distanceKm.toFixed(1)} km</div>` : ""}
+        <div>⏰ ${club.openTime ?? ""} - ${club.closeTime ?? ""}</div>
+        <div>📞 ${club.contactPhone ?? "Liên hệ"}</div>
+      </div>
 
-      <button class="btn-book" id="routeBtn">Đường đi</button>
-      <button class="btn-book">Đặt lịch</button>
+      <div class="detail-actions">
+        <button class="btn-outline" id="routeBtn">Đường đi</button>
+        <button class="btn-primary">Đặt lịch</button>
+      </div>
     </div>
   `;
 
-  document.getElementById("backBtn").onclick = () => {
+  document.getElementById("backBtn").onclick =
+  document.getElementById("closeBtn").onclick = () => {
     selectedClub = null;
     renderSearch();
   };
 
   document.getElementById("routeBtn").onclick = async () => {
-    if (!userLocation) {
-      alert("Chưa xác định được vị trí của bạn");
-      return;
-    }
+    if (!userLocation) return alert("Chưa xác định được vị trí của bạn");
 
-    try {
-      const route = await fetchRoute(
-        { lat: userLocation.lat, lng: userLocation.lng },
-        { lat: Number(club.latitude), lng: Number(club.longitude) }
-      );
-      drawRoute(route);
-    } catch (e) {
-      alert("Không lấy được đường đi");
-      console.error(e);
-    }
+    const route = await fetchRoute(
+      userLocation,
+      { lat: Number(club.latitude), lng: Number(club.longitude) }
+    );
+    drawRoute(route);
   };
 }
 
-
-/* ================= SELECT CLUB ================= */
+/* ================= SELECT ================= */
 function selectClub(club) {
   selectedClub = club;
   renderDetail(club);
-
-  map.setView(
-    [Number(club.latitude), Number(club.longitude)],
-    16,
-    { animate: true }
-  );
+  map.setView([Number(club.latitude), Number(club.longitude)], 16, { animate: true });
 }
-
-
 
 /* ================= LOAD DATA ================= */
 async function loadClubs() {
-  try {
-    const data = await get(`${API_BASE}/clubs`);
-    clubs = data.filter((c) => c.latitude != null && c.longitude != null);
-
-    renderSearch();
-    renderMarkers();
-  } catch (e) {
-    console.error(e);
-    alert("Không tải được danh sách club");
-  }
+  const data = await get(`${API_BASE}/clubs`);
+  clubs = data.filter(c => c.latitude && c.longitude);
+  renderSearch();
+  renderMarkers();
 }
-
 loadClubs();
 
-function getFilteredClubs() {
-  if (currentSportFilter === "ALL") return clubs;
-
-  return clubs.filter((c) =>
-    (c.sportTypes ?? []).some((s) => s.sport_name === currentSportFilter)
-  );
-}
-
+/* ================= MARKERS ================= */
 function renderMarkers() {
   markerCluster.clearLayers();
-
-  getFilteredClubs().forEach((club) => {
-    const icon = getClubIcon(club);
-
-    const marker = L.marker([Number(club.latitude), Number(club.longitude)], {
-      icon,
+  getFilteredClubs().forEach(club => {
+    const marker = L.marker([club.latitude, club.longitude], {
+      icon: getClubIcon(club),
     });
-
     marker.on("click", () => selectClub(club));
     markerCluster.addLayer(marker);
   });
-
-  if (markerCluster.getLayers().length > 0) {
-    map.fitBounds(markerCluster.getBounds(), { padding: [50, 50] });
-  }
 }
 
+/* ================= LOCATION ================= */
 function getUserLocation() {
-  if (!navigator.geolocation) return;
-
-  navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      userLocation = {
-        lat: pos.coords.latitude,
-        lng: pos.coords.longitude,
-      };
-
-      // vẽ marker user (tuỳ chọn)
-      L.circleMarker([userLocation.lat, userLocation.lng], {
-        radius: 6,
-        color: "#1976d2",
-        fillColor: "#1976d2",
-        fillOpacity: 0.8,
-      }).addTo(map);
-
-      // tính lại khoảng cách + sort
-      computeDistances();
-      renderSearch();
-      renderMarkers();
-    },
-    () => {
-      console.warn("User không cho phép lấy vị trí");
-    }
-  );
+  navigator.geolocation?.getCurrentPosition(pos => {
+    userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+    computeDistances();
+    renderSearch();
+    renderMarkers();
+  });
 }
+getUserLocation();
 
 function calcDistanceKm(lat1, lon1, lat2, lon2) {
-  const R = 6371; // km
+  const R = 6371;
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
   const dLon = ((lon2 - lon1) * Math.PI) / 180;
-
   const a =
     Math.sin(dLat / 2) ** 2 +
-    Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) ** 2;
-
+    Math.cos(lat1 * Math.PI / 180) *
+    Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) ** 2;
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
 function computeDistances() {
-  if (!userLocation) return;
-
-  clubs.forEach((c) => {
+  clubs.forEach(c => {
     c.distanceKm = calcDistanceKm(
-      userLocation.lat,
-      userLocation.lng,
-      Number(c.latitude),
-      Number(c.longitude)
+      userLocation.lat, userLocation.lng,
+      c.latitude, c.longitude
     );
   });
-
-  // sắp xếp gần nhất lên đầu
   clubs.sort((a, b) => (a.distanceKm ?? 9999) - (b.distanceKm ?? 9999));
 }
-getUserLocation();
 
+/* ================= ROUTE ================= */
 async function fetchRoute(from, to) {
-  // OSRM public (free)
-  const url =
-    `https://router.project-osrm.org/route/v1/driving/` +
-    `${from.lng},${from.lat};${to.lng},${to.lat}` +
-    `?overview=full&geometries=geojson`;
-
-  const res = await fetch(url);
+  const res = await fetch(
+    `https://router.project-osrm.org/route/v1/driving/${from.lng},${from.lat};${to.lng},${to.lat}?overview=full&geometries=geojson`
+  );
   const data = await res.json();
-
-  if (!data.routes || data.routes.length === 0) {
-    throw new Error("Không lấy được route");
-  }
-
-  return data.routes[0]; // route tốt nhất
+  return data.routes[0];
 }
 
 function drawRoute(route) {
-  // xoá route cũ
-  if (routeLine) {
-    map.removeLayer(routeLine);
-    routeLine = null;
-  }
-  if (routeInfo) {
-    map.removeLayer(routeInfo);
-    routeInfo = null;
-  }
+  routeLine && map.removeLayer(routeLine);
+  routeInfo && map.removeLayer(routeInfo);
 
-  // vẽ polyline
   routeLine = L.geoJSON(route.geometry, {
-    style: {
-      color: "#1976d2",
-      weight: 5,
-      opacity: 0.9
-    }
+    style: { color: "#1976d2", weight: 5 }
   }).addTo(map);
 
-  // fit map theo route
-  map.fitBounds(routeLine.getBounds(), { padding: [40, 40] });
-
-  // info (km / phút)
   const km = (route.distance / 1000).toFixed(1);
   const min = Math.round(route.duration / 60);
 
-  routeInfo = L.popup({
-    closeButton: false,
-    autoClose: false
-  })
+  routeInfo = L.popup({ closeButton: false })
     .setLatLng(routeLine.getBounds().getCenter())
     .setContent(`🚗 ${km} km • ⏱ ${min} phút`)
     .addTo(map);
 }
 
+/* ================= DEBUG ================= */
+console.log(
+  "FILTERS:",
+  currentSportFilters,
+  getFilteredClubs().map(c => ({
+    name: c.clubName,
+    sports: c.sportTypes.map(s => s.sport_name)
+  }))
+);
