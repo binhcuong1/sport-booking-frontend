@@ -4,34 +4,51 @@
       <div class="row">
         <div class="col-lg-2">
           <div class="logo">
-            <a href="./index.html"
-              ><img src="/customer/img/logo.png" alt=""
-            /></a>
+            <a href="/customer/pages/index.html">
+              <img src="/customer/img/logo.png" alt="HTVC Logo" />
+            </a>
           </div>
         </div>
 
         <div class="col-lg-10">
           <div class="nav-menu">
             <ul class="main-menu">
-              <li><a href="./index.html">Trang chủ</a></li>
-              <li><a href="./club.html">Câu lạc bộ</a></li>
-              <li><a href="./schedule.html">Đặt sân</a></li>
-              <li><a href="./booking-history.html">Lịch đã đặt</a></li>
-              <li><a href="#">Bản đồ</a></li>
-              <li><a href="./contact.html">Liên hệ</a></li>
+              <li><a href="/customer/pages/index.html">Trang chủ</a></li>
+              <li><a href="/customer/pages/club.html">Câu lạc bộ</a></li>
+              <li><a href="/customer/pages/schedule.html">Đặt sân</a></li>
+              <li><a href="/customer/pages/booking-history.html">Lịch đã đặt</a></li>
+              <li><a href="/customer/pages/maps/club-map.html">Bản đồ</a></li>
+              <li><a href="/customer/pages/contact.html">Liên hệ</a></li>
 
               <!-- SEARCH -->
               <li class="search-switch">
                 <i class="fa fa-search"></i>
               </li>
 
-              <!-- ACCOUNT - NGOÀI CÙNG -->
+              <!-- ACCOUNT -->
               <li class="account-menu">
                 <a href="#"><i class="fa fa-user"></i></a>
                 <ul class="dropdown">
-                  <li><a href="./profile.html">Thông tin cá nhân</a></li>
-                  <li><a href="./favorite-club.html">Sân yêu thích</a></li>
-                  <li><a href="#">Đăng xuất</a></li>
+
+                  <!-- ===== CHƯA ĐĂNG NHẬP ===== -->
+                  <li class="menu-guest">
+                    <a href="/customer/pages/auth/login.html">Đăng nhập</a>
+                  </li>
+                  <li class="menu-guest">
+                    <a href="/customer/pages/auth/register.html">Đăng ký</a>
+                  </li>
+
+                  <!-- ===== ĐÃ ĐĂNG NHẬP ===== -->
+                  <li class="menu-user">
+                    <a href="/customer/pages/profile.html">Thông tin cá nhân</a>
+                  </li>
+                  <li class="menu-user">
+                    <a href="/customer/pages/favorite-club.html">Sân yêu thích</a>
+                  </li>
+                  <li class="menu-user">
+                    <a href="#" id="btnLogout">Đăng xuất</a>
+                  </li>
+
                 </ul>
               </li>
             </ul>
@@ -39,6 +56,7 @@
         </div>
       </div>
 
+      <!-- MOBILE MENU -->
       <div class="canvas-open">
         <i class="fa fa-bars"></i>
       </div>
