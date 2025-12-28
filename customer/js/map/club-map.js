@@ -206,7 +206,7 @@ function selectClub(club) {
 
 /* ================= LOAD DATA ================= */
 async function loadClubs() {
-  const data = await get(`${API_BASE}/clubs`);
+  const data = await get(`${API_BASE}/clubs`, true);
   clubs = data.filter(c => c.latitude && c.longitude);
   renderSearch();
   renderMarkers();
