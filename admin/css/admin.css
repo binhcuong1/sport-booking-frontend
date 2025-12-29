@@ -623,10 +623,17 @@ input {
 
 /* ===== Modal (simple) ===== */
 .modal {
+    display: none;
     position: fixed;
     inset: 0;
-    display: none;
-    z-index: 999;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal.is-open {
@@ -790,4 +797,78 @@ textarea.input {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
+}
+
+/* ================= SCHEDULE GRID ================= */
+
+.schedule-grid-wrapper {
+    overflow-x: auto;
+}
+
+.time-row {
+    display: grid;
+    grid-template-columns: 160px repeat(32, 80px);
+    min-width: calc(160px + 32 * 80px);
+}
+
+.time-row.header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #111;
+}
+
+.cell {
+    border: 1px solid #2a2a2a;
+    padding: 6px 4px;
+    font-size: 13px;
+    text-align: center;
+    color: #ddd;
+}
+
+.cell.court-col {
+    text-align: left;
+    font-weight: 600;
+    background: #141414;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+
+.cell.time-col {
+    font-weight: 600;
+    background: #1b1b1b;
+}
+
+.cell.slot {
+    cursor: pointer;
+    height: 34px;
+}
+
+.cell.slot.available {
+    background: #0f172a;
+}
+
+.cell.slot.blocked {
+    background: #444;
+}
+
+.cell.slot.booked {
+    background: #7f1d1d;
+    cursor: not-allowed;
+}
+
+.cell.slot.selecting {
+    outline: 2px solid #38bdf8;
+    background: rgba(56, 189, 248, 0.25);
+}
+
+.schedule-empty {
+    padding: 40px;
+    text-align: center;
+    color: #aaa;
+}
+
+.hidden {
+    display: none;
 }

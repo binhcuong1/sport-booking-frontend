@@ -1,0 +1,154 @@
+<div class="page-header">
+    <h1>Quản lý lịch chiếu</h1>
+</div>
+<div class="card">
+
+    <div class="form-row">
+
+        <div class="form-group">
+            <label>Ngày</label>
+            <input type="date" id="scheduleDate" class="input">
+        </div>
+
+        <div class="form-group">
+            <label>Loại sân</label>
+            <select id="sportTypeSelect" class="input">
+                <option value="">-- Chọn loại sân --</option>
+            </select>
+        </div>
+
+        <div class="form-actions align-right">
+            <button type="button" class="btn btn--secondary" id="btnReloadSchedule">
+                Tải lại
+            </button>
+        </div>
+
+    </div>
+
+</div>
+<div class="card">
+
+    <div class="form-actions">
+
+        <button type="button" class="btn btn--primary" id="btnGenerateSchedule" disabled>
+            Generate lịch
+        </button>
+
+        <button type="button" class="btn btn--danger" id="btnLockDay" disabled>
+            Khóa ngày
+        </button>
+
+    </div>
+
+</div>
+<div id="scheduleEmpty" class="schedule-empty hidden">
+    Chưa generate lịch cho ngày này
+</div>
+<div class="card">
+
+    <div class="schedule-grid-wrapper">
+
+        <!-- HEADER GIỜ -->
+        <div id="timeHeader" class="time-header">
+            <!-- JS render -->
+        </div>
+
+        <!-- BODY GRID -->
+        <div id="timeBody" class="time-body">
+            <!-- JS render -->
+        </div>
+
+    </div>
+
+</div>
+<div class="modal" id="slotModal">
+    <div class="modal-content">
+
+        <h3>Sửa khung giờ</h3>
+
+        <div class="form-group">
+            <label>Sân</label>
+            <input type="text" id="modalCourtName" class="input" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>Thời gian</label>
+            <input type="text" id="modalTimeRange" class="input" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>Trạng thái</label>
+            <select id="modalStatus" class="input">
+                <option value="available">Trống</option>
+                <option value="blocked">Khóa</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Giá</label>
+            <input type="number" id="modalPrice" class="input">
+        </div>
+
+        <div class="form-actions align-right">
+            <button class="btn btn--primary" id="btnSaveSlot">Lưu</button>
+            <button class="btn" id="btnCloseSlotModal">Hủy</button>
+        </div>
+
+    </div>
+</div>
+<div class="modal" id="generateModal">
+    <div class="modal-content">
+
+        <h3>Generate lịch</h3>
+
+        <div class="form-group">
+            <label>Ngày</label>
+            <input type="date" id="generateDate" class="input" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>Chọn sân</label>
+            <div id="generateCourtList">
+                <!-- checkbox render bằng JS -->
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Từ giờ</label>
+                <input type="time" id="generateStartTime" class="input" value="06:00">
+            </div>
+
+            <div class="form-group">
+                <label>Đến giờ</label>
+                <input type="time" id="generateEndTime" class="input" value="22:00">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Bước thời gian</label>
+            <select id="generateStep" class="input">
+                <option value="30m">30 phút</option>
+                <option value="60m">1 giờ</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Giá mặc định</label>
+            <input type="number" id="generatePrice" class="input" value="120000">
+        </div>
+
+        <div class="form-group">
+            <label>
+                <input type="checkbox" id="generateOverrideEmpty">
+                Ghi đè slot trống
+            </label>
+        </div>
+
+        <div class="form-actions align-right">
+            <button class="btn btn--primary" id="btnConfirmGenerate">Generate</button>
+            <button class="btn" id="btnCloseGenerateModal">Hủy</button>
+        </div>
+
+    </div>
+</div>
