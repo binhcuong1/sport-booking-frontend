@@ -19,193 +19,194 @@
 
 <body class="booking-page">
 
-<!-- HEADER -->
-<div data-include="/shared/partials/header.html"></div>
+    <!-- HEADER -->
+    <div data-include="/shared/partials/header.html"></div>
 
-<section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
-    <div class="container">
+    <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
+        <div class="container">
 
-        <!-- TITLE -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title text-white">
-                    <h3>Đặt lịch <span>trực quan</span></h3>
-                    <p>Chọn khung giờ phù hợp để đặt sân nhanh chóng</p>
+            <!-- TITLE -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title text-white">
+                        <h3>Đặt lịch <span>trực quan</span></h3>
+                        <p>Chọn khung giờ phù hợp để đặt sân nhanh chóng</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- BOOKING BOARD -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="booking-board">
+            <!-- BOOKING BOARD -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="booking-board">
 
-                    <!-- TOP BAR -->
-                    <div class="booking-board-header">
-                        <div class="left">
-                            <a href="javascript:history.back()" class="back-btn">
-                                <i class="fa fa-arrow-left"></i>
-                            </a>
-                            <span>Đặt lịch theo ngày</span>
+                        <!-- TOP BAR -->
+                        <div class="booking-board-header">
+                            <div class="left">
+                                <a href="javascript:history.back()" class="back-btn">
+                                    <i class="fa fa-arrow-left"></i>
+                                </a>
+                                <span>Đặt lịch theo ngày</span>
+                            </div>
+
+                            <input type="date" value="2025-12-20" class="date-input">
                         </div>
 
-                        <input type="date" value="2025-12-20" class="date-input">
-                    </div>
+                        <!-- LEGEND -->
+                        <div class="booking-legend">
+                            <span><i class="legend free"></i> Trống</span>
+                            <span><i class="legend booked"></i> Đã đặt</span>
+                            <span><i class="legend locked"></i> Khóa</span>
+                            <span><i class="legend event"></i> Sự kiện</span>
+                            <a href="#" class="price-link">Xem sân & bảng giá</a>
+                        </div>
 
-                    <!-- LEGEND -->
-                    <div class="booking-legend">
-                        <span><i class="legend free"></i> Trống</span>
-                        <span><i class="legend booked"></i> Đã đặt</span>
-                        <span><i class="legend locked"></i> Khóa</span>
-                        <span><i class="legend event"></i> Sự kiện</span>
-                        <a href="#" class="price-link">Xem sân & bảng giá</a>
-                    </div>
+                        <!-- GRID -->
+                        <div class="time-grid-wrapper">
+                            <div id="timeHeader" class="time-header"></div>
+                            <div id="timeBody"></div>
+                        </div>
 
-                    <!-- GRID -->
-                    <div class="time-grid-wrapper">
-                        <div id="timeHeader" class="time-header"></div>
-                        <div id="timeBody"></div>
-                    </div>
+                        <div class="text-center mt-4">
+                            <a href="#" class="primary-btn">TIẾP THEO</a>
+                        </div>
 
-                    <div class="text-center mt-4">
-                        <a href="#" class="primary-btn">TIẾP THEO</a>
                     </div>
-
                 </div>
             </div>
+
         </div>
+    </section>
 
-    </div>
-</section>
+    <!-- FOOTER -->
+    <div data-include="/shared/partials/footer.html"></div>
 
-<!-- FOOTER -->
-<div data-include="/shared/partials/footer.html"></div>
+    <!-- JS (GIỐNG CLUB – BẮT BUỘC) -->
+    <script src="/customer/js/jquery-3.3.1.min.js"></script>
+    <script src="/customer/js/jquery.slicknav.js"></script>
+    <script src="/customer/js/main.js"></script>
+    <script src="/shared/js/include.js"></script>
 
-<!-- JS (GIỐNG CLUB – BẮT BUỘC) -->
-<script src="/customer/js/jquery-3.3.1.min.js"></script>
-<script src="/customer/js/jquery.slicknav.js"></script>
-<script src="/customer/js/main.js"></script>
-<script src="/shared/js/include.js"></script>
+    <!-- BOOKING SCRIPT -->
+    <script>
+        /* ========= CONFIG ========= */
+        const START_HOUR = 6;
+        const END_HOUR = 22;
+        const SLOT_MINUTES = 30;
 
-<!-- BOOKING SCRIPT -->
-<script>
-/* ========= CONFIG ========= */
-const START_HOUR = 6;
-const END_HOUR = 22;
-const SLOT_MINUTES = 30;
+        const courts = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-const courts = ['A', 'B', 'C', 'D', 'E', 'F'];
+        const bookingData = {
+            A: { 2: 'booked', 3: 'booked', 7: 'booked' },
+            B: { 1: 'booked', 2: 'booked', 3: 'booked' },
+            C: { 4: 'booked', 5: 'booked' },
+            D: {},
+            E: { 10: 'locked' },
+            F: {}
+        };
 
-const bookingData = {
-    A: { 2: 'booked', 3: 'booked', 7: 'booked' },
-    B: { 1: 'booked', 2: 'booked', 3: 'booked' },
-    C: { 4: 'booked', 5: 'booked' },
-    D: {},
-    E: { 10: 'locked' },
-    F: {}
-};
+        const slotCount = ((END_HOUR - START_HOUR) * 60) / SLOT_MINUTES;
 
-const slotCount = ((END_HOUR - START_HOUR) * 60) / SLOT_MINUTES;
+        /* ========= UTILS ========= */
+        function slotToTime(slot) {
+            const total = START_HOUR * 60 + slot * SLOT_MINUTES;
+            const h = Math.floor(total / 60);
+            const m = total % 60;
+            return `${h}:${m === 0 ? '00' : m}`;
+        }
 
-/* ========= UTILS ========= */
-function slotToTime(slot) {
-    const total = START_HOUR * 60 + slot * SLOT_MINUTES;
-    const h = Math.floor(total / 60);
-    const m = total % 60;
-    return `${h}:${m === 0 ? '00' : m}`;
-}
+        /* ========= HEADER ========= */
+        const timeHeader = document.getElementById('timeHeader');
+        timeHeader.innerHTML = `<div class="court-col"></div>`;
 
-/* ========= HEADER ========= */
-const timeHeader = document.getElementById('timeHeader');
-timeHeader.innerHTML = `<div class="court-col"></div>`;
+        for (let i = 0; i < slotCount; i++) {
+            const div = document.createElement('div');
+            div.className = 'time-slot';
+            div.innerText = slotToTime(i);
+            timeHeader.appendChild(div);
+        }
 
-for (let i = 0; i < slotCount; i++) {
-    const div = document.createElement('div');
-    div.className = 'time-slot';
-    div.innerText = slotToTime(i);
-    timeHeader.appendChild(div);
-}
+        /* ========= BODY ========= */
+        const timeBody = document.getElementById('timeBody');
 
-/* ========= BODY ========= */
-const timeBody = document.getElementById('timeBody');
+        courts.forEach(court => {
+            const row = document.createElement('div');
+            row.className = 'time-row';
+            row.dataset.court = court;
 
-courts.forEach(court => {
-    const row = document.createElement('div');
-    row.className = 'time-row';
-    row.dataset.court = court;
+            const name = document.createElement('div');
+            name.className = 'court-name';
+            name.innerText = court;
+            row.appendChild(name);
 
-    const name = document.createElement('div');
-    name.className = 'court-name';
-    name.innerText = court;
-    row.appendChild(name);
-
-    for (let i = 0; i < slotCount; i++) {
-        const cell = document.createElement('div');
-        const status = bookingData[court]?.[i] || 'free';
-        cell.className = `cell ${status}`;
-        cell.dataset.slot = i;
-        row.appendChild(cell);
-    }
-
-    timeBody.appendChild(row);
-});
-
-/* ========= DRAG SELECT ========= */
-let isSelecting = false;
-let startSlot = null;
-let activeRow = null;
-
-function clearSelection() {
-    document.querySelectorAll('.cell.selected')
-        .forEach(c => c.classList.remove('selected'));
-}
-
-document.querySelectorAll('.time-row').forEach(row => {
-    row.querySelectorAll('.cell.free').forEach(cell => {
-
-        cell.addEventListener('mousedown', () => {
-            clearSelection();
-            isSelecting = true;
-            activeRow = row;
-            startSlot = Number(cell.dataset.slot);
-            cell.classList.add('selected');
-        });
-
-        cell.addEventListener('mouseenter', () => {
-            if (!isSelecting || row !== activeRow) return;
-
-            clearSelection();
-            const endSlot = Number(cell.dataset.slot);
-            const [from, to] = [startSlot, endSlot].sort((a, b) => a - b);
-
-            for (let i = from; i <= to; i++) {
-                const c = row.querySelector(`.cell[data-slot="${i}"]`);
-                if (!c || !c.classList.contains('free')) break;
-                c.classList.add('selected');
+            for (let i = 0; i < slotCount; i++) {
+                const cell = document.createElement('div');
+                const status = bookingData[court]?.[i] || 'free';
+                cell.className = `cell ${status}`;
+                cell.dataset.slot = i;
+                row.appendChild(cell);
             }
+
+            timeBody.appendChild(row);
         });
 
-    });
-});
+        /* ========= DRAG SELECT ========= */
+        let isSelecting = false;
+        let startSlot = null;
+        let activeRow = null;
 
-document.addEventListener('mouseup', () => {
-    if (!isSelecting) return;
-    isSelecting = false;
+        function clearSelection() {
+            document.querySelectorAll('.cell.selected')
+                .forEach(c => c.classList.remove('selected'));
+        }
 
-    const selected = document.querySelectorAll('.cell.selected');
-    if (!selected.length) return;
+        document.querySelectorAll('.time-row').forEach(row => {
+            row.querySelectorAll('.cell.free').forEach(cell => {
 
-    const court = activeRow.dataset.court;
-    const from = Number(selected[0].dataset.slot);
-    const to = from + selected.length;
+                cell.addEventListener('mousedown', () => {
+                    clearSelection();
+                    isSelecting = true;
+                    activeRow = row;
+                    startSlot = Number(cell.dataset.slot);
+                    cell.classList.add('selected');
+                });
 
-    console.log({
-        court,
-        from: slotToTime(from),
-        to: slotToTime(to)
-    });
-});
-</script>
+                cell.addEventListener('mouseenter', () => {
+                    if (!isSelecting || row !== activeRow) return;
+
+                    clearSelection();
+                    const endSlot = Number(cell.dataset.slot);
+                    const [from, to] = [startSlot, endSlot].sort((a, b) => a - b);
+
+                    for (let i = from; i <= to; i++) {
+                        const c = row.querySelector(`.cell[data-slot="${i}"]`);
+                        if (!c || !c.classList.contains('free')) break;
+                        c.classList.add('selected');
+                    }
+                });
+
+            });
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!isSelecting) return;
+            isSelecting = false;
+
+            const selected = document.querySelectorAll('.cell.selected');
+            if (!selected.length) return;
+
+            const court = activeRow.dataset.court;
+            const from = Number(selected[0].dataset.slot);
+            const to = from + selected.length;
+
+            console.log({
+                court,
+                from: slotToTime(from),
+                to: slotToTime(to)
+            });
+        });
+    </script>
 
 </body>
+
 </html>
