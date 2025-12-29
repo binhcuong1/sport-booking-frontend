@@ -23,8 +23,9 @@
     <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
         <div class="container">
 
+            <!-- TITLE -->
             <div class="section-title text-white">
-                <h3><span>CLB Cầu Lông 18B Cộng Hòa</span></h3>
+                <h3><span id="clubName">---</span></h3>
                 <p>Thông tin chi tiết câu lạc bộ</p>
             </div>
 
@@ -35,17 +36,16 @@
 
                     <!-- IMAGE -->
                     <div class="club-detail-card club-image-box mb-4">
-                        <img src="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576-125-0-750-1000-crop-1749827368375622748059.jpg"
-                            alt="CLB image">
+                        <img id="clubImage"
+                             src="/customer/img/match/match-bg.jpg"
+                             alt="CLB image">
                     </div>
-
 
                     <!-- DESCRIPTION -->
                     <div class="club-detail-card">
                         <h5>Giới thiệu</h5>
-                        <p>
-                            CLB Cầu Lông 18B Cộng Hòa sở hữu hệ thống sân hiện đại,
-                            mặt sân chuẩn thi đấu, không gian rộng rãi, thoáng mát.
+                        <p id="clubDescription">
+                            ---
                         </p>
                     </div>
 
@@ -60,17 +60,8 @@
                                     <th>Giá / giờ</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Sân A</td>
-                                    <td>06:00 - 23:00</td>
-                                    <td>80.000đ</td>
-                                </tr>
-                                <tr>
-                                    <td>Sân B</td>
-                                    <td>06:00 - 23:00</td>
-                                    <td>90.000đ</td>
-                                </tr>
+                            <tbody id="courtTable">
+                                <!-- JS render -->
                             </tbody>
                         </table>
                     </div>
@@ -78,15 +69,12 @@
                     <!-- SERVICES -->
                     <div class="club-detail-card">
                         <h5>Dịch vụ</h5>
-                        <ul class="service-list">
-                            <li>✔️ Bãi giữ xe</li>
-                            <li>✔️ Nước uống</li>
-                            <li>✔️ Nhà vệ sinh</li>
-                            <li>✔️ Cho thuê vợt</li>
+                        <ul class="service-list" id="serviceList">
+                            <!-- JS render -->
                         </ul>
                     </div>
 
-                    <!-- RATING -->
+                    <!-- RATING (TẠM GIỮ CỨNG) -->
                     <div class="club-detail-card">
                         <h5>Đánh giá từ người chơi</h5>
 
@@ -118,8 +106,10 @@
 
                             <input type="hidden" id="ratingValue" value="0">
 
-                            <textarea class="form-control mb-3" rows="4" placeholder="Chia sẻ trải nghiệm của bạn..."
-                                required></textarea>
+                            <textarea class="form-control mb-3"
+                                      rows="4"
+                                      placeholder="Chia sẻ trải nghiệm của bạn..."
+                                      required></textarea>
 
                             <button type="submit" class="primary-btn">
                                 GỬI ĐÁNH GIÁ
@@ -133,11 +123,25 @@
                 <div class="col-lg-4">
                     <div class="club-detail-card sticky-box">
                         <h5>Thông tin CLB</h5>
-                        <p><i class="fa fa-map-marker"></i> 18B Cộng Hòa, Tân Bình</p>
-                        <p><i class="fa fa-clock-o"></i> 06:00 - 23:00</p>
-                        <p><i class="fa fa-phone"></i> 0909 123 456</p>
 
-                        <a href="./schedule.html" class="primary-btn btn-block mt-3">
+                        <p>
+                            <i class="fa fa-map-marker"></i>
+                            <span id="clubAddress">---</span>
+                        </p>
+
+                        <p>
+                            <i class="fa fa-clock-o"></i>
+                            <span id="clubTime">--:-- - --:--</span>
+                        </p>
+
+                        <p>
+                            <i class="fa fa-phone"></i>
+                            <span id="clubPhone">---</span>
+                        </p>
+
+                        <a id="bookingBtn"
+                           href="#"
+                           class="primary-btn btn-block mt-3">
                             ĐẶT SÂN
                         </a>
                     </div>
@@ -148,13 +152,19 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <div data-include="/shared/partials/footer.html"></div>
 
+    <!-- JS -->
+    <script src="/customer/js/jquery-3.3.1.min.js"></script>
+    <script src="/customer/js/main.js"></script>
     <script src="/shared/js/include.js"></script>
 
-    <script>
+    <!-- DETAIL DATA -->
+    <script type="module" src="/customer/js/club/club-detail.js"></script>
 
-        /* Star rating */
+    <!-- STAR RATING -->
+    <script>
         const stars = document.querySelectorAll('.star-rating i');
         const ratingInput = document.getElementById('ratingValue');
         let selectedRating = 0;
@@ -170,10 +180,11 @@
         });
 
         function highlight(val) {
-            stars.forEach(s => s.classList.toggle('active', s.dataset.value <= val));
+            stars.forEach(s =>
+                s.classList.toggle('active', s.dataset.value <= val)
+            );
         }
     </script>
 
 </body>
-
 </html>
