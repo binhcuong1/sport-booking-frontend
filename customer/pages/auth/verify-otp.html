@@ -17,10 +17,15 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg, #1e7d43, #4bb36a);
+
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url("/customer/img/wallpaper.png") center/cover no-repeat;
+
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100svh;
     }
 
     .otp-wrapper {
@@ -67,7 +72,7 @@
 
     .otp-inputs input:focus {
       outline: none;
-      border-color: #1e7d43;
+      border-color: #dd1515;
     }
 
     .btn-verify {
@@ -75,7 +80,7 @@
       padding: 16px;
       border-radius: 12px;
       border: none;
-      background: #0f6d3a;
+      background: #dd1515;
       color: #fff;
       font-size: 16px;
       font-weight: 700;
@@ -83,13 +88,13 @@
     }
 
     .btn-verify:hover {
-      background: #0c5a30;
+      background: #dd1515;
     }
 
     .resend {
       margin-top: 18px;
       font-size: 14px;
-      color: #0f5f34;
+      color: #000000;
     }
 
     .resend span {
@@ -97,7 +102,7 @@
     }
 
     .resend a {
-      color: #0f6d3a;
+      color: #dd1515;
       font-weight: 600;
       text-decoration: none;
       display: none;
@@ -110,15 +115,38 @@
     }
 
     .back-login a {
-      color: #0f6d3a;
+      color: #dd1515;
       font-weight: 600;
       text-decoration: none;
     }
+    .notify {
+  display: none;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.notify.success {
+  display: block;
+  background: #e6fffa;
+  color: #065f46;
+}
+
+.notify.error {
+  display: block;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
   </style>
 </head>
 <body>
 
   <div class="otp-wrapper">
+    <div id="notify" class="notify"></div>
     <div class="otp-title">Xác thực OTP</div>
 
     <div class="otp-box">
@@ -148,7 +176,7 @@
         <a href="login.html">← Quay lại đăng nhập</a>
       </div>
     </div>
-  </div>
+  </div>  
 
   <!-- JS -->
   <script type="module" src="../../js/auth/verify-otp.js"></script>

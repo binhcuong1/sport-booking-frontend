@@ -571,23 +571,11 @@ ol {
     transition: opacity .25s ease, transform .25s ease;
 }
 
-/* FORCE dropdown KHÔNG dính flex của menu cha */
-.account-menu .dropdown,
-.account-menu .dropdown ul {
-    display: block !important;
-}
-
 /* Show on hover */
 .account-menu:hover .dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-}
-
-/* Dropdown items */
-.account-menu .dropdown li {
-    display: block !important;
-    width: 100%;
 }
 
 /* Links */
@@ -2887,21 +2875,6 @@ ol {
 	}
 }
 
-/* =========================
-   Club Grid (Index)
-========================= */
-.club-grid {
-	margin-top: 0px;
-}
-
-.club-card {
-	background: #ffffff;
-	border-radius: 8px;
-	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-}
 
 .club-card > .text-center {
     margin-top: auto;
@@ -2958,14 +2931,6 @@ ol {
 	color: #ffffff;
 }
 
-.club-body {
-	display: flex;
-	flex: 1;
-	gap: 12px;
-	padding: 14px 14px 16px;
-	align-items: center;
-}
-
 .club-logo img {
 	width: 44px;
 	height: 44px;
@@ -2973,21 +2938,6 @@ ol {
 	object-fit: cover;
 	background: #fff;
 	border: 1px solid #eee;
-}
-
-.club-info {
-	flex: 1;
-	min-width: 0;
-	min-height: 145px;
-}
-
-.club-name {
-	color: #111111;
-}
-
-.club-meta {
-	color: #666666;
-	align-items: stretch;
 }
 
 .club-meta .distance {
@@ -3004,30 +2954,6 @@ ol {
 
 .club-cta .primary-btn:hover {
 	background: #b00000;
-}
-.club-filter-box {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    background: rgba(0,0,0,.35);
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.club-filter-box .filter-item {
-    flex: 1;
-    min-width: 180px;
-}
-
-.club-filter-box .form-control {
-    background: #111;
-    color: #fff;
-    border: 1px solid #333;
-}
-
-.club-filter-box .form-control:focus {
-    border-color: #e60012;
-    box-shadow: none;
 }
 /* Profile Info */
 .profile-card {
@@ -3139,13 +3065,6 @@ ol {
     max-width: 100%;
 }
 
-.booking-page .search-switch,
-.booking-page .account-menu {
-    display: inline-block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
 
 .time-header,
 .time-row {
@@ -3193,17 +3112,11 @@ ol {
     display: block !important;
 }
 
-.booking-page .header__nav .nav-menu ul {
+.booking-page .header__nav .nav-menu > ul.main-menu {
     display: flex;
     align-items: center;
 }
 
-.booking-page .search-switch,
-.booking-page .account-menu {
-    display: inline-flex !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
 
 .header-section,
 .header__nav {
@@ -3477,4 +3390,515 @@ booking-card .booking-info span,
     background: #dd1515;
     color: #ffffff;
     font-weight: 700;
+}
+
+/* =========================
+   CLUB DETAIL PAGE
+========================= */
+
+/* Card */
+.club-detail-card {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    color: #fff;
+    position: relative;
+}
+
+/* Rating list */
+.rating-item {
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.rating-stars {
+    color: #ffc107;
+    margin-left: 8px;
+}
+
+/* Star select */
+.star-rating i {
+    font-size: 24px;
+    color: #444;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: color 0.2s ease;
+}
+
+.star-rating i.active {
+    color: #ffc107;
+}
+
+/* Service list */
+.service-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.service-list li {
+    margin-bottom: 6px;
+}
+
+/* Sticky info box */
+.sticky-box {
+    position: sticky;
+    top: 100px;
+}
+
+/* ===== CLUB IMAGE BOX ===== */
+.club-image-box {
+    width: 100%;
+    height: 420px;             
+    overflow: hidden;
+    border-radius: 14px;
+    background: #000;
+}
+
+/* Ảnh fill khung */
+.club-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        
+    display: block;
+}
+/* ===== PAGE FIX ===== */
+.booking-customer-page .match-section {
+    padding-bottom: 90px;
+}
+
+/* Card */
+.customer-card {
+    background: rgba(0,0,0,.7);
+    padding: 35px;
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,.4);
+}
+
+/* Form */
+.customer-card label {
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.customer-card .form-control {
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+.customer-card .form-control::placeholder {
+    color: #9ca3af;
+}
+
+.customer-card .form-control:focus {
+    border-color: #dd1515;
+    box-shadow: none;
+}
+
+/* Actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.btn-back {
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    color: #dd1515;
+}
+
+/* ===== PAGE FIX ===== */
+.booking-confirm-page .match-section {
+    padding-bottom: 90px;
+}
+
+/* CARD */
+.confirm-card {
+    background: rgba(0,0,0,.7);
+    padding: 22px 24px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,.35);
+}
+
+.confirm-card h5 {
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+/* INFO ROW */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.info-row span {
+    color: #d1d5db;
+}
+
+.info-row strong {
+    font-weight: 600;
+}
+
+/* PRICE */
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.price {
+    color: #ff4d4f;
+    font-weight: 700;
+}
+
+/* PAYMENT */
+.payment-method label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #111;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #333;
+    margin-bottom: 10px;
+}
+
+.payment-method input {
+    accent-color: #dd1515;
+}
+
+/* ===== PAGE ===== */
+.payment-success-page .match-section {
+    padding-bottom: 90px;
+}
+
+/* CARD */
+.success-card {
+    background: rgba(0,0,0,.75);
+    padding: 50px 40px;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 10px 35px rgba(0,0,0,.45);
+}
+
+/* ICON */
+.success-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.success-icon i {
+    font-size: 42px;
+    color: #fff;
+}
+
+/* TITLE */
+.success-card h3 {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.success-card .sub {
+    color: #d1d5db;
+    font-size: 15px;
+}
+
+/* DIVIDER */
+.success-divider {
+    height: 1px;
+    background: rgba(255,255,255,.15);
+    margin: 30px 0;
+}
+
+/* INFO */
+.success-info {
+    text-align: left;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.info-row span {
+    color: #d1d5db;
+}
+
+.info-row strong {
+    font-weight: 600;
+}
+
+.price {
+    color: #ff4d4f;
+    font-weight: 700;
+}
+
+/* ACTION */
+.success-actions {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+}
+
+.success-actions .primary-btn {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+}
+
+.back-home {
+    color: #fff;
+    font-size: 14px;
+}
+
+.back-home:hover {
+    color: #dd1515;
+}
+
+/* RESPONSIVE */
+@media (max-width: 575px) {
+    .success-card {
+        padding: 35px 20px;
+    }
+}
+/* =========================
+   AUTH MENU (CLEAN)
+========================= */
+.menu-user {
+    display: none;
+}
+
+.menu-guest {
+    display: none;
+}
+.club-filter-box {
+  display: flex;
+  gap: 16px;
+}
+/* =========================================================
+   CLUB CARD – FINAL (GLOBAL – KHÔNG OVERRIDE CHÉO)
+========================================================= */
+
+.club-thumb {
+  height: 170px;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+}
+
+/* =========================================================
+   GRID FIX – KHÔNG ẢNH HƯỞNG HOMEPAGE
+========================================================= */
+/* Chỉ chỉnh gutter cho row CHỨA sidebar + grid */
+.match-section > .container-fluid > .row {
+  --bs-gutter-x: 24px;
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  .club-filter-col {
+    display: none;
+  }
+}
+
+/* =========================
+   CLUB PAGE – FINAL (ONLY ONE)
+========================= */
+
+.match-section > .container-fluid > .row {
+  --bs-gutter-x: 24px;
+}
+
+
+/* Grid */
+#clubGrid {
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+/* Card */
+.club-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  .club-filter-col {
+    display: none;
+  }
+
+  #clubGrid {
+    padding: 0 12px;
+  }
+}
+/* =========================
+   CLUB PAGE – FINAL (ONLY)
+========================= */
+
+/* Layout */
+.match-section > .container-fluid > .row {
+  --bs-gutter-x: 24px;
+}
+
+/* Sidebar */
+.club-filter-col {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.filter-sidebar {
+  width: 240px;
+  padding: 16px 16px 12px; /* 👈 giảm padding đáy */
+  border-radius: 12px;
+  background: rgba(0,0,0,.6);
+  box-shadow: 0 8px 22px rgba(0,0,0,.4);
+}
+
+/* Filter title */
+.filter-sidebar .filter-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+/* Search */
+.filter-sidebar input.form-control {
+  height: 36px;
+  font-size: 13px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 14px !important; /* 👈 thay vì mb-4 */
+}
+
+
+/* Sport list (FILTER ONLY) */
+.filter-sidebar .sport-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-sidebar .sport-list label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #e5e7eb;
+  padding: 5px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filter-sidebar .sport-list label:hover {
+  background: rgba(255,255,255,.08);
+}
+
+.filter-sidebar .sport-list input {
+  width: 14px;
+  height: 14px;
+  accent-color: #dd1515;
+}
+
+/* Grid */
+#clubGrid {
+  padding-left: 0;
+  padding-right: 24px;
+}
+/* ===== CLUB PAGE – CONTAINER FIX ===== */
+.club-page .container-fluid {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+/* =========================================================
+   CLUB CARD – GLOBAL BODY LAYOUT
+   Áp dụng cho HOME + CLUB
+   Logo trái – Nội dung phải
+========================================================= */
+
+/* PHẦN TRẮNG */
+.club-card .club-body {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px;
+
+  padding: 18px 16px;
+  background: #fff;
+
+  /* override layout cũ */
+  flex-direction: row !important;
+  text-align: left !important;
+}
+
+/* LOGO */
+.club-card .club-logo {
+  flex-shrink: 0;
+}
+
+.club-card .club-logo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* NỘI DUNG */
+.club-card .club-info {
+  flex: 1;
+  text-align: left !important;
+}
+
+/* TÊN CLB */
+.club-card .club-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+/* ĐỊA CHỈ + GIỜ */
+.club-card .club-meta {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 2px;
+  line-height: 1.4;
+}
+
+/* ICON CLOCK */
+.club-card .club-meta i {
+  color: #dd1515;
+  margin-right: 6px;
+}
+.filter-sidebar::before {
+  height: 182px; /* 170 + 12px breathing space */
 }

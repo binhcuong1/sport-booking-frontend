@@ -1,338 +1,75 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="HTVC Sport">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Câu lạc bộ | HTVC</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="HTVC Sport">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Câu lạc bộ | HTVC</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/customer/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/customer/css/magnific-popup.css">
-    <link rel="stylesheet" href="/customer/css/slicknav.min.css">
-    <link rel="stylesheet" href="/customer/css/style.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/customer/css/style.css">
 </head>
 
 <body>
 
-    <!-- Preloader -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+  <!-- HEADER -->
+  <div data-include="/shared/partials/header.html"></div>
 
-    <!-- Header -->
-    <div data-include="/shared/partials/header.html"></div>
+  <!-- CLUB PAGE -->
+  <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
+    <div class="container-fluid px"> <!-- ✅ FIX: dùng container-fluid -->
 
-    <!-- CLUB PAGE -->
-    <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
-        <div class="container">
+      <div class="row">
 
-            <!-- TITLE -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title text-white">
-                        <h3><span> Câu lạc bộ </span></h3>
-                        <p>Khám phá các câu lạc bộ thể thao hàng đầu tại TP.HCM</p>
-                    </div>
-                </div>
+        <!-- ================= FILTER SIDEBAR (LEFT) ================= -->
+        <div class="col-xl-3 col-lg-4 club-filter-col">
+          <div class="filter-sidebar">
+
+            <h5 class="filter-title">🔍 Tìm kiếm</h5>
+            <input
+              id="searchInput"
+              type="text"
+              class="form-control mb-4"
+              placeholder="Tìm kiếm câu lạc bộ..."
+            >
+
+            <h5 class="filter-title">🏸 Môn thể thao</h5>
+            <div id="sportDropdown" class="sport-list">
+              <!-- JS render checkbox -->
             </div>
 
-            <!-- FILTER -->
-            <div class="row mb-4">
-                <div class="col-lg-12">
-                    <div class="club-filter-box">
-
-                        <div class="filter-item">
-                            <input type="text" class="form-control"
-                                placeholder="🔍 Tìm kiếm câu lạc bộ...">
-                        </div>
-
-                        <div class="filter-item">
-                            <select class="form-control">
-                                <option>Tất cả môn</option>
-                                <option>Pickleball</option>
-                                <option>Cầu lông</option>
-                                <option>Tennis</option>
-                                <option>Bóng đá</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-item">
-                            <select class="form-control">
-                                <option>Tất cả quận</option>
-                                <option>Tân Bình</option>
-                                <option>Quận 10</option>
-                                <option>Quận 3</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-item">
-                            <select class="form-control">
-                                <option>Tất cả giá</option>
-                                <option>Dưới 200k</option>
-                                <option>200k - 500k</option>
-                                <option>Trên 500k</option>
-                            </select>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- CLUB GRID -->
-            <div class="row club-grid ">
-                    <!-- item 1 -->
-                    <div class="col-lg-3 col-md-6 mt-3 d-flex ">
-                        <div class="club-card">
-                            <div class="club-thumb set-bg"
-                                data-setbg="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576-125-0-750-1000-crop-1749827368375622748059.jpg">
-                                <div class="club-tags">
-                                    <span class="tag tag-day">Đơn ngày</span>
-                                    <span class="tag tag-event">Sự kiện</span>
-                                </div>
-                                <div class="club-actions">
-                                    <button class="icon-btn" type="button"><i class="fa fa-heart-o"></i></button>
-                                    <button class="icon-btn" type="button"><i class="fa fa-share-alt"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="club-body">
-                                <div class="club-logo">
-                                    <img src="/customer/img/logo.png" alt="logo">
-                                </div>
-
-                                <div class="club-info">
-                                    <h5 class="club-name">PICKLEBALL 18 CỘNG HÒA</h5>
-                                    <p class="club-meta">
-                                        <span class="distance">(749.3m)</span>
-                                        18B Cộng Hoà, P.4, Tân Bình, TP.HCM
-                                    </p>
-                                    <p class="club-meta">
-                                        <i class="fa fa-clock-o"></i> 06:00 - 24:00
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="pb-3 text-center">
-                                <div class="club-cta">
-                                    <a href="#" class="primary-btn">ĐẶT LỊCH</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- item 2 -->
-                    <div class="col-lg-3 col-md-6 mt-3 d-flex ">
-                        <div class="club-card">
-                            <div class="club-thumb set-bg"
-                                data-setbg="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576-125-0-750-1000-crop-1749827368375622748059.jpg">
-                                <div class="club-tags">
-                                    <span class="tag tag-day">Đơn ngày</span>
-                                </div>
-                                <div class="club-actions">
-                                    <button class="icon-btn" type="button"><i class="fa fa-heart-o"></i></button>
-                                    <button class="icon-btn" type="button"><i class="fa fa-share-alt"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="club-body">
-                                <div class="club-logo">
-                                    <img src="/customer/img/logo.png" alt="logo">
-                                </div>
-
-                                <div class="club-info">
-                                    <h5 class="club-name">CLB Cầu Lông 18B Cộng Hoà</h5>
-                                    <p class="club-meta">
-                                        <span class="distance">(749.4m)</span>
-                                        18B Cộng Hoà, P.4, Tân Bình, TP.HCM
-                                    </p>
-                                    <p class="club-meta">
-                                        <i class="fa fa-clock-o"></i> 06:00 - 24:00
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="pb-3 text-center">
-                                <div class="club-cta">
-                                    <a href="#" class="primary-btn">ĐẶT LỊCH</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- item 3 -->
-                    <div class="col-lg-3 col-md-6 mt-3 d-flex ">
-                        <div class="club-card">
-                            <div class="club-thumb set-bg"
-                                data-setbg="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576-125-0-750-1000-crop-1749827368375622748059.jpg">
-                                <div class="club-tags">
-                                    <span class="tag tag-day">Đơn ngày</span>
-                                </div>
-                                <div class="club-actions">
-                                    <button class="icon-btn" type="button"><i class="fa fa-heart-o"></i></button>
-                                    <button class="icon-btn" type="button"><i class="fa fa-share-alt"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="club-body">
-                                <div class="club-logo">
-                                    <img src="/customer/img/logo.png" alt="logo">
-                                </div>
-
-                                <div class="club-info">
-                                    <h5 class="club-name">Phong Sơn Lý Tự Trọng</h5>
-                                    <p class="club-meta">
-                                        <span class="distance">(760.8m)</span>
-                                        348 Hoàng Văn Thụ, P.4, Tân Bình, TP.HCM
-                                    </p>
-                                    <p class="club-meta">
-                                        <i class="fa fa-clock-o"></i> 05:00 - 23:00
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="pb-3 text-center">
-                                <div class="club-cta">
-                                    <a href="#" class="primary-btn">ĐẶT LỊCH</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- item 4 -->
-                    <div class="col-lg-3 col-md-6 mt-3 d-flex ">
-                        <div class="club-card">
-                            <div class="club-thumb set-bg"
-                                data-setbg="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576-125-0-750-1000-crop-1749827368375622748059.jpg">
-                                <div class="club-tags">
-                                    <span class="tag tag-day">Đơn ngày</span>
-                                    <span class="tag tag-event">Sự kiện</span>
-                                </div>
-                                <div class="club-actions">
-                                    <button class="icon-btn" type="button"><i class="fa fa-heart-o"></i></button>
-                                    <button class="icon-btn" type="button"><i class="fa fa-share-alt"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="club-body">
-                                <div class="club-logo">
-                                    <img src="/customer/img/logo.png" alt="logo">
-                                </div>
-
-                                <div class="club-info">
-                                    <h5 class="club-name">Sân Tennis C3</h5>
-                                    <p class="club-meta">
-                                        <span class="distance">(778.7m)</span>
-                                        Đường 18E Cộng Hoà, P.4, Tân Bình, TP.HCM
-                                    </p>
-                                    <p class="club-meta">
-                                        <i class="fa fa-clock-o"></i> 05:00 - 24:00
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="pb-3 text-center">
-                                <div class="club-cta">
-                                    <a href="#" class="primary-btn">ĐẶT LỊCH</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- item 5 -->
-                    <div class="col-lg-3 col-md-6 mt-3 d-flex ">
-                        <div class="club-card">
-                            <div class="club-thumb set-bg"
-                                data-setbg="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576-125-0-750-1000-crop-1749827368375622748059.jpg">
-                                <div class="club-tags">
-                                    <span class="tag tag-day">Đơn ngày</span>
-                                </div>
-                                <div class="club-actions">
-                                    <button class="icon-btn" type="button"><i class="fa fa-heart-o"></i></button>
-                                    <button class="icon-btn" type="button"><i class="fa fa-share-alt"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="club-body">
-                                <div class="club-logo">
-                                    <img src="/customer/img/logo.png" alt="logo">
-                                </div>
-
-                                <div class="club-info">
-                                    <h5 class="club-name">Sky Pickleball</h5>
-                                    <p class="club-meta">
-                                        <span class="distance">(810.2m)</span>
-                                        18D Đ. Cộng Hoà, P.4, Tân Bình, TP.HCM
-                                    </p>
-                                    <p class="club-meta">
-                                        <i class="fa fa-clock-o"></i> 06:00 - 23:00
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="pb-3 text-center">
-                                <div class="club-cta">
-                                    <a href="#" class="primary-btn">ĐẶT LỊCH</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- item 6 -->
-                    <div class="col-lg-3 col-md-6 mt-3 d-flex ">
-                        <div class="club-card">
-                            <div class="club-thumb set-bg"
-                                data-setbg="https://nld.mediacdn.vn/zoom/594_371/291774122806476800/2025/6/13/9-chot1-17498220994641740668576-125-0-750-1000-crop-1749827368375622748059.jpg">
-                                <div class="club-tags">
-                                    <span class="tag tag-day">Đơn ngày</span>
-                                </div>
-                                <div class="club-actions">
-                                    <button class="icon-btn" type="button"><i class="fa fa-heart-o"></i></button>
-                                    <button class="icon-btn" type="button"><i class="fa fa-share-alt"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="club-body">
-                                <div class="club-logo">
-                                    <img src="/customer/img/logo.png" alt="logo">
-                                </div>
-
-                                <div class="club-info">
-                                    <h5 class="club-name">Sân Cầu Lông Bùi Thị Xuân</h5>
-                                    <p class="club-meta">
-                                        <span class="distance">(838.6m)</span>
-                                        191 Bùi Thị Xuân, P.1, Tân Bình, TP.HCM
-                                    </p>
-                                    <p class="club-meta">
-                                        <i class="fa fa-clock-o"></i> 06:00 - 22:00
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="pb-3 text-center">
-                                <div class="club-cta">
-                                    <a href="#" class="primary-btn">ĐẶT LỊCH</a>
-                                    <div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <div data-include="/shared/partials/footer.html"></div>
+        <!-- ================= CLUB GRID (RIGHT) ================= -->
+        <div class="col-xl-9 col-lg-8">
+          <!-- ✅ FIX: wrapper giống homepage -->
+          <div class="row club-grid homepage-style-grid" id="clubGrid">
+            <!-- JS render club cards -->
+          </div>
+        </div>
 
-    <!-- JS -->
-    <script src="/customer/js/jquery-3.3.1.min.js"></script>
-    <script src="/customer/js/bootstrap.min.js"></script>
-    <script src="/customer/js/jquery.magnific-popup.min.js"></script>
-    <script src="/customer/js/jquery.slicknav.js"></script>
-    <script src="/customer/js/owl.carousel.min.js"></script>
-    <script src="/customer/js/main.js"></script>
-    <script src="/shared/js/include.js"></script>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div data-include="/shared/partials/footer.html"></div>
+
+  <!-- JS -->
+  <script src="/customer/js/jquery-3.3.1.min.js"></script>
+  <script src="/customer/js/bootstrap.min.js"></script>
+  <script src="/shared/js/include.js"></script>
+
+  <!-- LOGIC -->
+  <script type="module" src="/customer/js/club/club.js"></script>
 
 </body>
 </html>
