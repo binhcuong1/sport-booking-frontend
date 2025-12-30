@@ -2,74 +2,74 @@
 // LOAD HEADER / FOOTER (PARTIALS)
 // ================================
 async function includePartials() {
-    const elements = document.querySelectorAll('[data-include]');
+  const elements = document.querySelectorAll('[data-include]');
 
-    for (const el of elements) {
-        const file = el.getAttribute('data-include');
-        const res = await fetch(file);
-        el.innerHTML = await res.text();
-    }
+  for (const el of elements) {
+    const file = el.getAttribute('data-include');
+    const res = await fetch(file);
+    el.innerHTML = await res.text();
+  }
 
-    // Re-apply set-bg for injected HTML
-    if (window.jQuery) {
-        $('.set-bg').each(function () {
-            const bg = $(this).data('setbg');
-            $(this).css('background-image', 'url(' + bg + ')');
-        });
-    }
+  // RE-APPLY BACKGROUND
+  if (window.jQuery) {
+    $('.set-bg').each(function () {
+      const bg = $(this).data('setbg');
+      $(this).css('background-image', 'url(' + bg + ')');
+    });
+  }
 
-    // 🔥 CHECK LOGIN SAU KHI HEADER LOAD
-    updateAuthMenu();
+  // UPDATE LOGIN MENU
+  updateAuthMenu();
+
+  // INIT SEARCH HEADER (SAU KHI DOM CÓ HEADER)
+  if (document.getElementById("headerSearchInput")) {
+    import("/shared/js/search-header.js");
+  }
 }
 
 // ================================
 // CHECK LOGIN & UPDATE MENU
 // ================================
 function updateAuthMenu() {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-    document.querySelectorAll(".menu-user").forEach(el => {
-        el.style.display = token ? "block" : "none";
-    });
+  document.querySelectorAll(".menu-user").forEach(el => {
+    el.style.display = token ? "block" : "none";
+  });
 
-    document.querySelectorAll(".menu-guest").forEach(el => {
-        el.style.display = token ? "none" : "block";
-    });
+  document.querySelectorAll(".menu-guest").forEach(el => {
+    el.style.display = token ? "none" : "block";
+  });
 
-    const btnLogout = document.getElementById("btnLogout");
-if (btnLogout) {
-    btnLogout.onclick = (e) => {
-        e.preventDefault();
-
-        // clear auth
-        localStorage.removeItem("token");
-        localStorage.removeItem("account");
-
-        // về trang chủ
-        location.href = "/customer/pages/index.html";
+  const btnLogout = document.getElementById("btnLogout");
+  if (btnLogout) {
+    btnLogout.onclick = e => {
+      e.preventDefault();
+      localStorage.removeItem("token");
+      localStorage.removeItem("account");
+      location.href = "/customer/pages/index.html";
     };
-}
-
+  }
 }
 
 // ================================
 // ACTIVE MENU ITEM
 // ================================
 function activeCurrentMenu() {
-    const currentPage = window.location.pathname.split("/").pop();
+  const currentPage = window.location.pathname.split("/").pop();
 
-    document.querySelectorAll(".main-menu li a").forEach(link => {
-        const linkPage = link.getAttribute("href").split("/").pop();
-        if (linkPage === currentPage) {
-            link.parentElement.classList.add("active");
-        }
-    });
+  document.querySelectorAll(".main-menu li a").forEach(link => {
+    const linkPage = link.getAttribute("href").split("/").pop();
+    if (linkPage === currentPage) {
+      link.parentElement.classList.add("active");
+    }
+  });
 }
 
 // ================================
 // DOM READY
 // ================================
-document.addEventListener('DOMContentLoaded', () => {
-    includePartials();
-    setTimeout(activeCurrentMenu, 50);
+document.addEventListener("DOMContentLoaded", async () => {
+  await includePartials();
+  activeCurrentMenu();
 });

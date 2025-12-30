@@ -2,6 +2,7 @@
   <div class="header__nav">
     <div class="container">
       <div class="row">
+        <!-- LOGO -->
         <div class="col-lg-2">
           <div class="logo">
             <a href="/customer/pages/index.html">
@@ -10,35 +11,41 @@
           </div>
         </div>
 
+        <!-- MENU -->
         <div class="col-lg-10">
           <div class="nav-menu">
             <ul class="main-menu">
               <li><a href="/customer/pages/index.html">Trang chủ</a></li>
               <li><a href="/customer/pages/club.html">Câu lạc bộ</a></li>
-              <li><a href="/customer/pages/schedule.html">Đặt sân</a></li>
-              <li><a href="/customer/pages/booking-history.html">Lịch đã đặt</a></li>
               <li><a href="/customer/pages/maps/club-map.html">Bản đồ</a></li>
               <li><a href="/customer/pages/contact.html">Liên hệ</a></li>
 
               <!-- SEARCH -->
-              <li class="search-switch">
-                <i class="fa fa-search"></i>
+              <li class="search-hover">
+                <div class="search-dropdown">
+                  <input
+                    type="text"
+                    id="headerSearchInput"
+                    placeholder="Tìm câu lạc bộ, sân thể thao..."
+                    autocomplete="off"
+                  />
+                  <div class="search-result" id="searchResult"></div>
+                </div>
+
+                <!-- ICON SEARCH -->
+                <i id="headerSearchBtn" class="fa fa-search"></i>
               </li>
 
               <!-- ACCOUNT -->
               <li class="account-menu">
                 <a href="#"><i class="fa fa-user"></i></a>
                 <ul class="dropdown">
-
-                  <!-- ===== CHƯA ĐĂNG NHẬP ===== -->
                   <li class="menu-guest">
                     <a href="/customer/pages/auth/login.html">Đăng nhập</a>
                   </li>
                   <li class="menu-guest">
                     <a href="/customer/pages/auth/register.html">Đăng ký</a>
                   </li>
-
-                  <!-- ===== ĐÃ ĐĂNG NHẬP ===== -->
                   <li class="menu-user">
                     <a href="/customer/pages/profile.html">Thông tin cá nhân</a>
                   </li>
@@ -48,7 +55,6 @@
                   <li class="menu-user">
                     <a href="#" id="btnLogout">Đăng xuất</a>
                   </li>
-
                 </ul>
               </li>
             </ul>
@@ -56,10 +62,12 @@
         </div>
       </div>
 
-      <!-- MOBILE MENU -->
+      <!-- MOBILE -->
       <div class="canvas-open">
         <i class="fa fa-bars"></i>
       </div>
     </div>
   </div>
 </header>
+
+<script type="module" src="/shared/js/search-header.js"></script>
