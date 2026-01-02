@@ -274,96 +274,109 @@ ol {
 	}
 }
 
-/* Search Option */
+/* ================= SEARCH HEADER – FINAL FIX ================= */
 
-.spacial-controls {
-	position: fixed;
-	width: 111px;
-	height: 91px;
-	top: 0;
-	right: 0;
-	z-index: 999;
+/* wrapper */
+.search-hover {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
-.spacial-controls .search-switch {
-	display: block;
-	height: 100%;
-	padding-top: 30px;
-	background: #323232;
-	text-align: center;
-	cursor: pointer;
+/* box search */
+.search-dropdown {
+  position: relative;
+  width: 280px;
+  height: 44px;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  padding: 0;
+  display: block;              /* 🔥 QUAN TRỌNG */
 }
 
-.search-model {
-	display: none;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	background: #000;
-	z-index: 99999;
+/* input */
+.search-dropdown input {
+  width: 100%;
+  height: 100%;
+  padding: 0 52px 0 16px;      /* chừa chỗ cho icon */
+  border-radius: 999px;
+  border: 2px solid #e60000;
+  font-size: 14px;
+  outline: none;
 }
 
-.search-model-form {
-	padding: 0 15px;
+/* ICON SEARCH – nằm TRONG input */
+#headerSearchBtn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #dd1515;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s ease;
+  z-index: 2;
 }
 
-.search-model-form input {
-	width: 500px;
-	font-size: 40px;
-	border: none;
-	border-bottom: 2px solid #333;
-	background: none;
-	color: #999;
+#headerSearchBtn:hover {
+  background: #b00000;
 }
 
-.search-close-switch {
-	position: absolute;
-	width: 50px;
-	height: 50px;
-	background: #333;
-	color: #fff;
-	text-align: center;
-	border-radius: 50%;
-	font-size: 28px;
-	line-height: 28px;
-	top: 30px;
-	cursor: pointer;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
+/* RESULT BOX */
+.search-result {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  max-height: 280px;
+  overflow-y: auto;
+  display: none;
+  z-index: 10001;
 }
+
+.search-result .item {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.search-result .item:hover {
+  background: #f5f5f5;
+}
+
 
 /*---------------------
   Header
 -----------------------*/
-/* Cột chứa logo */
+
+/* ===== LOGO ===== */
 .logo {
 	height: 100%;
 	display: flex;
 	align-items: center;
-	/* căn giữa theo chiều dọc */
 }
 
-/* Link logo */
 .logo a {
 	display: flex;
 	align-items: center;
 }
 
-/* Ảnh logo */
 .logo img {
 	max-width: 150px;
 	height: auto;
 }
 
+/* ===== HEADER TOP (GIỮ NGUYÊN) ===== */
 .header__top .ht-info ul li {
 	list-style: none;
 	display: inline-block;
@@ -405,77 +418,96 @@ ol {
 	padding: 14px 0 15px;
 }
 
+/* ===== HEADER NAV ===== */
 .header__nav {
 	background: #dd1515;
-	height: 110px;
+	height: 110px;            /* GIỮ SIZE CŨ */
 	width: 100%;
 	position: relative;
 	z-index: 100;
 }
 
+/* row full height */
 .header__nav .row {
 	display: flex;
 	align-items: center;
-}
-
-.header__nav .logo {
-	padding: 0;
 	height: 100%;
-	display: flex;
-	align-items: center;
 }
 
-.header__nav .logo a {
-	display: inline-block;
-}
-
+/* ===== NAV MENU WRAPPER ===== */
 .header__nav .nav-menu {
-	text-align: left;
+	display: flex;            /* FIX LỆCH */
+	align-items: center;
+	width: 100%;
+  justify-content: space-between;
 }
 
-.header__nav .main-menu {
-	margin-left: 40px;
-	/* khoảng cách logo – menu */
-}
+/* ===== MAIN MENU ===== */
 
-.header__nav .nav-menu .main-menu {
-	display: inline-block;
-}
 
 .header__nav .nav-menu .main-menu li {
 	display: inline-block;
 	list-style: none;
-	margin-right: 50px;
+	margin-right: 32px;       /* 🔥 GIẢM KHOẢNG CÁCH (50px → 32px) */
 	position: relative;
 }
 
+/* ===== MENU LINK ===== */
+.header__nav .nav-menu .main-menu li a {
+	font-size: 15px;
+	color: #ffffff;
+	font-weight: 500;
+	display: inline-block;
+	text-transform: uppercase;
+	padding: 39px 0;          /* GIỮ NGUYÊN */
+	position: relative;
+}
+
+/* underline */
+.header__nav .nav-menu .main-menu li a:after {
+	position: absolute;
+	left: 0;
+	top: 65px;
+	height: 2px;
+	width: 100%;
+	background: #ffffff;
+	content: "";
+	transition: all 0.3s;
+	opacity: 0;
+}
+
+.header__nav .nav-menu .main-menu li.active a:after,
+.header__nav .nav-menu .main-menu li:hover a:after {
+	opacity: 1;
+}
+
+/* ===== DROPDOWN ===== */
 .header__nav .nav-menu .main-menu li .dropdown {
 	position: absolute;
 	left: 0;
-	top: 50px;
+	top: 95px;
 	width: 180px;
 	background: #ffffff;
 	z-index: 99;
 	opacity: 0;
 	visibility: hidden;
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
 	transition: all 0.3s;
+}
+
+.header__nav .nav-menu .main-menu li:hover .dropdown {
+	opacity: 1;
+	visibility: visible;
 }
 
 .header__nav .nav-menu .main-menu li .dropdown li {
-	margin-right: 0;
 	display: block;
-	text-align: left;
+	margin-right: 0;
 }
 
 .header__nav .nav-menu .main-menu li .dropdown li a {
-	padding: 5px 20px;
+	padding: 10px 20px;
 	display: block;
 	color: #151618;
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
 	text-transform: capitalize;
 }
 
@@ -487,55 +519,37 @@ ol {
 	display: none;
 }
 
-.header__nav .nav-menu .main-menu li.active a:after {
-	opacity: 1;
-}
-
-.header__nav .nav-menu .main-menu li:hover a:after {
-	opacity: 1;
-}
-
-.header__nav .nav-menu .main-menu li:hover .dropdown {
-	opacity: 1;
-	visibility: visible;
-	top: 95px;
-}
-
-.header__nav .nav-menu .main-menu li a {
-	font-size: 15px;
-	color: #ffffff;
-	font-weight: 500;
-	display: inline-block;
-	text-transform: uppercase;
-	padding: 39px 0;
-	position: relative;
-}
-
-.header__nav .nav-menu .main-menu li a:after {
-	position: absolute;
-	left: 0;
-	top: 65px;
-	height: 2px;
-	width: 100%;
-	background: #ffffff;
-	content: "";
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-	opacity: 0;
-}
-
+/* ===== RIGHT ICONS ===== */
 .header__nav .nav-menu .nm-right {
-	display: inline-block;
-	margin-left: 20px;
+	display: inline-flex;
+	align-items: center;
+	margin-left: 12px;        /* 🔥 KÉO GẦN MENU HƠN */
 	cursor: pointer;
 }
 
 .header__nav .nav-menu .nm-right i {
 	font-size: 14px;
 	color: #ffffff;
+	margin-left: 18px;
+}
+.header__nav .col-lg-10 {
+  display: flex;
+  align-items: center;
 }
 
+.header__nav .nm-right {
+  margin-right: 0;
+}
+.header__nav .main-menu li i {
+  font-size: 16px;
+}
+.header__nav .main-menu {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+/* ===== DISABLE MOBILE ===== */
 .canvas-open {
 	display: none;
 }
@@ -543,6 +557,7 @@ ol {
 .offcanvas-menu-wrapper {
 	display: none;
 }
+
 
 /* =========================
    ACCOUNT MENU (FIX DROPDOWN)
