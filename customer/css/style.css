@@ -564,72 +564,73 @@ ol {
 ========================= */
 
 .account-menu {
-    position: relative;
+	position: relative;
 }
 
 /* Dropdown box */
 .account-menu .dropdown {
-    position: absolute;
-    top: 48px;              /* sát icon */
-    right: 0;
-    width: 180px;
-    background: #ffffff;
-    border-radius: 6px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    padding: 8px 0;
-    z-index: 10000;
+	position: absolute;
+	top: 48px;
+	/* sát icon */
+	right: 0;
+	width: 180px;
+	background: #ffffff;
+	border-radius: 6px;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+	padding: 8px 0;
+	z-index: 10000;
 
-    /* hidden by default */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity .25s ease, transform .25s ease;
+	/* hidden by default */
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: opacity .25s ease, transform .25s ease;
 }
 
 /* Show on hover */
 .account-menu:hover .dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
 }
 
 /* Links */
 .account-menu .dropdown li a {
-    display: block;
-    width: 100%;
-    padding: 10px 18px;
-    font-size: 14px;
-    color: #222;
-	font-weight: 500 ;
-    white-space: nowrap;
+	display: block;
+	width: 100%;
+	padding: 10px 18px;
+	font-size: 14px;
+	color: #222;
+	font-weight: 500;
+	white-space: nowrap;
 }
 
 .account-menu .dropdown li a:hover {
-    background: #f5f5f5;
-    color: #dd1515;
+	background: #f5f5f5;
+	color: #dd1515;
 }
 
 /* Account icon */
-.account-menu > a i {
-    font-size: 18px;
-    padding: 6px;
-    border-radius: 50%;
-    transition: background 0.2s;
+.account-menu>a i {
+	font-size: 18px;
+	padding: 6px;
+	border-radius: 50%;
+	transition: background 0.2s;
 }
 
 /* Header icons spacing */
 .main-menu li.search-switch {
-    margin-right: 20px;
+	margin-right: 20px;
 }
 
 .main-menu li.search-switch i {
-    color: #ffffff;
-    font-size: 16px;
-    cursor: pointer;
+	color: #ffffff;
+	font-size: 16px;
+	cursor: pointer;
 }
 
 .main-menu li.account-menu {
-    margin-right: 0;
+	margin-right: 0;
 }
 
 
@@ -2891,8 +2892,8 @@ ol {
 }
 
 
-.club-card > .text-center {
-    margin-top: auto;
+.club-card>.text-center {
+	margin-top: auto;
 }
 
 .club-thumb {
@@ -2970,286 +2971,314 @@ ol {
 .club-cta .primary-btn:hover {
 	background: #b00000;
 }
+
 /* Profile Info */
 .profile-card {
-    background: rgba(0, 0, 0, 0.65);
-    padding: 40px;
-    border-radius: 8px;
-    color: #fff;
+	background: rgba(0, 0, 0, 0.65);
+	padding: 40px;
+	border-radius: 8px;
+	color: #fff;
 }
 
 .profile-avatar img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid #e60012;
-    margin-bottom: 10px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 3px solid #e60012;
+	margin-bottom: 10px;
 }
 
 .profile-card .form-control {
-    background: #111;
-    border: 1px solid #333;
-    color: #fff;
+	background: #111;
+	border: 1px solid #333;
+	color: #fff;
 }
 
 .profile-card .form-control:focus {
-    border-color: #e60012;
-    box-shadow: none;
+	border-color: #e60012;
+	box-shadow: none;
 }
 
 .profile-card label {
-    font-weight: 500;
+	font-weight: 500;
 }
+
 /* Booking Schedule */
 /* ===== BOOKING BOARD ===== */
 .booking-board {
-    background: rgba(0, 0, 0, 0.65);
-    padding: 20px;
-    border-radius: 8px;
+	background: rgba(0, 0, 0, 0.65);
+	padding: 20px;
+	border-radius: 8px;
 }
 
 .booking-board-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #fff;
+	margin-bottom: 15px;
 }
 
 .booking-board-header .left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .back-btn {
-    color: #fff;
-    font-size: 18px;
+	color: #fff;
+	font-size: 18px;
 }
 
 .date-input {
-    background: #111;
-    color: #fff;
-    border: 1px solid #333;
-    padding: 6px 10px;
-    border-radius: 4px;
+	background: #111;
+	color: #fff;
+	border: 1px solid #333;
+	padding: 6px 10px;
+	border-radius: 4px;
 }
 
 .date-input::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    opacity: 0.8;
-    cursor: pointer;
+	filter: invert(1);
+	opacity: 0.8;
+	cursor: pointer;
 }
 
 .date-input::-webkit-calendar-picker-indicator:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
 
 /* ===== LEGEND ===== */
 .booking-legend {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    font-size: 14px;
-    color: #ddd;
-    margin-bottom: 10px;
+	display: flex;
+	gap: 15px;
+	align-items: center;
+	font-size: 14px;
+	color: #ddd;
+	margin-bottom: 10px;
 }
 
 .booking-legend .legend {
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-    border-radius: 3px;
-    margin-right: 4px;
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	border-radius: 3px;
+	margin-right: 4px;
 }
 
-.legend.free { background: #fff; }
-.legend.booked { background: #ff5a5a; }
-.legend.locked { background: #777; }
-.legend.event { background: #b36bff; }
+.legend.free {
+	background: #fff;
+}
+
+.legend.booked {
+	background: #ff5a5a;
+}
+
+.legend.locked {
+	background: #777;
+}
+
+.legend.event {
+	background: #b36bff;
+}
 
 .price-link {
-    margin-left: auto;
-    color: #ffcc00;
+	margin-left: auto;
+	color: #ffcc00;
 }
 
 /* ===== GRID ===== */
 .booking-page .time-grid-wrapper {
-    overflow-x: auto;
-    max-width: 100%;
+	overflow-x: auto;
+	max-width: 100%;
 }
 
 
 .time-header,
 .time-row {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 70px;
-    grid-template-columns: 50px;
-    white-space: nowrap;
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 70px;
+	grid-template-columns: 50px;
+	white-space: nowrap;
 }
 
 
 .time-slot {
-    background: #1d4ed8;
-    color: #fff;
-    font-size: 13px;
-    text-align: center;
-    border: 1px solid #ccc;
+	background: #1d4ed8;
+	color: #fff;
+	font-size: 13px;
+	text-align: center;
+	border: 1px solid #ccc;
 }
 
 .court-name {
-    background: #e5f7ef;
-    text-align: center;
-    font-weight: bold;
-    border: 1px solid #ccc;
+	background: #e5f7ef;
+	text-align: center;
+	font-weight: bold;
+	border: 1px solid #ccc;
 }
 
 .cell {
-    height: 38px;
-    border: 1px solid #ccc;
-    cursor: pointer;
+	height: 38px;
+	border: 1px solid #ccc;
+	cursor: pointer;
 }
 
-.cell.free { background: #fff; }
-.cell.booked { background: #ff5a5a; }
-.cell.locked { background: #999; }
-.cell.event { background: #b36bff; }
-.cell.selected {
-    background: #4ade80 !important;
+.cell.free {
+	background: #fff;
 }
+
+.cell.booked {
+	background: #ff5a5a;
+}
+
+.cell.locked {
+	background: #999;
+}
+
+.cell.event {
+	background: #b36bff;
+}
+
+.cell.selected {
+	background: #4ade80 !important;
+}
+
 .booking-page .slicknav_menu {
-    display: none !important;
+	display: none !important;
 }
 
 .booking-page .nav-menu {
-    display: block !important;
+	display: block !important;
 }
 
-.booking-page .header__nav .nav-menu > ul.main-menu {
-    display: flex;
-    align-items: center;
+.booking-page .header__nav .nav-menu>ul.main-menu {
+	display: flex;
+	align-items: center;
 }
 
 
 .header-section,
 .header__nav {
-    position: relative;
-    z-index: 9999;
+	position: relative;
+	z-index: 9999;
 }
+
 /* =========================
    BOOKING HISTORY
 ========================= */
 
 .booking-filter-box {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 25px;
+	display: flex;
+	gap: 12px;
+	margin-bottom: 25px;
 }
 
 .booking-filter-box .form-control {
-    background: #111;
-    color: #fff;
-    border: 1px solid #333;
+	background: #111;
+	color: #fff;
+	border: 1px solid #333;
 }
 
 /* List */
 .booking-history-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
 }
 
 /* Card */
 .booking-card {
-    background: rgba(0,0,0,.7);
-    border-radius: 8px;
-    padding: 18px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    box-shadow: 0 6px 18px rgba(0,0,0,.35);
+	background: rgba(0, 0, 0, .7);
+	border-radius: 8px;
+	padding: 18px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #fff;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
 }
 
 /* Info */
 .booking-card h5 {
 	color: #ffffff;
 	font-weight: 600;
-    margin-bottom: 6px;
+	margin-bottom: 6px;
 }
 
 .booking-card p {
-    margin-bottom: 4px;
+	margin-bottom: 4px;
 	color: #e5e7eb;
-    font-size: 14px;
+	font-size: 14px;
 }
 
 .booking-card i {
-    color: #ffffff ;
+	color: #ffffff;
 }
+
 booking-card .booking-info span,
 .booking-card .booking-info {
-    color: #e5e7eb;
+	color: #e5e7eb;
 }
 
 /* Input filter */
 .booking-filter-box .form-control {
-    color: #ffffff !important;
+	color: #ffffff !important;
 }
 
 /* Placeholder date */
 .booking-filter-box input::placeholder {
-    color: #9ca3af;
+	color: #9ca3af;
 }
 
 /* Icon calendar trong input date (Chrome) */
 .booking-filter-box input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    opacity: 0.9;
+	filter: invert(1);
+	opacity: 0.9;
 }
 
 /* Status */
 .booking-card .status {
-    font-size: 13px;
+	font-size: 13px;
 	color: #ffffff;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-weight: 600;
+	padding: 4px 10px;
+	border-radius: 12px;
+	font-weight: 600;
 }
 
 /* Status colors */
 .booking-card.upcoming .status {
-    background: #1dbf73;
+	background: #1dbf73;
 }
 
 .booking-card.completed .status {
-    background: #555;
+	background: #555;
 }
 
 .booking-card.cancelled .status {
-    background: #dd1515;
+	background: #dd1515;
 }
 
 /* Actions */
 .booking-action {
-    text-align: right;
+	text-align: right;
 }
 
 .btn-cancel {
-    margin-top: 8px;
-    background: transparent;
-    border: 1px solid #dd1515;
-    color: #dd1515;
-    padding: 5px 14px;
-    border-radius: 4px;
-    cursor: pointer;
+	margin-top: 8px;
+	background: transparent;
+	border: 1px solid #dd1515;
+	color: #dd1515;
+	padding: 5px 14px;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .btn-cancel:hover {
-    background: #dd1515;
-    color: #fff;
+	background: #dd1515;
+	color: #fff;
 }
 
 
@@ -3258,68 +3287,68 @@ booking-card .booking-info span,
 ========================= */
 
 .contact-page {
-    padding-bottom: 80px;
+	padding-bottom: 80px;
 }
 
 /* Info card */
 .contact-info-card {
-    background: rgba(0,0,0,0.65);
-    padding: 30px;
-    border-radius: 8px;
-    color: #fff;
-    height: 100%;
+	background: rgba(0, 0, 0, 0.65);
+	padding: 30px;
+	border-radius: 8px;
+	color: #fff;
+	height: 100%;
 }
 
 .contact-info-card h5 {
-    margin-bottom: 20px;
-    font-weight: 600;
+	margin-bottom: 20px;
+	font-weight: 600;
 }
 
 .contact-info-card p {
-    color: #e5e7eb;
-    margin-bottom: 14px;
+	color: #e5e7eb;
+	margin-bottom: 14px;
 }
 
 .contact-info-card i {
-    color: #dd1515;
-    margin-right: 10px;
-    width: 18px;
+	color: #dd1515;
+	margin-right: 10px;
+	width: 18px;
 }
 
 /* Form card */
 .contact-form-card {
-    background: rgba(0,0,0,0.65);
-    padding: 30px;
-    border-radius: 8px;
-    color: #fff;
+	background: rgba(0, 0, 0, 0.65);
+	padding: 30px;
+	border-radius: 8px;
+	color: #fff;
 }
 
 .contact-form-card h5 {
-    margin-bottom: 20px;
-    font-weight: 600;
+	margin-bottom: 20px;
+	font-weight: 600;
 }
 
 .contact-form-card .form-control {
-    background: #111;
-    border: 1px solid #333;
-    color: #fff;
+	background: #111;
+	border: 1px solid #333;
+	color: #fff;
 }
 
 .contact-form-card .form-control::placeholder {
-    color: #9ca3af;
+	color: #9ca3af;
 }
 
 .contact-form-card .form-control:focus {
-    border-color: #dd1515;
-    box-shadow: none;
+	border-color: #dd1515;
+	box-shadow: none;
 }
 
 /* Map */
 .contact-map iframe {
-    width: 100%;
-    height: 350px;
-    border-radius: 8px;
-    border: none;
+	width: 100%;
+	height: 350px;
+	border-radius: 8px;
+	border: none;
 }
 
 /* =========================
@@ -3327,84 +3356,84 @@ booking-card .booking-info span,
 ========================= */
 
 .favorite-list {
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 .favorite-card {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 100%;
-    box-shadow: 0 8px 25px rgba(0,0,0,.25);
-    display: flex;
-    flex-direction: column;
+	background: #fff;
+	border-radius: 8px;
+	overflow: hidden;
+	width: 100%;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, .25);
+	display: flex;
+	flex-direction: column;
 }
 
 .favorite-thumb {
-    height: 180px;
-    position: relative;
-    background-size: cover;
-    background-position: center;
+	height: 180px;
+	position: relative;
+	background-size: cover;
+	background-position: center;
 }
 
 .favorite-thumb .btn-remove {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #dd1515;
-    border: none;
-    color: #fff;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: #dd1515;
+	border: none;
+	color: #fff;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 .favorite-body {
-    padding: 14px;
+	padding: 14px;
 }
 
 .favorite-body h5 {
-    font-weight: 700;
-    margin-bottom: 6px;
+	font-weight: 700;
+	margin-bottom: 6px;
 }
 
 .favorite-body .meta {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 4px;
+	font-size: 14px;
+	color: #555;
+	margin-bottom: 4px;
 }
 
 .favorite-footer {
-    padding: 12px;
+	padding: 12px;
 }
 
 .favorite-page .favorite-card {
-    background: #ffffff;
+	background: #ffffff;
 }
 
 /* Tên sân */
 .favorite-page .favorite-body h5 {
-    color: #111111;
-    font-weight: 700;
+	color: #111111;
+	font-weight: 700;
 }
 
 /* Địa chỉ + giờ */
 .favorite-page .favorite-body .meta {
-    color: #444444;
-    font-size: 14px;
+	color: #444444;
+	font-size: 14px;
 }
 
 /* Icon trong meta */
 .favorite-page .favorite-body .meta i {
-    color: #dd1515;
+	color: #dd1515;
 }
 
 /* Nút đặt lịch */
 .favorite-page .favorite-footer .primary-btn {
-    background: #dd1515;
-    color: #ffffff;
-    font-weight: 700;
+	background: #dd1515;
+	color: #ffffff;
+	font-weight: 700;
 }
 
 /* =========================
@@ -3413,448 +3442,457 @@ booking-card .booking-info span,
 
 /* Card */
 .club-detail-card {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    color: #fff;
-    position: relative;
+	background: rgba(0, 0, 0, 0.7);
+	padding: 20px;
+	border-radius: 8px;
+	margin-bottom: 24px;
+	color: #fff;
+	position: relative;
 }
 
 /* Rating list */
 .rating-item {
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+	padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .rating-stars {
-    color: #ffc107;
-    margin-left: 8px;
+	color: #ffc107;
+	margin-left: 8px;
 }
 
 /* Star select */
 .star-rating i {
-    font-size: 24px;
-    color: #444;
-    cursor: pointer;
-    margin-right: 6px;
-    transition: color 0.2s ease;
+	font-size: 24px;
+	color: #444;
+	cursor: pointer;
+	margin-right: 6px;
+	transition: color 0.2s ease;
 }
 
 .star-rating i.active {
-    color: #ffc107;
+	color: #ffc107;
 }
 
 /* Service list */
 .service-list {
-    list-style: none;
-    padding-left: 0;
+	list-style: none;
+	padding-left: 0;
 }
 
 .service-list li {
-    margin-bottom: 6px;
+	margin-bottom: 6px;
 }
 
 /* Sticky info box */
 .sticky-box {
-    position: sticky;
-    top: 100px;
+	position: sticky;
+	top: 100px;
 }
 
 /* ===== CLUB IMAGE BOX ===== */
 .club-image-box {
-    width: 100%;
-    height: 420px;             
-    overflow: hidden;
-    border-radius: 14px;
-    background: #000;
+	width: 100%;
+	height: 420px;
+	overflow: hidden;
+	border-radius: 14px;
+	background: #000;
 }
 
 /* Ảnh fill khung */
 .club-image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;        
-    display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }
+
 /* ===== PAGE FIX ===== */
 .booking-customer-page .match-section {
-    padding-bottom: 90px;
+	padding-bottom: 90px;
 }
 
 /* Card */
 .customer-card {
-    background: rgba(0,0,0,.7);
-    padding: 35px;
-    border-radius: 8px;
-    color: #fff;
-    box-shadow: 0 8px 25px rgba(0,0,0,.4);
+	background: rgba(0, 0, 0, .7);
+	padding: 35px;
+	border-radius: 8px;
+	color: #fff;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, .4);
 }
 
 /* Form */
 .customer-card label {
-    font-weight: 500;
-    margin-bottom: 6px;
+	font-weight: 500;
+	margin-bottom: 6px;
 }
 
 .customer-card .form-control {
-    background: #111;
-    border: 1px solid #333;
-    color: #fff;
+	background: #111;
+	border: 1px solid #333;
+	color: #fff;
 }
 
 .customer-card .form-control::placeholder {
-    color: #9ca3af;
+	color: #9ca3af;
 }
 
 .customer-card .form-control:focus {
-    border-color: #dd1515;
-    box-shadow: none;
+	border-color: #dd1515;
+	box-shadow: none;
 }
 
 /* Actions */
 .form-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 25px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 25px;
 }
 
 .btn-back {
-    color: #fff;
-    font-size: 15px;
-    text-decoration: none;
+	color: #fff;
+	font-size: 15px;
+	text-decoration: none;
 }
 
 .btn-back:hover {
-    color: #dd1515;
+	color: #dd1515;
 }
 
 /* ===== PAGE FIX ===== */
 .booking-confirm-page .match-section {
-    padding-bottom: 90px;
+	padding-bottom: 90px;
 }
 
 /* CARD */
 .confirm-card {
-    background: rgba(0,0,0,.7);
-    padding: 22px 24px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    color: #fff;
-    box-shadow: 0 8px 25px rgba(0,0,0,.35);
+	background: rgba(0, 0, 0, .7);
+	padding: 22px 24px;
+	border-radius: 8px;
+	margin-bottom: 24px;
+	color: #fff;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, .35);
 }
 
 .confirm-card h5 {
-    margin-bottom: 18px;
-    font-weight: 600;
+	margin-bottom: 18px;
+	font-weight: 600;
 }
 
 /* INFO ROW */
 .info-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 15px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	font-size: 15px;
 }
 
 .info-row span {
-    color: #d1d5db;
+	color: #d1d5db;
 }
 
 .info-row strong {
-    font-weight: 600;
+	font-weight: 600;
 }
 
 /* PRICE */
 .price-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 18px;
+	margin-bottom: 20px;
 }
 
 .price {
-    color: #ff4d4f;
-    font-weight: 700;
+	color: #ff4d4f;
+	font-weight: 700;
 }
 
 /* PAYMENT */
 .payment-method label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #111;
-    padding: 10px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    border: 1px solid #333;
-    margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: #111;
+	padding: 10px 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	border: 1px solid #333;
+	margin-bottom: 10px;
 }
 
 .payment-method input {
-    accent-color: #dd1515;
+	accent-color: #dd1515;
 }
 
 /* ===== PAGE ===== */
 .payment-success-page .match-section {
-    padding-bottom: 90px;
+	padding-bottom: 90px;
 }
 
 /* CARD */
 .success-card {
-    background: rgba(0,0,0,.75);
-    padding: 50px 40px;
-    border-radius: 12px;
-    color: #fff;
-    box-shadow: 0 10px 35px rgba(0,0,0,.45);
+	background: rgba(0, 0, 0, .75);
+	padding: 50px 40px;
+	border-radius: 12px;
+	color: #fff;
+	box-shadow: 0 10px 35px rgba(0, 0, 0, .45);
 }
 
 /* ICON */
 .success-icon {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: #22c55e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	background: #22c55e;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 20px;
 }
 
 .success-icon i {
-    font-size: 42px;
-    color: #fff;
+	font-size: 42px;
+	color: #fff;
 }
 
 /* TITLE */
 .success-card h3 {
-    font-weight: 700;
-    margin-bottom: 6px;
+	font-weight: 700;
+	margin-bottom: 6px;
 }
 
 .success-card .sub {
-    color: #d1d5db;
-    font-size: 15px;
+	color: #d1d5db;
+	font-size: 15px;
 }
 
 /* DIVIDER */
 .success-divider {
-    height: 1px;
-    background: rgba(255,255,255,.15);
-    margin: 30px 0;
+	height: 1px;
+	background: rgba(255, 255, 255, .15);
+	margin: 30px 0;
 }
 
 /* INFO */
 .success-info {
-    text-align: left;
+	text-align: left;
 }
 
 .info-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
-    font-size: 15px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 12px;
+	font-size: 15px;
 }
 
 .info-row span {
-    color: #d1d5db;
+	color: #d1d5db;
 }
 
 .info-row strong {
-    font-weight: 600;
+	font-weight: 600;
 }
 
 .price {
-    color: #ff4d4f;
-    font-weight: 700;
+	color: #ff4d4f;
+	font-weight: 700;
 }
 
 /* ACTION */
 .success-actions {
-    margin-top: 35px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    align-items: center;
+	margin-top: 35px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	align-items: center;
 }
 
 .success-actions .primary-btn {
-    width: 100%;
-    max-width: 260px;
-    text-align: center;
+	width: 100%;
+	max-width: 260px;
+	text-align: center;
 }
 
 .back-home {
-    color: #fff;
-    font-size: 14px;
+	color: #fff;
+	font-size: 14px;
 }
 
 .back-home:hover {
-    color: #dd1515;
+	color: #dd1515;
 }
 
 /* RESPONSIVE */
 @media (max-width: 575px) {
-    .success-card {
-        padding: 35px 20px;
-    }
+	.success-card {
+		padding: 35px 20px;
+	}
 }
+
 /* =========================
    AUTH MENU (CLEAN)
 ========================= */
 .menu-user {
-    display: none;
+	display: none;
 }
 
 .menu-guest {
-    display: none;
+	display: none;
 }
+
 .club-filter-box {
-  display: flex;
-  gap: 16px;
+	display: flex;
+	gap: 16px;
 }
+
 /* =========================================================
    CLUB CARD – FINAL (GLOBAL – KHÔNG OVERRIDE CHÉO)
 ========================================================= */
 
 .club-thumb {
-  height: 170px;
-  border-radius: 8px 8px 0 0;
-  position: relative;
+	height: 170px;
+	border-radius: 8px 8px 0 0;
+	position: relative;
 }
 
 /* =========================================================
    GRID FIX – KHÔNG ẢNH HƯỞNG HOMEPAGE
 ========================================================= */
 /* Chỉ chỉnh gutter cho row CHỨA sidebar + grid */
-.match-section > .container-fluid > .row {
-  --bs-gutter-x: 24px;
+.match-section>.container-fluid>.row {
+	--bs-gutter-x: 24px;
 }
 
 /* Mobile */
 @media (max-width: 991px) {
-  .club-filter-col {
-    display: none;
-  }
+	.club-filter-col {
+		display: none;
+	}
 }
 
 /* =========================
    CLUB PAGE – FINAL (ONLY ONE)
 ========================= */
 
-.match-section > .container-fluid > .row {
-  --bs-gutter-x: 24px;
+.match-section>.container-fluid>.row {
+	--bs-gutter-x: 24px;
 }
 
 
 /* Grid */
 #clubGrid {
-  padding-right: 12px;
-  padding-left: 12px;
+	padding-right: 12px;
+	padding-left: 12px;
 }
 
 /* Card */
 .club-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.35);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 }
 
 /* Mobile */
 @media (max-width: 991px) {
-  .club-filter-col {
-    display: none;
-  }
+	.club-filter-col {
+		display: none;
+	}
 
-  #clubGrid {
-    padding: 0 12px;
-  }
+	#clubGrid {
+		padding: 0 12px;
+	}
 }
+
 /* =========================
    CLUB PAGE – FINAL (ONLY)
 ========================= */
 
 /* Layout */
-.match-section > .container-fluid > .row {
-  --bs-gutter-x: 24px;
+.match-section>.container-fluid>.row {
+	--bs-gutter-x: 24px;
 }
 
 /* Sidebar */
 .club-filter-col {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-start;
 }
 
 .filter-sidebar {
-  width: 240px;
-  padding: 16px 16px 12px; /* 👈 giảm padding đáy */
-  border-radius: 12px;
-  background: rgba(0,0,0,.6);
-  box-shadow: 0 8px 22px rgba(0,0,0,.4);
+	width: 240px;
+	padding: 16px 16px 12px;
+	/* 👈 giảm padding đáy */
+	border-radius: 12px;
+	background: rgba(0, 0, 0, .6);
+	box-shadow: 0 8px 22px rgba(0, 0, 0, .4);
 }
 
 /* Filter title */
 .filter-sidebar .filter-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #fff;
+	margin-bottom: 8px;
 }
 
 /* Search */
 .filter-sidebar input.form-control {
-  height: 36px;
-  font-size: 13px;
-  border-radius: 8px;
-  border: none;
-  margin-bottom: 14px !important; 
+	height: 36px;
+	font-size: 13px;
+	border-radius: 8px;
+	border: none;
+	margin-bottom: 14px !important;
+	/* 👈 thay vì mb-4 */
 }
 
 
 /* Sport list (FILTER ONLY) */
 .filter-sidebar .sport-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
 }
 
 .filter-sidebar .sport-list label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: #e5e7eb;
-  padding: 5px 6px;
-  border-radius: 6px;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	color: #e5e7eb;
+	padding: 5px 6px;
+	border-radius: 6px;
+	cursor: pointer;
 }
 
 .filter-sidebar .sport-list label:hover {
-  background: rgba(255,255,255,.08);
+	background: rgba(255, 255, 255, .08);
 }
 
 .filter-sidebar .sport-list input {
-  width: 14px;
-  height: 14px;
-  accent-color: #dd1515;
+	width: 14px;
+	height: 14px;
+	accent-color: #dd1515;
 }
 
 /* Grid */
 #clubGrid {
-  padding-left: 0;
-  padding-right: 24px;
+	padding-left: 0;
+	padding-right: 24px;
 }
+
 /* ===== CLUB PAGE – CONTAINER FIX ===== */
 .club-page .container-fluid {
-  padding-left: 24px;
-  padding-right: 24px;
+	padding-left: 24px;
+	padding-right: 24px;
 }
+
 /* =========================================================
    CLUB CARD – GLOBAL BODY LAYOUT
    Áp dụng cho HOME + CLUB
@@ -3863,57 +3901,227 @@ booking-card .booking-info span,
 
 /* PHẦN TRẮNG */
 .club-card .club-body {
-  display: flex !important;
-  align-items: center !important;
-  gap: 14px;
+	display: flex !important;
+	align-items: center !important;
+	gap: 14px;
 
-  padding: 18px 16px;
-  background: #fff;
+	padding: 18px 16px;
+	background: #fff;
 
-  /* override layout cũ */
-  flex-direction: row !important;
-  text-align: left !important;
+	/* override layout cũ */
+	flex-direction: row !important;
+	text-align: left !important;
 }
 
 /* LOGO */
 .club-card .club-logo {
-  flex-shrink: 0;
+	flex-shrink: 0;
 }
 
 .club-card .club-logo img {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 /* NỘI DUNG */
 .club-card .club-info {
-  flex: 1;
-  text-align: left !important;
+	flex: 1;
+	text-align: left !important;
 }
 
 /* TÊN CLB */
 .club-card .club-name {
-  font-size: 16px;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 4px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #111;
+	margin-bottom: 4px;
 }
 
 /* ĐỊA CHỈ + GIỜ */
 .club-card .club-meta {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 2px;
-  line-height: 1.4;
+	font-size: 14px;
+	color: #555;
+	margin-bottom: 2px;
+	line-height: 1.4;
 }
 
 /* ICON CLOCK */
 .club-card .club-meta i {
-  color: #dd1515;
-  margin-right: 6px;
+	color: #dd1515;
+	margin-right: 6px;
 }
+
 .filter-sidebar::before {
-  height: 182px; /* 170 + 12px breathing space */
+	height: 182px;
+	/* 170 + 12px breathing space */
+}
+
+/* ================= BOOKING GRID – DARK UI ================= */
+
+/* Wrapper */
+.time-grid-wrapper {
+	background: #0f1115;
+	border-radius: 8px;
+	padding: 8px;
+	overflow-x: auto;
+}
+
+/* Header row */
+.time-header {
+	display: flex;
+	border-bottom: 1px solid #2a2d34;
+}
+
+.time-header .court-col {
+	width: 120px;
+	flex-shrink: 0;
+}
+
+.time-header .time-slot {
+	min-width: 64px;
+	height: 36px;
+	font-size: 12px;
+	line-height: 36px;
+	text-align: center;
+	background: #1f4fd8;
+	color: #fff;
+	border-right: 1px solid #2a2d34;
+}
+
+/* Row */
+.time-row {
+	display: flex;
+	border-bottom: 1px solid #2a2d34;
+}
+
+/* Court name column */
+.court-name {
+	width: 120px;
+	flex-shrink: 0;
+	background: #1a1c22;
+	color: #fff;
+	font-weight: 500;
+	padding: 10px;
+	border-right: 1px solid #2a2d34;
+}
+
+/* Slot cell */
+.cell {
+	min-width: 64px;
+	height: 36px;
+	border-right: 1px solid #2a2d34;
+	border-bottom: 1px solid #2a2d34;
+	background: #15171c;
+	cursor: pointer;
+}
+
+/* States */
+.cell.free {
+	background: #15171c;
+}
+
+.cell.booked {
+	background: #ff5b5b;
+}
+
+.cell.locked {
+	background: #6b6b6b;
+}
+
+/* Hover */
+.cell.free:hover {
+	background: #2b2f3a;
+}
+
+/* Legend */
+.booking-legend .legend {
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	border-radius: 2px;
+	margin-right: 4px;
+}
+
+.legend.free {
+	background: #15171c;
+}
+
+.legend.booked {
+	background: #ff5b5b;
+}
+
+.legend.locked {
+	background: #6b6b6b;
+}
+
+/* Empty text */
+#scheduleEmpty {
+	color: #bbb;
+	font-size: 14px;
+}
+
+/* Toolbar chứa filter + legend */
+.booking-toolbar {
+	display: flex;
+	align-items: flex-end;
+	gap: 24px;
+	margin-bottom: 12px;
+}
+
+/* Filter */
+.booking-filter {
+	min-width: 260px;
+}
+
+.filter-label {
+	display: block;
+	font-size: 13px;
+	color: #ccc;
+	margin-bottom: 6px;
+}
+
+/* Select dark theme */
+.dark-select {
+	background: #1e1e1e;
+	color: #fff;
+	border: 1px solid #333;
+}
+
+.dark-select:focus {
+	background: #1e1e1e;
+	color: #fff;
+	border-color: #ff3b3b;
+	box-shadow: none;
+}
+
+/* Legend */
+.booking-legend {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	font-size: 13px;
+	color: #ddd;
+}
+
+.booking-legend .legend {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border-radius: 2px;
+	margin-right: 6px;
+}
+
+/* màu legend (nếu chưa có) */
+.legend.free {
+	background: #2ecc71;
+}
+
+.legend.booked {
+	background: #ff4d4f;
+}
+
+.legend.locked {
+	background: #777;
 }
