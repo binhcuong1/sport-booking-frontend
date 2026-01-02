@@ -1,155 +1,151 @@
 <!DOCTYPE html>
 <html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Chi tiết câu lạc bộ | HTVC</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/customer/css/style.css">
-</head>
+    <link rel="stylesheet" href="/customer/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/customer/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/customer/css/style.css" />
+  </head>
 
-<body>
-
+  <body class="club-detail-page">
     <!-- HEADER -->
     <div data-include="/shared/partials/header.html"></div>
 
-    <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
-        <div class="container">
+    <section
+      class="match-section set-bg"
+      data-setbg="/customer/img/match/match-bg.jpg"
+    >
+      <div class="container">
+        <div class="row">
+          <!-- LEFT -->
+          <div class="col-lg-8">
+            <div class="club-detail-card">
+              <div
+                class="club-header d-flex align-items-center gap-3 flex-wrap"
+              >
+                <img
+                  id="clubImage"
+                  src="/customer/img/match/match-bg.jpg"
+                  alt="club"
+                  style="
+                    width: 120px;
+                    height: 90px;
+                    object-fit: cover;
+                    border-radius: 12px;
+                  "
+                />
+                <div>
+                  <h3 id="clubName" class="text-white mb-1">---</h3>
+                  <p id="clubDescription" class="text-white-50 mb-0">---</p>
+                </div>
+              </div>
 
-            <!-- TITLE -->
-            <div class="section-title text-white">
-                <h3><span id="clubName">---</span></h3>
-                <p>Thông tin chi tiết câu lạc bộ</p>
+              <hr class="bg-white-50" />
+
+              <!-- COURT TABLE -->
+              <h5 class="text-white">Danh sách sân</h5>
+              <div class="table-responsive">
+                <table class="table table-dark table-borderless">
+                  <thead>
+                    <tr>
+                      <th>Tên sân</th>
+                      <th>Giờ hoạt động</th>
+                      <th>Giá</th>
+                    </tr>
+                  </thead>
+                  <tbody id="courtTable">
+                    <!-- JS render -->
+                  </tbody>
+                </table>
+              </div>
+
+              <hr class="bg-white-50" />
+
+              <!-- SERVICES -->
+              <h5 class="text-white">Dịch vụ</h5>
+              <ul class="service-list" id="serviceList">
+                <!-- JS render -->
+              </ul>
             </div>
 
-            <div class="row">
+            <!-- RATING -->
+            <div class="club-detail-card">
+              <h5>Đánh giá từ người chơi</h5>
 
-                <!-- LEFT -->
-                <div class="col-lg-8">
+              <!-- summary -->
+              <div id="ratingSummary" class="mb-3 text-white-50"></div>
 
-                    <!-- IMAGE -->
-                    <div class="club-detail-card club-image-box mb-4">
-                        <img id="clubImage"
-                             src="/customer/img/match/match-bg.jpg"
-                             alt="CLB image">
-                    </div>
-
-                    <!-- DESCRIPTION -->
-                    <div class="club-detail-card">
-                        <h5>Giới thiệu</h5>
-                        <p id="clubDescription">
-                            ---
-                        </p>
-                    </div>
-
-                    <!-- COURTS -->
-                    <div class="club-detail-card">
-                        <h5>Danh sách sân & giá</h5>
-                        <table class="table table-dark table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Sân</th>
-                                    <th>Giờ mở</th>
-                                    <th>Giá / giờ</th>
-                                </tr>
-                            </thead>
-                            <tbody id="courtTable">
-                                <!-- JS render -->
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- SERVICES -->
-                    <div class="club-detail-card">
-                        <h5>Dịch vụ</h5>
-                        <ul class="service-list" id="serviceList">
-                            <!-- JS render -->
-                        </ul>
-                    </div>
-
-                    <!-- RATING (TẠM GIỮ CỨNG) -->
-                    <div class="club-detail-card">
-                        <h5>Đánh giá từ người chơi</h5>
-
-                        <div class="rating-item">
-                            <strong>Nguyễn Văn A</strong>
-                            <span class="rating-stars">★★★★★</span>
-                            <p>Sân đẹp, giá hợp lý</p>
-                        </div>
-
-                        <div class="rating-item">
-                            <strong>Trần Thị B</strong>
-                            <span class="rating-stars">★★★★☆</span>
-                            <p>Phục vụ ổn, sẽ quay lại</p>
-                        </div>
-                    </div>
-
-                    <!-- USER REVIEW -->
-                    <div class="club-detail-card">
-                        <h5>Viết đánh giá của bạn</h5>
-
-                        <form id="reviewForm">
-                            <div class="star-rating mb-3">
-                                <i class="fa fa-star" data-value="1"></i>
-                                <i class="fa fa-star" data-value="2"></i>
-                                <i class="fa fa-star" data-value="3"></i>
-                                <i class="fa fa-star" data-value="4"></i>
-                                <i class="fa fa-star" data-value="5"></i>
-                            </div>
-
-                            <input type="hidden" id="ratingValue" value="0">
-
-                            <textarea class="form-control mb-3"
-                                      rows="4"
-                                      placeholder="Chia sẻ trải nghiệm của bạn..."
-                                      required></textarea>
-
-                            <button type="submit" class="primary-btn">
-                                GỬI ĐÁNH GIÁ
-                            </button>
-                        </form>
-                    </div>
-
-                </div>
-
-                <!-- RIGHT -->
-                <div class="col-lg-4">
-                    <div class="club-detail-card sticky-box">
-                        <h5>Thông tin CLB</h5>
-
-                        <p>
-                            <i class="fa fa-map-marker"></i>
-                            <span id="clubAddress">---</span>
-                        </p>
-
-                        <p>
-                            <i class="fa fa-clock-o"></i>
-                            <span id="clubTime">--:-- - --:--</span>
-                        </p>
-
-                        <p>
-                            <i class="fa fa-phone"></i>
-                            <span id="clubPhone">---</span>
-                        </p>
-
-                        <a id="bookingBtn"
-                           href="#"
-                           class="primary-btn btn-block mt-3">
-                            ĐẶT SÂN
-                        </a>
-                    </div>
-                </div>
-
+              <!-- list -->
+              <div id="ratingList">
+                <!-- JS render -->
+              </div>
             </div>
 
+            <!-- REVIEW FORM -->
+            <div class="club-detail-card">
+              <h5>Gửi đánh giá của bạn</h5>
+
+              <form id="reviewForm">
+                <div class="star-rating mb-3">
+                  <i class="fa fa-star" data-value="1"></i>
+                  <i class="fa fa-star" data-value="2"></i>
+                  <i class="fa fa-star" data-value="3"></i>
+                  <i class="fa fa-star" data-value="4"></i>
+                  <i class="fa fa-star" data-value="5"></i>
+                </div>
+
+                <input type="hidden" id="ratingValue" value="0" />
+
+                <textarea
+                  id="reviewText"
+                  class="form-control mb-3"
+                  rows="4"
+                  placeholder="Chia sẻ trải nghiệm của bạn..."
+                  required
+                ></textarea>
+
+                <button type="submit" class="primary-btn">GỬI ĐÁNH GIÁ</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="col-lg-4">
+            <div class="club-detail-card sticky-box">
+              <h5>Thông tin CLB</h5>
+
+              <p class="text-white">
+                <i class="fa fa-map-marker"></i>
+                <span id="clubAddress">---</span>
+              </p>
+
+              <p class="text-white">
+                <i class="fa fa-clock-o"></i>
+                <span id="clubTime">---</span>
+              </p>
+
+              <p class="text-white">
+                <i class="fa fa-phone"></i>
+                <span id="clubPhone">---</span>
+              </p>
+
+              <a id="bookingBtn" href="#" class="primary-btn btn-block mt-3">
+                ĐẶT SÂN
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- FOOTER -->
@@ -162,29 +158,5 @@
 
     <!-- DETAIL DATA -->
     <script type="module" src="/customer/js/club/club-detail.js"></script>
-
-    <!-- STAR RATING -->
-    <script>
-        const stars = document.querySelectorAll('.star-rating i');
-        const ratingInput = document.getElementById('ratingValue');
-        let selectedRating = 0;
-
-        stars.forEach(star => {
-            star.addEventListener('mouseover', () => highlight(star.dataset.value));
-            star.addEventListener('mouseout', () => highlight(selectedRating));
-            star.addEventListener('click', () => {
-                selectedRating = star.dataset.value;
-                ratingInput.value = selectedRating;
-                highlight(selectedRating);
-            });
-        });
-
-        function highlight(val) {
-            stars.forEach(s =>
-                s.classList.toggle('active', s.dataset.value <= val)
-            );
-        }
-    </script>
-
-</body>
+  </body>
 </html>

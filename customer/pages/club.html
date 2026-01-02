@@ -1,75 +1,71 @@
 <!DOCTYPE html>
 <html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="HTVC Sport" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Câu lạc bộ | HTVC</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="description" content="HTVC Sport">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Câu lạc bộ | HTVC</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/customer/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/customer/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/customer/css/style.css" />
+  </head>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/customer/css/style.css">
-</head>
+  <body>
+    <!-- HEADER -->
+    <div data-include="/shared/partials/header.html"></div>
 
-<body>
+    <!-- CLUB PAGE -->
+    <section
+      class="match-section set-bg"
+      data-setbg="/customer/img/match/match-bg.jpg"
+    >
+      <div class="container-fluid px">
+        <div class="row">
+          <!-- ================= FILTER SIDEBAR (LEFT) ================= -->
+          <div class="col-xl-3 col-lg-4 club-filter-col">
+            <div class="filter-sidebar">
+              <h5 class="filter-title">🔍 Tìm kiếm</h5>
+              <input
+                id="searchInput"
+                type="text"
+                class="form-control mb-4"
+                placeholder="Tìm kiếm câu lạc bộ..."
+              />
 
-  <!-- HEADER -->
-  <div data-include="/shared/partials/header.html"></div>
-
-  <!-- CLUB PAGE -->
-  <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
-    <div class="container-fluid px"> <!-- ✅ FIX: dùng container-fluid -->
-
-      <div class="row">
-
-        <!-- ================= FILTER SIDEBAR (LEFT) ================= -->
-        <div class="col-xl-3 col-lg-4 club-filter-col">
-          <div class="filter-sidebar">
-
-            <h5 class="filter-title">🔍 Tìm kiếm</h5>
-            <input
-              id="searchInput"
-              type="text"
-              class="form-control mb-4"
-              placeholder="Tìm kiếm câu lạc bộ..."
-            >
-
-            <h5 class="filter-title">🏸 Môn thể thao</h5>
-            <div id="sportDropdown" class="sport-list">
-              <!-- JS render checkbox -->
+              <h5 class="filter-title">🏸 Môn thể thao</h5>
+              <div id="sportDropdown" class="sport-list">
+                <!-- JS render checkbox -->
+              </div>
             </div>
+          </div>
 
+          <!-- ================= CLUB GRID (RIGHT) ================= -->
+          <div class="col-xl-9 col-lg-8">
+            <div class="row club-grid homepage-style-grid" id="clubGrid">
+              <!-- JS render club cards -->
+            </div>
           </div>
         </div>
-
-        <!-- ================= CLUB GRID (RIGHT) ================= -->
-        <div class="col-xl-9 col-lg-8">
-          <!-- ✅ FIX: wrapper giống homepage -->
-          <div class="row club-grid homepage-style-grid" id="clubGrid">
-            <!-- JS render club cards -->
-          </div>
-        </div>
-
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- FOOTER -->
+    <div data-include="/shared/partials/footer.html"></div>
 
-  <!-- FOOTER -->
-  <div data-include="/shared/partials/footer.html"></div>
+    <!-- JS -->
+    <script src="/customer/js/jquery-3.3.1.min.js"></script>
+    <script src="/customer/js/bootstrap.min.js"></script>
+    <script src="/shared/js/include.js"></script>
 
-  <!-- JS -->
-  <script src="/customer/js/jquery-3.3.1.min.js"></script>
-  <script src="/customer/js/bootstrap.min.js"></script>
-  <script src="/shared/js/include.js"></script>
-
-  <!-- LOGIC -->
-  <script type="module" src="/customer/js/club/club.js"></script>
-
-</body>
+    <!-- LOGIC -->
+    <script type="module" src="/customer/js/club/club.js"></script>
+  </body>
 </html>
