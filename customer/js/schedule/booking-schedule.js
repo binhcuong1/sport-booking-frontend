@@ -11,7 +11,6 @@ const dateInput = document.querySelector(".date-input");
 const sportTypeSelect = document.querySelector("#sportTypeSelect");
 const timeHeader = document.getElementById("timeHeader");
 const timeBody = document.getElementById("timeBody");
-const emptyEl = document.getElementById("scheduleEmpty");
 
 /* ========= CONTEXT ========= */
 const urlParams = new URLSearchParams(window.location.search);
@@ -30,6 +29,7 @@ let currentDate = null;
 let currentSportTypeId = null;
 let courts = [];       // [{ courtId, courtName }]
 let bookingData = {}; // courtId -> { slotIndex: status }
+let selectedSlots = []; // [{ courtScheduleId, price }]
 
 /* ========= UTILS ========= */
 const slotCount = ((END_HOUR - START_HOUR) * 60) / SLOT_MINUTES;
@@ -75,9 +75,7 @@ async function loadSchedule() {
         { headers: authHeaders, cache: "no-store" }
     );
 
-    // lỗi API
     if (!res.ok) {
-        emptyEl.classList.remove("hidden");
         timeHeader.innerHTML = "";
         timeBody.innerHTML = "";
         return;
@@ -85,15 +83,12 @@ async function loadSchedule() {
 
     const data = await res.json();
 
-    // chưa generate
     if (!data.generated) {
-        emptyEl.classList.remove("hidden");
         timeHeader.innerHTML = "";
         timeBody.innerHTML = "";
         return;
     }
 
-    // reset state
     courts = [];
     bookingData = {};
     const slotSet = new Set();
@@ -116,24 +111,51 @@ async function loadSchedule() {
                 blocked: "locked"
             };
 
-            bookingData[court.courtId][slot] = statusMap[s.status];
+            bookingData[court.courtId][slot] = {
+                status: statusMap[s.status],
+                courtScheduleId: s.courtScheduleId,
+                price: s.price
+            };
         });
     });
 
     activeSlots = Array.from(slotSet).sort((a, b) => a - b);
 
     if (activeSlots.length === 0) {
-        emptyEl.classList.remove("hidden");
         timeHeader.innerHTML = "";
         timeBody.innerHTML = "";
         return;
     }
 
-    // có slot → OK
-    emptyEl.classList.add("hidden");
     renderHeader();
     renderBody();
+    restoreSelectedCells();
 }
+
+function restoreSelectedCells() {
+    if (!selectedSlots.length) return;
+
+    document.querySelectorAll(".cell.free").forEach(cell => {
+        const slot = Number(cell.dataset.slot);
+        const row = cell.closest(".time-row");
+        const courtName = row.querySelector(".court-name")?.innerText;
+
+        const court = courts.find(c => c.courtName === courtName);
+        if (!court) return;
+
+        const slotData = bookingData[court.courtId]?.[slot];
+        if (!slotData) return;
+
+        const matched = selectedSlots.some(
+            s => s.courtScheduleId === slotData.courtScheduleId
+        );
+
+        if (matched) {
+            cell.classList.add("selected");
+        }
+    });
+}
+
 
 /* ========= RENDER HEADER ========= */
 function renderHeader() {
@@ -162,8 +184,17 @@ function renderBody() {
 
         activeSlots.forEach(slot => {
             const cell = document.createElement("div");
-            const status = bookingData[court.courtId]?.[slot] || "free";
+            const slotData = bookingData[court.courtId]?.[slot];
+
+            const status = slotData?.status || "free";
             cell.className = `cell ${status}`;
+
+            if (status === "free") {
+                cell.addEventListener("click", () => {
+                    toggleSelectSlot(cell, slotData);
+                });
+            }
+
             cell.dataset.slot = slot;
             row.appendChild(cell);
         });
@@ -172,6 +203,95 @@ function renderBody() {
     });
 }
 
+function toggleSelectSlot(cell, slotData) {
+    const index = selectedSlots.findIndex(
+        s => s.courtScheduleId === slotData.courtScheduleId
+    );
+
+    if (index >= 0) {
+        // bỏ chọn
+        selectedSlots.splice(index, 1);
+        cell.classList.remove("selected");
+    } else {
+        // chọn
+        selectedSlots.push({
+            courtScheduleId: slotData.courtScheduleId,
+            price: slotData.price
+        });
+        cell.classList.add("selected");
+    }
+
+    updateSummary();
+}
+
+function updateSummary() {
+    const total_time = selectedSlots.length; // 1 slot = 1 giờ
+    const total_price = selectedSlots.reduce(
+        (sum, s) => sum + s.price,
+        0
+    );
+
+    localStorage.setItem("selected_slots", JSON.stringify(selectedSlots));
+    localStorage.setItem("total_time", total_time);
+    localStorage.setItem("total_price", total_price);
+
+    updateSummaryBar();
+}
+
+
+const summaryEl = document.getElementById("bookingSummary");
+const sumTimeEl = document.getElementById("sumTime");
+const sumPriceEl = document.getElementById("sumPrice");
+const btnNext = document.getElementById("btnNext");
+
+function updateSummaryBar() {
+    const totalTime = Number(localStorage.getItem("total_time") || 0);
+    const totalPrice = Number(localStorage.getItem("total_price") || 0);
+
+    if (totalTime === 0) {
+        summaryEl.classList.add("hidden");
+        return;
+    }
+
+    sumTimeEl.innerText = `${totalTime}h`;
+    sumPriceEl.innerText = totalPrice.toLocaleString("vi-VN") + " đ";
+
+    summaryEl.classList.remove("hidden");
+}
+
+function restoreSummaryFromStorage() {
+    const storedSlots = JSON.parse(localStorage.getItem("selected_slots") || "[]");
+    const totalTime = Number(localStorage.getItem("total_time") || 0);
+    const totalPrice = Number(localStorage.getItem("total_price") || 0);
+
+    if (!storedSlots.length || totalTime === 0) {
+        summaryEl.classList.add("hidden");
+        return;
+    }
+
+    selectedSlots = storedSlots;
+
+    sumTimeEl.innerText = `${totalTime}h`;
+    sumPriceEl.innerText = totalPrice.toLocaleString("vi-VN") + " đ";
+
+    summaryEl.classList.remove("hidden");
+
+    console.log("[RESTORE BOOKING]", {
+        totalTime,
+        totalPrice,
+        selectedSlots
+    });
+}
+
+
+// nút tiếp theo
+btnNext.addEventListener("click", () => {
+    console.log("Selected slots:", JSON.parse(localStorage.getItem("selected_slots")));
+    console.log("Total time:", localStorage.getItem("total_time"));
+    console.log("Total price:", localStorage.getItem("total_price"));
+    return
+    window.location.href = "/customer/pages/booking-info.html";
+});
 
 /* ========= EVENTS ========= */
 dateInput.addEventListener("change", () => {
@@ -189,3 +309,5 @@ currentDate = new Date().toISOString().slice(0, 10);
 dateInput.value = currentDate;
 
 await loadSportTypes();
+
+restoreSummaryFromStorage();
