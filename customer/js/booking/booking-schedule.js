@@ -31,6 +31,7 @@ let courts = [];       // [{ courtId, courtName }]
 let bookingData = {}; // courtId -> { slotIndex: status }
 let selectedSlots = []; // [{ courtScheduleId, price }]
 
+
 /* ========= UTILS ========= */
 const slotCount = ((END_HOUR - START_HOUR) * 60) / SLOT_MINUTES;
 
@@ -69,6 +70,41 @@ async function loadSportTypes() {
 /* ========= LOAD SCHEDULE ========= */
 async function loadSchedule() {
     if (!currentDate || !currentSportTypeId) return;
+
+    /* ========= RESET BOOKING KHI ĐỔI NGỮ CẢNH ========= */
+    const bookingContextKey = `booking_context_${clubId}`;
+
+    const currentContext = {
+        clubId,
+        date: currentDate,
+        sportTypeId: currentSportTypeId
+    };
+
+    const savedContext = JSON.parse(
+        localStorage.getItem(bookingContextKey) || "null"
+    );
+
+    function isSameContext(a, b) {
+        if (!a || !b) return false;
+        return (
+            a.clubId === b.clubId &&
+            a.date === b.date &&
+            a.sportTypeId === b.sportTypeId
+        );
+    }
+
+    if (!isSameContext(savedContext, currentContext)) {
+        localStorage.removeItem("selected_slots");
+        localStorage.removeItem("total_time");
+        localStorage.removeItem("total_price");
+
+        localStorage.setItem(
+            bookingContextKey,
+            JSON.stringify(currentContext)
+        );
+
+        selectedSlots = [];
+    }
 
     const res = await fetch(
         `${API_BASE}/court-schedules?clubId=${clubId}&sportTypeId=${currentSportTypeId}&date=${currentDate}`,
@@ -289,20 +325,36 @@ btnNext.addEventListener("click", () => {
     console.log("Selected slots:", JSON.parse(localStorage.getItem("selected_slots")));
     console.log("Total time:", localStorage.getItem("total_time"));
     console.log("Total price:", localStorage.getItem("total_price"));
-    return
-    window.location.href = "/customer/pages/booking-info.html";
+    
+    window.location.href = "/customer/pages/booking-confirm.html";
 });
 
 /* ========= EVENTS ========= */
 dateInput.addEventListener("change", () => {
     currentDate = dateInput.value;
+
+    resetBookingBecauseContextChanged();
     loadSchedule();
 });
 
+
 sportTypeSelect.addEventListener("change", () => {
     currentSportTypeId = Number(sportTypeSelect.value || 0);
+
+    resetBookingBecauseContextChanged();
     loadSchedule();
 });
+
+function resetBookingBecauseContextChanged() {
+    selectedSlots = [];
+
+    localStorage.removeItem("selected_slots");
+    localStorage.removeItem("total_time");
+    localStorage.removeItem("total_price");
+
+    updateSummaryBar();
+}
+
 
 /* ========= START ========= */
 currentDate = new Date().toISOString().slice(0, 10);
