@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <title>Xác nhận đặt sân | HTVC</title>
@@ -19,47 +20,36 @@
 
 <body class="booking-confirm-page">
 
-<!-- HEADER -->
-<div data-include="/shared/partials/header.html"></div>
+    <!-- HEADER -->
+    <div data-include="/shared/partials/header.html"></div>
 
-<section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
-    <div class="container">
+    <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
+        <div class="container">
 
-        <!-- TITLE -->
-        <div class="section-title text-white">
-            <h3>Xác nhận <span>đặt sân</span></h3>
-            <p>Kiểm tra thông tin trước khi thanh toán</p>
-        </div>
+            <!-- TITLE -->
+            <div class="section-title text-white">
+                <h3>Xác nhận <span>đặt sân</span></h3>
+                <p>Kiểm tra thông tin trước khi thanh toán</p>
+            </div>
 
-        <div class="row">
+            <div class="row">
 
-            <!-- LEFT -->
-            <div class="col-lg-8">
-
-                <!-- CUSTOMER INFO -->
+                <!-- LEFT -->
                 <div class="confirm-card">
                     <h5>Thông tin khách hàng</h5>
 
                     <div class="info-row">
-                        <span>Họ tên:</span>
-                        <strong>Nguyễn Văn A</strong>
-                    </div>
-
-                    <div class="info-row">
                         <span>Số điện thoại:</span>
-                        <strong>0909 111 222</strong>
-                    </div>
-
-                    <div class="info-row">
-                        <span>Email:</span>
-                        <strong>user@gmail.com</strong>
+                        <input id="phoneInput" type="text" class="form-control" placeholder="Nhập số điện thoại">
                     </div>
 
                     <div class="info-row">
                         <span>Ghi chú:</span>
-                        <strong>Không có</strong>
+                        <textarea id="noteInput" class="form-control" rows="2"
+                            placeholder="Ghi chú thêm (nếu có)"></textarea>
                     </div>
                 </div>
+
 
                 <!-- BOOKING INFO -->
                 <div class="confirm-card">
@@ -67,76 +57,87 @@
 
                     <div class="info-row">
                         <span>Câu lạc bộ:</span>
-                        <strong>CLB Cầu Lông 18B Cộng Hòa</strong>
+                        <strong id="clubName"></strong>
                     </div>
 
                     <div class="info-row">
-                        <span>Sân:</span>
-                        <strong>Sân A</strong>
+                        <span>Địa chỉ:</span>
+                        <strong id="clubAddress"></strong>
                     </div>
 
                     <div class="info-row">
                         <span>Ngày:</span>
-                        <strong>20/12/2025</strong>
+                        <strong id="bookingDate"></strong>
+                    </div>
+
+                    <div id="slotList"></div>
+
+                    <div class="info-row">
+                        <span>Đối tượng:</span>
+                        <strong id="sportType"></strong>
                     </div>
 
                     <div class="info-row">
-                        <span>Thời gian:</span>
-                        <strong>18:00 - 19:30</strong>
+                        <span>Tổng giờ:</span>
+                        <strong id="totalTime"></strong>
+                    </div>
+
+                    <div class="info-row">
+                        <span>Tổng tiền:</span>
+                        <strong id="totalPrice"></strong>
                     </div>
                 </div>
 
-            </div>
 
-            <!-- RIGHT -->
-            <div class="col-lg-4">
 
-                <!-- PAYMENT -->
-                <div class="confirm-card sticky-box">
-                    <h5>Thanh toán</h5>
+                <!-- RIGHT -->
+                <div class="col-lg-4">
 
-                    <div class="price-row">
-                        <span>Tổng tiền</span>
-                        <strong class="price">150.000đ</strong>
+                    <!-- PAYMENT -->
+                    <div class="confirm-card sticky-box">
+                        <h5>Thanh toán</h5>
+
+                        <strong id="finalPrice" class="price"></strong>
+
+                        <div class="payment-method">
+                            <label>
+                                <input type="radio" name="payment" checked>
+                                <img src="https://developers.momo.vn/v3/assets/images/logo.png" alt="MoMo">
+                                Ví MoMo
+                            </label>
+
+                            <label>
+                                <input type="radio" name="payment">
+                                <img src="https://vnpay.vn/assets/images/logo-vnpay.png" alt="VNPay">
+                                VNPay
+                            </label>
+                        </div>
+
+                        <button id="confirmBtn" class="primary-btn btn-block mt-3">
+                            XÁC NHẬN ĐẶT SÂN
+                        </button>
+
+
+                        <a href="./booking-customer.html" class="back-link">
+                            ← Quay lại
+                        </a>
                     </div>
 
-                    <div class="payment-method">
-                        <label>
-                            <input type="radio" name="payment" checked>
-                            <img src="https://developers.momo.vn/v3/assets/images/logo.png" alt="MoMo">
-                            Ví MoMo
-                        </label>
-
-                        <label>
-                            <input type="radio" name="payment">
-                            <img src="https://vnpay.vn/assets/images/logo-vnpay.png" alt="VNPay">
-                            VNPay
-                        </label>
-                    </div>
-
-                    <button class="primary-btn btn-block mt-3">
-                        XÁC NHẬN ĐẶT SÂN
-                    </button>
-
-                    <a href="./booking-customer.html" class="back-link">
-                        ← Quay lại
-                    </a>
                 </div>
 
             </div>
 
         </div>
+    </section>
 
-    </div>
-</section>
+    <!-- FOOTER -->
+    <div data-include="/shared/partials/footer.html"></div>
 
-<!-- FOOTER -->
-<div data-include="/shared/partials/footer.html"></div>
-
-<script src="/customer/js/jquery-3.3.1.min.js"></script>
-<script src="/customer/js/main.js"></script>
-<script src="/shared/js/include.js"></script>
-
+    <script src="/customer/js/jquery-3.3.1.min.js"></script>
+    <script src="/customer/js/main.js"></script>
+    <script src="/shared/js/include.js"></script>
+    <script type="module" src="/customer/js/booking/booking-confirm.js"></script>
 
 </body>
+
 </html>

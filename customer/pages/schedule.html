@@ -67,13 +67,16 @@
                             <div id="timeBody" class="time-body"></div>
                         </div>
 
-                        <!-- EMPTY -->
-                        <div id="scheduleEmpty" class="text-center text-white mt-4 hidden">
-                            Chưa mở lịch cho ngày này
-                        </div>
+                        <!-- BOOKING SUMMARY BAR -->
+                        <div id="bookingSummary" class="booking-summary hidden">
+                            <div class="summary-info">
+                                <span class="summary-time">Tổng giờ: <strong id="sumTime">0h</strong></span>
+                                <span class="summary-price">Tổng tiền: <strong id="sumPrice">0 đ</strong></span>
+                            </div>
 
-                        <div class="text-center mt-4">
-                            <a href="javascript:void(0)" class="primary-btn">TIẾP THEO</a>
+                            <button id="btnNext" class="summary-btn">
+                                TIẾP THEO
+                            </button>
                         </div>
 
                     </div>
@@ -89,7 +92,7 @@
     <script src="/customer/js/jquery.slicknav.js"></script>
     <script src="/customer/js/main.js"></script>
     <script src="/shared/js/include.js"></script>
-    <script type="module" src="/customer/js/schedule/booking-schedule.js"></script>
+    <script type="module" src="/customer/js/booking/booking-schedule.js"></script>
 
 </body>
 
