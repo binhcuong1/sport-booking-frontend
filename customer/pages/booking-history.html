@@ -7,8 +7,10 @@
 
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="/customer/css/style.css">
 </head>
 
@@ -28,8 +30,16 @@
 
         <!-- FILTER -->
         <div class="booking-filter-box">
-            <input type="date" class="form-control" id="filterDate">
-            <select class="form-control" id="filterStatus">
+            <input
+                type="date"
+                class="form-control"
+                id="filterDate"
+            >
+
+            <select
+                class="form-control"
+                id="filterStatus"
+            >
                 <option value="">Tất cả trạng thái</option>
                 <option value="upcoming">Sắp tới</option>
                 <option value="completed">Đã hoàn thành</option>
@@ -37,7 +47,7 @@
             </select>
         </div>
 
-        <!-- LIST -->
+        <!-- LIST (JS render vào đây) -->
         <div id="bookingList" class="booking-history-list"></div>
 
     </div>
@@ -46,97 +56,13 @@
 <!-- FOOTER -->
 <div data-include="/shared/partials/footer.html"></div>
 
-<!-- INCLUDE HEADER/FOOTER -->
- <script src="/customer/js/jquery-3.3.1.min.js"></script>
+<!-- CORE JS -->
+<script src="/customer/js/jquery-3.3.1.min.js"></script>
 <script src="/customer/js/main.js"></script>
 <script src="/shared/js/include.js"></script>
 
-<script>
-/* ================= MOCK DATA ================= */
-const bookings = [
-    {
-        club: 'CLB Cầu Lông 18B Cộng Hòa',
-        court: 'Sân A',
-        date: '2025-12-20',
-        time: '18:00 - 19:30',
-        status: 'upcoming'
-    },
-    {
-        club: 'Pickleball 18 Cộng Hòa',
-        court: 'Sân C',
-        date: '2025-12-15',
-        time: '20:00 - 21:00',
-        status: 'completed'
-    },
-    {
-        club: 'Sân Tennis C3',
-        court: 'Sân B',
-        date: '2025-12-10',
-        time: '17:00 - 18:00',
-        status: 'cancelled'
-    }
-];
-
-const statusText = {
-    upcoming: 'Sắp tới',
-    completed: 'Hoàn thành',
-    cancelled: 'Đã hủy'
-};
-
-const bookingList = document.getElementById('bookingList');
-
-/* ================= RENDER ================= */
-function render(list) {
-    bookingList.innerHTML = '';
-
-    if (!list.length) {
-        bookingList.innerHTML = `<p class="text-white">Không có lịch đặt nào</p>`;
-        return;
-    }
-
-    list.forEach(b => {
-        const div = document.createElement('div');
-        div.className = `booking-card ${b.status}`;
-
-        div.innerHTML = `
-            <div class="booking-info">
-                <h5>${b.club}</h5>
-                <p>${b.court}</p>
-                <p>
-                    <i class="fa fa-calendar"></i> ${b.date}
-                    &nbsp;|&nbsp;
-                    <i class="fa fa-clock-o"></i> ${b.time}
-                </p>
-            </div>
-            <div class="booking-action">
-                <span class="status">${statusText[b.status]}</span>
-                ${b.status === 'upcoming'
-                    ? '<button class="btn-cancel">Hủy</button>'
-                    : ''}
-            </div>
-        `;
-        bookingList.appendChild(div);
-    });
-}
-
-render(bookings);
-
-/* ================= FILTER ================= */
-document.getElementById('filterStatus').addEventListener('change', filter);
-document.getElementById('filterDate').addEventListener('change', filter);
-
-function filter() {
-    const status = filterStatus.value;
-    const date = filterDate.value;
-
-    const filtered = bookings.filter(b =>
-        (!status || b.status === status) &&
-        (!date || b.date === date)
-    );
-
-    render(filtered);
-}
-</script>
+<!-- BOOKING HISTORY (REAL DATA) -->
+<script type="module" src="../js/booking/booking-history.js"></script>
 
 </body>
 </html>
