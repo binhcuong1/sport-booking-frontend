@@ -18,6 +18,7 @@ const clubId = Number(urlParams.get("clubId"));
 if (!clubId) {
     alert("Thiếu clubId");
 }
+let clubName;
 
 const token = localStorage.getItem("token");
 const authHeaders = token
@@ -65,6 +66,21 @@ async function loadSportTypes() {
         opt.textContent = st.sport_name;
         sportTypeSelect.appendChild(opt);
     });
+}
+
+/* ========= LOAD CLUB NAME ========= */
+
+async function loadClubName() {
+    const res = await fetch(
+        `${API_BASE}/clubs/${clubId}`,
+        { headers: authHeaders }
+    );
+    if (!res.ok) return;
+
+    const club = await res.json();
+    clubName = club.clubName;
+    localStorage.setItem("clubName", clubName);
+    localStorage.setItem("clubId", clubId);
 }
 
 /* ========= LOAD SCHEDULE ========= */
@@ -325,7 +341,20 @@ btnNext.addEventListener("click", () => {
     console.log("Selected slots:", JSON.parse(localStorage.getItem("selected_slots")));
     console.log("Total time:", localStorage.getItem("total_time"));
     console.log("Total price:", localStorage.getItem("total_price"));
-    
+    console.log("Club name:", localStorage.getItem("clubName"));
+    console.log("Club ID:", localStorage.getItem("clubId"));
+    console.log("currentDate:", currentDate);
+
+    let accountRaw = localStorage.getItem("account");
+    let account = JSON.parse(accountRaw);
+
+
+    let profileId = account.profile.profileId;
+    let profile_fullname = account.profile.fullname;
+
+    console.log("profileId:", profileId);
+    console.log("profile_fullname:", profile_fullname);
+
     window.location.href = "/customer/pages/booking-confirm.html";
 });
 
@@ -361,5 +390,6 @@ currentDate = new Date().toISOString().slice(0, 10);
 dateInput.value = currentDate;
 
 await loadSportTypes();
+await loadClubName();
 
 restoreSummaryFromStorage();

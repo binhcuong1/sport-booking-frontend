@@ -1,0 +1,145 @@
+/* ===== PAGE ===== */
+.booking-confirm-page .match-section {
+    padding: 80px 0;
+}
+
+/* ===== CARD ===== */
+.confirm-card {
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 24px;
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+}
+
+/* Card title */
+.confirm-card h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== INFO ROW ===== */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 12px;
+}
+
+.info-row span {
+    color: #bdbdbd;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.info-row strong {
+    font-weight: 500;
+    text-align: right;
+}
+
+/* Slot list */
+#slotList .info-row {
+    padding-left: 10px;
+    border-left: 3px solid #e41e26;
+    margin-bottom: 10px;
+}
+
+/* ===== INPUT ===== */
+.confirm-card input,
+.confirm-card textarea {
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.confirm-card input::placeholder,
+.confirm-card textarea::placeholder {
+    color: #888;
+}
+
+.confirm-card input:focus,
+.confirm-card textarea:focus {
+    border-color: #e41e26;
+    box-shadow: none;
+}
+
+/* ===== PAYMENT ===== */
+.payment-method {
+    margin-top: 15px;
+}
+
+.payment-method label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #111;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: 0.25s;
+    margin-bottom: 10px;
+}
+
+.payment-method label:hover {
+    border-color: #e41e26;
+}
+
+.payment-method input {
+    accent-color: #e41e26;
+}
+
+.payment-method img {
+    height: 28px;
+    object-fit: contain;
+}
+
+/* ===== PRICE ===== */
+.price {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    color: #e41e26;
+    margin: 10px 0 18px;
+}
+
+/* ===== BUTTON ===== */
+#confirmBtn {
+    background: linear-gradient(135deg, #e41e26, #ff4d4f);
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 12px;
+    transition: 0.25s;
+}
+
+#confirmBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(228, 30, 38, 0.4);
+}
+
+/* ===== BACK LINK ===== */
+.back-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: #aaa;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    color: #fff;
+}
+
+/* ===== STICKY PAYMENT ===== */
+.sticky-box {
+    position: sticky;
+    top: 90px;
+}
