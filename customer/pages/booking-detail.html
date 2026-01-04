@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết đơn đặt | HTVC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/customer/css/style.css">
+
+    <!-- EXTRA STYLE -->
+    <style>
+        .booking-detail-card {
+            background: rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 28px;
+            color: #fff;
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .booking-header h4 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .booking-status {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status--pending { background: #f1c40f; color:#000; }
+        .status--completed { background: #2ecc71; }
+        .status--cancelled { background: #e74c3c; }
+
+        .booking-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .info-item {
+            background: rgba(0,0,0,0.25);
+            padding: 14px 16px;
+            border-radius: 10px;
+        }
+
+        .info-item i {
+            margin-right: 8px;
+            color: #ff4d4f;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 13px;
+            color: #bbb;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .booking-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="booking-detail-page">
+
+<!-- HEADER -->
+<div data-include="/shared/partials/header.html"></div>
+
+<section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
+    <div class="container">
+
+        <!-- TITLE -->
+        <div class="section-title text-white">
+            <h3>Chi tiết <span>lịch đặt</span></h3>
+            <p>Thông tin chi tiết lịch bạn đã đặt</p>
+        </div>
+
+        <!-- DETAIL -->
+        <div id="bookingDetail" class="booking-detail-card">
+            <!-- JS render -->
+        </div>
+
+        <!-- BACK -->
+        <div class="text-center mt-4">
+            <a href="/customer/pages/booking-history.html"
+               class="btn btn-outline-light">
+                <i class="fa fa-arrow-left"></i> Quay lại lịch đã đặt
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<div data-include="/shared/partials/footer.html"></div>
+
+<!-- CORE JS -->
+<script src="/customer/js/jquery-3.3.1.min.js"></script>
+<script src="/customer/js/main.js"></script>
+<script src="/shared/js/include.js"></script>
+
+<!-- BOOKING DETAIL -->
+<script type="module" src="../js/booking/booking-detail.js"></script>
+
+</body>
+</html>

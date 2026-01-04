@@ -17,6 +17,7 @@
 </head>
 
 <body>
+  
   <div class="admin">
     <!-- SIDEBAR -->
     <aside class="sidebar">
@@ -94,8 +95,8 @@
           <i class="fa fa-angle-down"></i>
         </div>
         <div class="nav-group__items">
-          <a class="nav-item" href="#/approvals" data-partial="/admin/pages/partials/coming-soon.html"
-            data-init="comingSoon">
+          <a class="nav-item" href="#/approvals" data-partial="/admin/pages/partials/approvals.html"
+            data-init="approvals">
             <span class="nav-item__dot"></span> Duyệt đơn
           </a>
         </div>
@@ -152,13 +153,14 @@
       <section class="content" id="main"></section>
     </main>
   </div>
-
+  
   <script src="/admin/js/auth-guard.js"></script>
   <!-- Bật tính năng login -->
   <script src="/admin/js/router-lite.js"></script>
   <script type="module" src="/admin/js/page-inits.js"></script>
   <script type="module" src="/admin/js/club.js"></script>
   <script type="module" src="/admin/js/schedule.js"></script>
+  <script type="module" src="/admin/js/approvals.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
 
