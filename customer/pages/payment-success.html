@@ -5,21 +5,47 @@
     <title>Thanh toán thành công | HTVC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- FONT -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
 
-    <!-- CORE CSS -->
     <link rel="stylesheet" href="/customer/css/bootstrap.min.css">
     <link rel="stylesheet" href="/customer/css/font-awesome.min.css">
     <link rel="stylesheet" href="/customer/css/style.css">
 
-    <!-- PAGE CSS -->
     <link rel="stylesheet" href="/customer/css/payment-success.css">
+
+    <style>
+        /* Ghi đè style cũ để số tiền to và đẹp hơn */
+        .big-price-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .price-label {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .big-price-value {
+            font-size: 48px; /* Chữ to */
+            font-weight: 900;
+            color: #d9251c; /* Màu đỏ nổi bật */
+            display: block;
+            line-height: 1.2;
+        }
+        .payment-method-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body class="payment-success-page">
 
-<!-- HEADER -->
 <div data-include="/shared/partials/header.html"></div>
 
 <section class="match-section set-bg" data-setbg="/customer/img/match/match-bg.jpg">
@@ -28,64 +54,36 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
 
-                <!-- SUCCESS BOX -->
                 <div class="success-card text-center">
 
                     <div class="success-icon">
                         <i class="fa fa-check"></i>
                     </div>
 
-                    <h3>Thanh toán thành công 🎉</h3>
-                    <p class="sub">
-                        Cảm ơn bạn đã đặt sân tại HTVC
-                    </p>
+                    <h3>Thanh toán thành công </h3>
+                    <p class="sub">Giao dịch của bạn đã được ghi nhận</p>
 
                     <div class="success-divider"></div>
 
-                    <!-- INFO -->
                     <div class="success-info">
-
-                        <div class="info-row">
-                            <span>Mã đặt sân</span>
-                            <strong>#BK20251220001</strong>
+                        
+                        <div class="big-price-container">
+                            <span class="price-label">Tổng thanh toán</span>
+                            <strong id="totalPrice" class="big-price-value">...</strong>
                         </div>
 
-                        <div class="info-row">
-                            <span>Câu lạc bộ</span>
-                            <strong>CLB Cầu Lông 18B Cộng Hòa</strong>
-                        </div>
-
-                        <div class="info-row">
-                            <span>Sân</span>
-                            <strong>Sân A</strong>
-                        </div>
-
-                        <div class="info-row">
-                            <span>Thời gian</span>
-                            <strong>18:00 - 19:30 | 20/12/2025</strong>
-                        </div>
-
-                        <div class="info-row">
-                            <span>Tổng tiền</span>
-                            <strong class="price">150.000đ</strong>
-                        </div>
-
-                        <div class="info-row">
-                            <span>Thanh toán</span>
-                            <strong>Ví MoMo</strong>
+                        <div style="text-align: center;">
+                            <span class="payment-method-badge">
+                                <i class="fa fa-credit-card-alt"></i> 
+                                Thanh toán qua <span id="paymentMethod">VNPay</span>
+                            </span>
                         </div>
 
                     </div>
 
-                    <!-- ACTION -->
-                    <div class="success-actions">
-                        <a href="./booking-history.html" class="primary-btn">
-                            XEM LỊCH ĐÃ ĐẶT
-                        </a>
-
-                        <a href="./index.html" class="back-home">
-                            ← Về trang chủ
-                        </a>
+                    <div class="success-actions" style="margin-top: 40px;">
+                        <a href="./booking-history.html" class="primary-btn">XEM LỊCH ĐÃ ĐẶT</a>
+                        <a href="./index.html" class="back-home">← Về trang chủ</a>
                     </div>
 
                 </div>
@@ -96,13 +94,43 @@
     </div>
 </section>
 
-<!-- FOOTER -->
 <div data-include="/shared/partials/footer.html"></div>
 
 <script src="/customer/js/jquery-3.3.1.min.js"></script>
 <script src="/customer/js/main.js"></script>
 <script src="/shared/js/include.js"></script>
 
+<script type="module">
+document.addEventListener("DOMContentLoaded", async () => {
+    const params = new URLSearchParams(window.location.search);
+    const txnRef = params.get("vnp_TxnRef");
+    if (!txnRef) return;
+
+    const bookingId = txnRef.split("_")[0];
+
+    try {
+        // Chỉ cần lấy booking để lấy tổng tiền
+        const bookingRes = await fetch(`http://localhost:9999/api/bookings/${bookingId}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+        });
+        
+        if (!bookingRes.ok) throw new Error("API Error");
+
+        const booking = await bookingRes.json();
+
+        // Xử lý hiển thị giá tiền
+        // Kiểm tra các trường hợp tên biến backend trả về
+        const price = booking.totalPrice || booking.total_price || 0;
+        
+        document.getElementById("totalPrice").innerText = price.toLocaleString("vi-VN") + " đ";
+        document.getElementById("paymentMethod").innerText = "VNPay"; 
+
+    } catch (err) {
+        console.error("Không load được thông tin booking:", err);
+        document.getElementById("totalPrice").innerText = "Đã thanh toán";
+    }
+});
+</script>
 
 </body>
 </html>
