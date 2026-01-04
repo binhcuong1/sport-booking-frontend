@@ -57,7 +57,6 @@ async function handleGoogleLogin(response) {
 
     localStorage.setItem("token", data.token);
     localStorage.setItem("account", JSON.stringify(data.account));
-    localStorage.setItem("profile", JSON.stringify(data.profile));
 
     showNotify(" Đăng nhập Google thành công! Đang chuyển trang...");
 
