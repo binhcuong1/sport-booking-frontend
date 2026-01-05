@@ -1,4 +1,4 @@
-console.log("BOOKING HISTORY JS LOADED");
+
 import { API_BASE } from "../../../config/config.js";
 
 /* ================= API ================= */
@@ -63,7 +63,7 @@ async function loadBookingHistory() {
       return;
     }
 
-    // 1️⃣ PROFILE
+    //  PROFILE
     const profile = await fetchJson(
       `${PROFILE_API}/account/${account.id}`,
       { headers: authHeaders() }
@@ -77,7 +77,7 @@ async function loadBookingHistory() {
       return;
     }
 
-    // 2️⃣ BOOKINGS
+    //  BOOKINGS
     ALL_BOOKINGS =
       (await fetchJson(
         `${BOOKING_API}/history?profileId=${CURRENT_PROFILE_ID}`,
@@ -122,12 +122,16 @@ function renderBookings(list) {
   }
 
   list.forEach(b => {
+    const displayClubName = b.club?.clubName || b.clubName || b.club; 
+
     box.insertAdjacentHTML("beforeend", `
       <div class="booking-card booking-clickable"
            data-id="${b.id}"
            style="cursor:pointer">
         <div class="booking-info">
-          <h5>${b.club}</h5>
+          
+          <h5>${displayClubName}</h5>
+          
           <p>${b.court}</p>
           <p>
             <i class="fa fa-calendar"></i> ${formatDate(b.date)}
