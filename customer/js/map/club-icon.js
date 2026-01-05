@@ -21,6 +21,11 @@ export const SPORT_ICONS = {
     iconSize: [36, 36],
     iconAnchor: [18, 36]
   }),
+     "Tennis": L.icon({
+    iconUrl: "/customer/img/icons/tennis.jpg",
+    iconSize: [36, 36],
+    iconAnchor: [18, 36]
+  }),
   "DEFAULT": L.icon({
     iconUrl: "/icons/multi.png",
     iconSize: [36, 36],
