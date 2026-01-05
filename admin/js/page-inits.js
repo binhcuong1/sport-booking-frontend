@@ -59,7 +59,7 @@ window.PageInits.clubSportType = async function () {
     `Club #${clubId}`;
 
   // ====== SPORT TYPES lấy từ API ======
-  const urlSportTypes = `${API_BASE}/sport-type`;
+  const urlSportTypes = `${API_BASE}/sport-types`;
 
   function authHeaders() {
     const token = localStorage.getItem("token");
