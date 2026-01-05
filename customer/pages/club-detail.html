@@ -15,6 +15,62 @@
     <link rel="stylesheet" href="/customer/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/customer/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/customer/css/style.css" />
+
+    <style>
+      .club-hero {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .club-hero img {
+        width: 140px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .club-detail-card h5 {
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+
+      .service-list li {
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .table-dark th {
+        font-weight: 600;
+        color: #e6e6e6;
+      }
+
+      .rating-item {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .rating-stars {
+        color: #f5c518;
+        margin-left: 6px;
+      }
+
+      .star-rating i {
+        font-size: 22px;
+        cursor: pointer;
+        color: #777;
+        margin-right: 4px;
+      }
+
+      .star-rating i.active {
+        color: #f5c518;
+      }
+
+      .sticky-box {
+        top: 90px;
+      }
+    </style>
   </head>
 
   <body class="club-detail-page">
@@ -29,33 +85,31 @@
         <div class="row">
           <!-- LEFT -->
           <div class="col-lg-8">
-            <div class="club-detail-card">
-              <div
-                class="club-header d-flex align-items-center gap-3 flex-wrap"
-              >
+            <!-- CLUB INFO -->
+            <div class="club-detail-card mb-4">
+              <div class="club-hero">
                 <img
                   id="clubImage"
                   src="/customer/img/match/match-bg.jpg"
                   alt="club"
-                  style="
-                    width: 120px;
-                    height: 90px;
-                    object-fit: cover;
-                    border-radius: 12px;
-                  "
                 />
                 <div>
                   <h3 id="clubName" class="text-white mb-1">---</h3>
-                  <p id="clubDescription" class="text-white-50 mb-0">---</p>
+                  <p
+                    id="clubDescription"
+                    class="text-white-50 mb-0"
+                  >
+                    ---
+                  </p>
                 </div>
               </div>
+            </div>
 
-              <hr class="bg-white-50" />
-
-              <!-- COURT TABLE -->
+            <!-- COURTS -->
+            <div class="club-detail-card mb-4">
               <h5 class="text-white">Danh sách sân</h5>
               <div class="table-responsive">
-                <table class="table table-dark table-borderless">
+                <table class="table table-dark table-borderless align-middle">
                   <thead>
                     <tr>
                       <th>Tên sân</th>
@@ -68,24 +122,25 @@
                   </tbody>
                 </table>
               </div>
+            </div>
 
-              <hr class="bg-white-50" />
-
-              <!-- SERVICES -->
-              <h5 class="text-white">Dịch vụ</h5>
-              <ul class="service-list" id="serviceList">
+            <!-- SERVICES -->
+            <div class="club-detail-card mb-4">
+              <h5 class="text-white">Dịch vụ đi kèm</h5>
+              <ul class="service-list ps-3" id="serviceList">
                 <!-- JS render -->
               </ul>
             </div>
 
             <!-- RATING -->
-            <div class="club-detail-card">
-              <h5>Đánh giá từ người chơi</h5>
+            <div class="club-detail-card mb-4">
+              <h5 class="text-white">Đánh giá từ người chơi</h5>
 
-              <!-- summary -->
-              <div id="ratingSummary" class="mb-3 text-white-50"></div>
+              <div
+                id="ratingSummary"
+                class="mb-3 text-white-50"
+              ></div>
 
-              <!-- list -->
               <div id="ratingList">
                 <!-- JS render -->
               </div>
@@ -93,7 +148,7 @@
 
             <!-- REVIEW FORM -->
             <div class="club-detail-card">
-              <h5>Gửi đánh giá của bạn</h5>
+              <h5 class="text-white">Gửi đánh giá của bạn</h5>
 
               <form id="reviewForm">
                 <div class="star-rating mb-3">
@@ -114,7 +169,9 @@
                   required
                 ></textarea>
 
-                <button type="submit" class="primary-btn">GỬI ĐÁNH GIÁ</button>
+                <button type="submit" class="primary-btn">
+                  GỬI ĐÁNH GIÁ
+                </button>
               </form>
             </div>
           </div>
@@ -122,25 +179,29 @@
           <!-- RIGHT -->
           <div class="col-lg-4">
             <div class="club-detail-card sticky-box">
-              <h5>Thông tin CLB</h5>
+              <h5 class="text-white">Thông tin CLB</h5>
 
-              <p class="text-white">
-                <i class="fa fa-map-marker"></i>
+              <p class="text-white mb-2">
+                <i class="fa fa-map-marker me-2"></i>
                 <span id="clubAddress">---</span>
               </p>
 
-              <p class="text-white">
-                <i class="fa fa-clock-o"></i>
+              <p class="text-white mb-2">
+                <i class="fa fa-clock-o me-2"></i>
                 <span id="clubTime">---</span>
               </p>
 
-              <p class="text-white">
-                <i class="fa fa-phone"></i>
+              <p class="text-white mb-3">
+                <i class="fa fa-phone me-2"></i>
                 <span id="clubPhone">---</span>
               </p>
 
-              <a id="bookingBtn" href="#" class="primary-btn btn-block mt-3">
-                ĐẶT SÂN
+              <a
+                id="bookingBtn"
+                href="#"
+                class="primary-btn btn-block"
+              >
+                ĐẶT SÂN NGAY
               </a>
             </div>
           </div>
@@ -157,6 +218,9 @@
     <script src="/shared/js/include.js"></script>
 
     <!-- DETAIL DATA -->
-    <script type="module" src="/customer/js/club/club-detail.js"></script>
+    <script
+      type="module"
+      src="/customer/js/club/club-detail.js"
+    ></script>
   </body>
 </html>
