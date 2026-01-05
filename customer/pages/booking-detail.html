@@ -13,66 +13,109 @@
           rel="stylesheet">
     <link rel="stylesheet" href="/customer/css/style.css">
 
-    <!-- EXTRA STYLE -->
+    <!-- EXTRA STYLE – ONLY UI -->
     <style>
+        /* ===== CARD ===== */
+        #bookingDetail {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
         .booking-detail-card {
-            background: rgba(255,255,255,0.06);
-            border-radius: 12px;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.08),
+                rgba(255,255,255,0.02)
+            );
+            border-radius: 18px;
             padding: 28px;
             color: #fff;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 20px 40px rgba(0,0,0,.35);
         }
 
-        .booking-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
+        /* ===== HEADER ===== */
         .booking-header h4 {
+            font-weight: 800;
             margin: 0;
-            font-weight: 700;
         }
 
         .booking-status {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
         }
 
-        .status--pending { background: #f1c40f; color:#000; }
-        .status--completed { background: #2ecc71; }
-        .status--cancelled { background: #e74c3c; }
+        .status--pending {
+            background: linear-gradient(135deg,#f1c40f,#f39c12);
+            color:#000;
+        }
 
+        .status--completed {
+            background: linear-gradient(135deg,#2ecc71,#27ae60);
+        }
+
+        .status--cancelled {
+            background: linear-gradient(135deg,#e74c3c,#c0392b);
+        }
+
+        /* ===== LOCATION ===== */
+        #bookingDetail > p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        #bookingDetail > p i {
+            color: #ff4d4f;
+            margin-right: 6px;
+        }
+
+        /* ===== INFO LIST (VERTICAL) ===== */
         .booking-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
 
         .info-item {
-            background: rgba(0,0,0,0.25);
-            padding: 14px 16px;
-            border-radius: 10px;
-        }
-
-        .info-item i {
-            margin-right: 8px;
-            color: #ff4d4f;
+            background: rgba(0,0,0,.28);
+            padding: 16px 18px;
+            border-radius: 14px;
         }
 
         .info-item strong {
             display: block;
             font-size: 13px;
-            color: #bbb;
-            margin-bottom: 4px;
+            color: #aaa;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: .4px;
         }
 
+        .info-item i {
+            color: #ff4d4f;
+            margin-right: 6px;
+        }
+
+        /* ===== PRICE EMPHASIS ===== */
+        .info-item:nth-child(2) {
+            background: linear-gradient(
+                135deg,
+                rgba(255,77,79,.25),
+                rgba(255,77,79,.05)
+            );
+        }
+
+        .info-item:nth-child(2) i {
+            color: #ff4d4f;
+        }
+
+        /* ===== MOBILE ===== */
         @media (max-width: 768px) {
-            .booking-info {
-                grid-template-columns: 1fr;
+            .booking-detail-card {
+                padding: 20px;
             }
         }
     </style>
@@ -92,10 +135,8 @@
             <p>Thông tin chi tiết lịch bạn đã đặt</p>
         </div>
 
-        <!-- DETAIL -->
-        <div id="bookingDetail" class="booking-detail-card">
-            <!-- JS render -->
-        </div>
+        <!-- DETAIL (JS render vào trong) -->
+        <div id="bookingDetail" class="booking-detail-card"></div>
 
         <!-- BACK -->
         <div class="text-center mt-4">
@@ -116,7 +157,7 @@
 <script src="/customer/js/main.js"></script>
 <script src="/shared/js/include.js"></script>
 
-<!-- BOOKING DETAIL -->
+<!-- BOOKING DETAIL JS (GIỮ NGUYÊN FILE CỦA M) -->
 <script type="module" src="../js/booking/booking-detail.js"></script>
 
 </body>

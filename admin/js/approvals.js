@@ -10,8 +10,13 @@ window.PageInits.approvals = async function () {
         return;
     }
 
+    /* ================= CONFIG ================= */
+
+    const CLUB_KEY = "sb_current_club_id";
+
     const authHeaders = () => ({
         Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
     });
 
     const tbody = document.querySelector("#approvalTableBody");
@@ -25,24 +30,81 @@ window.PageInits.approvals = async function () {
 
     let ALL_BOOKINGS = [];
 
+    /* ================= UTILS ================= */
+
+    function getCurrentClubId() {
+        const id = localStorage.getItem(CLUB_KEY);
+        return id ? Number(id) : null;
+    }
+
+    function renderStatus(status) {
+        switch (status) {
+            case "pending":
+                return "Đang xử lý";
+            case "completed":
+                return "Hoàn thành";
+            case "cancelled":
+                return "Đã hủy";
+            default:
+                return status;
+        }
+    }
+
     /* ================= LOAD ================= */
 
     async function loadApprovals() {
-        tbody.innerHTML = `<tr><td colspan="6">Đang tải dữ liệu...</td></tr>`;
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7">Đang tải dữ liệu...</td>
+            </tr>
+        `;
 
-        const res = await fetch(`${API_BASE}/bookings/all`, {
-            headers: authHeaders(),
-        });
+        const clubId = getCurrentClubId();
+        console.log("👉 Current clubId:", clubId);
+
+        if (!clubId) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7">Vui lòng chọn CLB ở Dashboard</td>
+                </tr>
+            `;
+            return;
+        }
+
+        let res;
+        try {
+            res = await fetch(
+                `${API_BASE}/bookings/club?clubId=${clubId}`,
+                { headers: authHeaders() }
+            );
+        } catch (err) {
+            console.error(err);
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7">Lỗi kết nối server</td>
+                </tr>
+            `;
+            return;
+        }
 
         if (!res.ok) {
-            tbody.innerHTML = `<tr><td colspan="6">Không load được dữ liệu</td></tr>`;
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7">Không load được dữ liệu</td>
+                </tr>
+            `;
             return;
         }
 
         ALL_BOOKINGS = await res.json();
+        console.log("✅ BOOKINGS:", ALL_BOOKINGS);
 
-        if (!ALL_BOOKINGS.length) {
-            tbody.innerHTML = `<tr><td colspan="6">Chưa có đơn đặt</td></tr>`;
+        if (!Array.isArray(ALL_BOOKINGS) || ALL_BOOKINGS.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7">Chưa có đơn đặt</td>
+                </tr>
+            `;
             return;
         }
 
@@ -60,6 +122,10 @@ window.PageInits.approvals = async function () {
         filterClub.innerHTML =
             `<option value="">Tất cả CLB</option>` +
             clubs.map(c => `<option value="${c}">${c}</option>`).join("");
+
+        if (clubs.length === 1) {
+            filterClub.value = clubs[0];
+        }
     }
 
     function applyFilter() {
@@ -82,8 +148,11 @@ window.PageInits.approvals = async function () {
         tbody.innerHTML = "";
 
         if (!list.length) {
-            tbody.innerHTML =
-                `<tr><td colspan="6">Không có đơn phù hợp</td></tr>`;
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7">Không có đơn phù hợp</td>
+                </tr>
+            `;
             return;
         }
 
@@ -93,6 +162,15 @@ window.PageInits.approvals = async function () {
             tr.innerHTML = `
                 <td>${idx + 1}</td>
                 <td>${b.club}</td>
+
+                <!-- 👤 NGƯỜI ĐẶT -->
+                <td>
+                    <strong>${b.profileName}</strong>
+                    <div style="font-size:12px;color:#888">
+                        ID: ${b.profileId}
+                    </div>
+                </td>
+
                 <td>${b.date}</td>
                 <td>${b.time}</td>
                 <td>
@@ -104,8 +182,12 @@ window.PageInits.approvals = async function () {
                     ${
                         b.status === "pending"
                             ? `
-                        <button class="btn btn--small btn--primary btn-approve">Duyệt</button>
-                        <button class="btn btn--small btn--danger btn-cancel">Hủy</button>
+                        <button class="btn btn--small btn--primary btn-approve">
+                            Duyệt
+                        </button>
+                        <button class="btn btn--small btn--danger btn-cancel">
+                            Hủy
+                        </button>
                       `
                             : "-"
                     }
@@ -142,19 +224,6 @@ window.PageInits.approvals = async function () {
         }
 
         await loadApprovals();
-    }
-
-    function renderStatus(status) {
-        switch (status) {
-            case "pending":
-                return "Đang xử lý";
-            case "completed":
-                return "Hoàn thành";
-            case "cancelled":
-                return "Đã hủy";
-            default:
-                return status;
-        }
     }
 
     /* ================= EVENTS ================= */
