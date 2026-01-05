@@ -140,10 +140,9 @@ function renderClubs(clubs) {
 
             <!-- IMAGE -->
             <div class="club-thumb"
-              style="background-image:url('${
-                c.imageUrl || "/customer/img/match/match-bg.jpg"
-              }')">
-
+  style="background-image:url('${
+    c.imageUrl || c.image_url || "/customer/img/match/match-bg.jpg"
+  }')">
               <div class="club-tags">
                 ${(c.sportTypes || [])
                   .map(

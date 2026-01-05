@@ -139,6 +139,7 @@ function renderSearch() {
   });
 }
 
+
 /* ================= DETAIL ================= */
 function renderDetail(club) {
   sidebar.innerHTML = `
@@ -155,7 +156,7 @@ function renderDetail(club) {
       style="background-image:url('${club.imageUrl || "/customer/img/club-default.jpg"}')">
     </div>
 
-    <div class="detail-rating">⭐ Chưa có đánh giá</div>
+    <div class="detail-rating"> Chưa có đánh giá</div>
 
     <div class="detail-card">
       <h2>${club.clubName}</h2>
@@ -167,25 +168,27 @@ function renderDetail(club) {
       </div>
 
       <div class="detail-info">
-        <div>📍 ${club.address ?? ""}</div>
-        ${club.distanceKm != null ? `<div>📏 ${club.distanceKm.toFixed(1)} km</div>` : ""}
-        <div>⏰ ${club.openTime ?? ""} - ${club.closeTime ?? ""}</div>
-        <div>📞 ${club.contactPhone ?? "Liên hệ"}</div>
+        <div> ${club.address ?? ""}</div>
+        ${club.distanceKm != null ? `<div> ${club.distanceKm.toFixed(1)} km</div>` : ""}
+        <div> ${club.openTime ?? ""} - ${club.closeTime ?? ""}</div>
+        <div> ${club.contactPhone ?? "Liên hệ"}</div>
       </div>
 
       <div class="detail-actions">
         <button class="btn-outline" id="routeBtn">Đường đi</button>
-        <button class="btn-primary">Đặt lịch</button>
+        <button class="btn-primary" id="bookingBtn">Đặt lịch</button>
       </div>
     </div>
   `;
 
+  // Xử lý nút Quay lại & Đóng
   document.getElementById("backBtn").onclick =
   document.getElementById("closeBtn").onclick = () => {
     selectedClub = null;
     renderSearch();
   };
 
+  // Xử lý nút Đường đi (Giữ nguyên)
   document.getElementById("routeBtn").onclick = async () => {
     if (!userLocation) return alert("Chưa xác định được vị trí của bạn");
 
@@ -194,6 +197,13 @@ function renderDetail(club) {
       { lat: Number(club.latitude), lng: Number(club.longitude) }
     );
     drawRoute(route);
+  };
+
+  // --- BƯỚC 2: XỬ LÝ SỰ KIỆN NÚT ĐẶT LỊCH ---
+  document.getElementById("bookingBtn").onclick = () => {
+    const clubId = club.clubId || club.club_id || club.id;
+    // Chuyển hướng sang trang đặt sân (sửa đường dẫn cho khớp với file của bạn)
+    window.location.href = `/customer/pages/schedule.html?clubId=${clubId}`;
   };
 }
 
