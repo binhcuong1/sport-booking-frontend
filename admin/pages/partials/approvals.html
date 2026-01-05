@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Duyệt đơn đặt sân | HTVC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS CORE -->
+    <link rel="stylesheet" href="/admin/css/style.css">
+</head>
+
+<body>
+
 <div class="page-header">
     <h1>Duyệt đơn đặt sân</h1>
 </div>
@@ -6,13 +19,15 @@
 <div class="card mb-3">
     <div class="form-row">
 
-        <div class="form-group">
+        <!-- ⚠️ GIỮ LẠI CHO JS – ẨN UI -->
+        <div class="form-group" style="display:none">
             <label>Câu lạc bộ</label>
             <select id="filterClub" class="input">
                 <option value="">Tất cả CLB</option>
             </select>
         </div>
 
+        <!-- FILTER STATUS -->
         <div class="form-group">
             <label>Trạng thái</label>
             <select id="filterStatus" class="input">
@@ -46,3 +61,15 @@
         </tbody>
     </table>
 </div>
+
+<!-- JS INIT (PAGE INIT SYSTEM) -->
+<script type="module">
+    import "../../js/pages/approvals.js";
+
+    if (window.PageInits?.approvals) {
+        window.PageInits.approvals();
+    }
+</script>
+
+</body>
+</html>
