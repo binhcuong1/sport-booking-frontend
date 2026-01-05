@@ -64,11 +64,7 @@
             <span class="nav-item__dot"></span> CRUD Club
           </a>
           <a class="nav-item" href="#/schedules" data-partial="/admin/pages/partials/schedule.html" data-init="schedule">
-            <span class="nav-item__dot"></span> CRUD Lịch chiếu
-          </a>
-          <a class="nav-item" href="#/courts" data-partial="/admin/pages/partials/coming-soon.html"
-            data-init="comingSoon">
-            <span class="nav-item__dot"></span> CRUD Sân
+            <span class="nav-item__dot"></span> CRUD Lịch mở sân
           </a>
           <a class="nav-item" href="#/services" data-partial="/admin/pages/partials/club-service.html"
             data-init="clubService">
@@ -77,14 +73,6 @@
           <a class="nav-item" href="#/club-images" data-partial="/admin/pages/partials/club-image.html"
             data-init="clubImage">
             <span class="nav-item__dot"></span> CRUD Hình ảnh
-          </a>
-          <a class="nav-item" href="#/club-info" data-partial="/admin/pages/partials/coming-soon.html"
-            data-init="comingSoon">
-            <span class="nav-item__dot"></span> CRUD Thông tin
-          </a>
-          <a class="nav-item" href="#/terms" data-partial="/admin/pages/partials/coming-soon.html"
-            data-init="comingSoon">
-            <span class="nav-item__dot"></span> CRUD Điều khoản dịch vụ
           </a>
         </div>
       </div>
@@ -102,7 +90,7 @@
         </div>
       </div>
 
-      <a class="nav-item" href="#/reports" data-partial="/admin/pages/partials/coming-soon.html" data-init="comingSoon">
+      <a class="nav-item" href="#/reports" data-partial="/admin/pages/partials/reports.html" data-init="reports">
         <span class="nav-item__icon"><i class="fa fa-line-chart"></i></span>
         <span class="nav-item__text">Xem thống kê</span>
       </a>
@@ -154,12 +142,15 @@
     </main>
   </div>
   
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <script src="/admin/js/auth-guard.js"></script>
   <!-- Bật tính năng login -->
   <script src="/admin/js/router-lite.js"></script>
   <script type="module" src="/admin/js/page-inits.js"></script>
   <script type="module" src="/admin/js/club.js"></script>
   <script type="module" src="/admin/js/schedule.js"></script>
+  <script type="module" src="/admin/js/reports.js"></script>
   <script type="module" src="/admin/js/approvals.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>

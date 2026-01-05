@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const account = JSON.parse(accountRaw);
-            const profileId = account.profile.profileId;
+            const profileId = account.profileId;
 
             // 1️⃣ Payload creation
             const payload = {

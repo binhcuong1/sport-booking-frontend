@@ -1,0 +1,103 @@
+<div class="page-header">
+    <h1>Thống kê hoạt động</h1>
+</div>
+
+<!-- FILTER -->
+<div class="card">
+    <div class="form-row">
+
+        <div class="form-group">
+            <label>Từ ngày</label>
+            <input type="date" id="reportFromDate" class="input">
+        </div>
+
+        <div class="form-group">
+            <label>Đến ngày</label>
+            <input type="date" id="reportToDate" class="input">
+        </div>
+
+        <div class="form-group">
+            <label>Sân</label>
+            <select id="reportClubSelect" class="input">
+                <option value="all">Tất cả sân của tôi</option>
+                <!-- JS render -->
+            </select>
+        </div>
+
+        <div class="form-actions align-right">
+            <button class="btn btn--primary" id="btnLoadReport">
+                Xem thống kê
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="card">
+    <div class="report-overview">
+
+        <div class="overview-item">
+            <span class="label">Tổng booking</span>
+            <strong id="ovTotalBooking">0</strong>
+        </div>
+
+        <div class="overview-item">
+            <span class="label">Doanh thu</span>
+            <strong id="ovTotalRevenue">0 đ</strong>
+        </div>
+
+        <div class="overview-item">
+            <span class="label">Tổng giờ</span>
+            <strong id="ovTotalHours">0</strong>
+        </div>
+
+        <div class="overview-item">
+            <span class="label">Khách hàng</span>
+            <strong id="ovTotalCustomers">0</strong>
+        </div>
+
+    </div>
+</div>
+
+<!-- REVENUE CHART -->
+<div class="card">
+    <h3 class="card-title">Doanh thu theo thời gian</h3>
+    <canvas id="revenueChart" height="100"></canvas>
+</div>
+
+<!-- BY CLUB -->
+<div class="card">
+    <h3 class="card-title">Thống kê theo sân</h3>
+    <canvas id="byClubChart" height="120"></canvas>
+</div>
+
+<!-- OCCUPANCY -->
+<div class="card">
+    <h3 class="card-title">Tỷ lệ lấp đầy</h3>
+    <canvas id="occupancyChart" height="180"></canvas>
+</div>
+
+<!-- HOT HOURS -->
+<div class="card">
+    <h3 class="card-title">Giờ cao điểm</h3>
+    <canvas id="hotHoursChart" height="120"></canvas>
+</div>
+
+<!-- TOP CUSTOMERS -->
+<div class="card">
+    <h3 class="card-title">Khách hàng đặt nhiều nhất</h3>
+
+    <table class="table" id="topCustomersTable">
+        <thead>
+            <tr>
+                <th>Khách hàng</th>
+                <th>Số booking</th>
+                <th>Tổng chi tiêu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- JS render -->
+        </tbody>
+    </table>
+</div>
