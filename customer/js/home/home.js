@@ -140,10 +140,9 @@ function renderClubs(clubs) {
 
             <!-- IMAGE -->
             <div class="club-thumb"
-              style="background-image:url('${
-                c.imageUrl || "/customer/img/match/match-bg.jpg"
-              }')">
-
+  style="background-image:url('${
+    c.imageUrl || c.image_url || "/customer/img/match/match-bg.jpg"
+  }')">
               <div class="club-tags">
                 ${(c.sportTypes || [])
                   .map(
@@ -161,11 +160,6 @@ function renderClubs(clubs) {
                   title="${isFav ? "Bỏ yêu thích" : "Thêm yêu thích"}"
                 >
                   <i class="fa ${isFav ? "fa-heart" : "fa-heart-o"}"></i>
-                </button>
-
-                <button class="icon-btn" type="button"
-                        onclick="event.preventDefault(); event.stopPropagation();">
-                  <i class="fa fa-share-alt"></i>
                 </button>
               </div>
             </div>
