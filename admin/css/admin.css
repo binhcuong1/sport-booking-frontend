@@ -879,9 +879,86 @@ textarea.input {
 
     background:
         linear-gradient(rgba(0, 0, 0, 0.65),
-                        rgba(0, 0, 0, 0.65)),
+            rgba(0, 0, 0, 0.65)),
         url("/customer/img/wallpaper.png") center/cover no-repeat;
 
     display: grid;
     place-items: center;
+}
+
+.report-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.overview-item {
+    background: #f7f7f7;
+    padding: 16px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.overview-item .label {
+    display: block;
+    font-size: 13px;
+    color: #777;
+}
+
+.occupancy-list>div {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+/* ===== REPORT OVERVIEW ===== */
+
+.report-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.overview-item {
+    background: #0f1117;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.overview-item .label {
+    display: block;
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 8px;
+}
+
+.overview-item strong {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+
+    /* QUAN TRỌNG – XÓA EFFECT XANH */
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* TẮT HIGHLIGHT KHI CLICK / DRAG */
+.overview-item,
+.overview-item * {
+    user-select: none;
+}
+
+/* FIX DONUT CHART HEIGHT */
+
+#occupancyChart {
+    max-width: 100%;
+    height: 260px !important;
+}
+
+.card:has(#occupancyChart) {
+    min-height: 320px;
 }
