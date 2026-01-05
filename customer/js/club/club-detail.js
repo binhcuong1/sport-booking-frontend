@@ -19,11 +19,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 /* ================= LOAD DETAIL ================= */
 async function loadClubDetail() {
   try {
-    // endpoint club detail (giữ như bạn đang dùng)
     const club = await get(`${API_BASE}/clubs/${clubId}`);
+    if (!club || typeof club !== "object") throw new Error("Empty club");
     renderClubDetail(club);
-
-    // load rating sau khi render
     await loadRatings();
   } catch (e) {
     console.error("Lỗi load club detail:", e);
@@ -33,70 +31,94 @@ async function loadClubDetail() {
 
 /* ================= RENDER CLUB ================= */
 function renderClubDetail(c) {
-  // BASIC INFO
-  document.getElementById("clubName").innerText = c.clubName ?? "---";
-  document.getElementById("clubImage").src =
-    c.imageUrl || "/customer/img/match/match-bg.jpg";
+  /* ===== NORMALIZE BASIC INFO ===== */
+  const clubName = c.clubName || c.club_name;
+  const description = c.description;
+  const address = c.address;
+  const openTime = c.openTime || c.open_time;
+  const closeTime = c.closeTime || c.close_time;
+  const phone = c.contactPhone || c.contact_phone;
+  const imageUrl =
+    c.imageUrl ||
+    c.image_url ||
+    "/customer/img/match/match-bg.jpg";
 
+  document.getElementById("clubName").innerText = clubName ?? "---";
+  document.getElementById("clubImage").src = imageUrl;
   document.getElementById("clubDescription").innerText =
-    c.description || "Chưa có mô tả";
+    description || "Chưa có mô tả";
+  document.getElementById("clubAddress").innerText = address || "--";
+  document.getElementById("clubTime").innerText =
+    `${formatTime(openTime)} - ${formatTime(closeTime)}`;
+  document.getElementById("clubPhone").innerText = phone || "--";
 
-  document.getElementById("clubAddress").innerText = c.address || "--";
-  document.getElementById("clubTime").innerText = `${formatTime(
-    c.openTime
-  )} - ${formatTime(c.closeTime)}`;
+  const cid = c.clubId || c.club_id || clubId;
+  const bookingBtn = document.getElementById("bookingBtn");
+  if (bookingBtn) {
+    bookingBtn.href = `/customer/pages/schedule.html?clubId=${cid}`;
+  }
 
-  document.getElementById("clubPhone").innerText = c.phone || "--";
-
-  // booking link
-  const cid = c.clubId ?? clubId;
-  document.getElementById(
-    "bookingBtn"
-  ).href = `/customer/pages/schedule.html?clubId=${cid}`;
-
-  // COURTS
+  /* ================= COURTS ================= */
   const courtTable = document.getElementById("courtTable");
+  if (!courtTable) return;
   courtTable.innerHTML = "";
 
-  (c.courts || []).forEach((ct) => {
-    courtTable.innerHTML += `
-      <tr>
-        <td>${escapeHtml(ct.courtName)}</td>
-        <td>${formatTime(ct.openTime)} - ${formatTime(ct.closeTime)}</td>
-        <td>${formatPrice(ct.price)}</td>
-      </tr>
-    `;
-  });
+  const courts = Array.isArray(c.courts) ? c.courts : [];
 
-  if (!(c.courts || []).length) {
+  if (!courts.length) {
     courtTable.innerHTML = `
       <tr>
         <td colspan="3" class="text-white-50">Chưa có sân.</td>
       </tr>
     `;
+  } else {
+    courts.forEach((ct) => {
+      const name =
+        ct.court?.courtName ||
+        ct.court_name ||
+        ct.courtName ||
+        ct.court?.court_name ||
+        "---";
+
+      const start = ct.start_time || ct.startTime;
+      const end = ct.end_time || ct.endTime;
+
+      courtTable.innerHTML += `
+        <tr>
+          <td>${escapeHtml(name)}</td>
+          <td>${formatTime(start)} - ${formatTime(end)}</td>
+          <td>${formatPrice(ct.price)}</td>
+        </tr>
+      `;
+    });
   }
 
-  // SERVICES
+  /* ================= SERVICES ================= */
   const serviceList = document.getElementById("serviceList");
+  if (!serviceList) return;
   serviceList.innerHTML = "";
 
-  (c.services || []).forEach((s) => {
-    serviceList.innerHTML += `<li>✔️ ${escapeHtml(s.serviceName)}</li>`;
-  });
+  const services = Array.isArray(c.services) ? c.services : [];
 
-  if (!(c.services || []).length) {
-    serviceList.innerHTML = `<li class="text-white-50">Chưa có dịch vụ.</li>`;
+  if (!services.length) {
+    serviceList.innerHTML = `
+      <li class="text-white-50">Chưa có dịch vụ.</li>
+    `;
+  } else {
+    services.forEach((s) => {
+      serviceList.innerHTML += `
+        <li>${escapeHtml(s.name || s.serviceName || "--")}</li>
+      `;
+    });
   }
 }
 
-/* ================= RATING: LOAD + RENDER ================= */
+/* ================= RATING ================= */
 async function loadRatings() {
   try {
     const res = await get(`${API_BASE}/ratings/club/${clubId}`);
-
     const list = Array.isArray(res) ? res : res.list || [];
     const avg = Array.isArray(res) ? null : res.avgScore ?? null;
-
     renderRatings(list, avg);
   } catch (e) {
     console.error("Lỗi load ratings:", e);
@@ -109,18 +131,16 @@ function renderRatings(list, avgScore) {
   const ratingSummary = document.getElementById("ratingSummary");
   if (!ratingList) return;
 
-  if (ratingSummary) {
-    if (avgScore != null) {
-      ratingSummary.innerHTML = `Điểm trung bình: <b>${Number(avgScore).toFixed(
-        1
-      )}</b>/5`;
-    } else {
-      ratingSummary.innerHTML = "";
-    }
+  if (ratingSummary && avgScore != null) {
+    ratingSummary.innerHTML = `Điểm trung bình: <b>${Number(avgScore).toFixed(
+      1
+    )}</b>/5`;
   }
 
   if (!list.length) {
-    ratingList.innerHTML = `<p class="text-white-50">Chưa có đánh giá nào.</p>`;
+    ratingList.innerHTML = `
+      <p class="text-white-50">Chưa có đánh giá nào.</p>
+    `;
     return;
   }
 
@@ -132,14 +152,13 @@ function renderRatings(list, avgScore) {
         r.profile?.fullName ||
         "Người dùng";
 
-      const score = Number(r.score || 0);
-      const review = r.review || "";
-
       return `
         <div class="rating-item">
           <strong>${escapeHtml(name)}</strong>
-          <span class="rating-stars">${renderStars(score)}</span>
-          <p>${escapeHtml(review)}</p>
+          <span class="rating-stars">${renderStars(
+            Number(r.score || 0)
+          )}</span>
+          <p>${escapeHtml(r.review || "")}</p>
         </div>
       `;
     })
@@ -162,15 +181,11 @@ function setupStarRating() {
     star.addEventListener("click", () => {
       const selected = Number(star.dataset.value || 0);
       ratingInput.value = String(selected);
-      highlightStars(selected);
+      stars.forEach((s) =>
+        s.classList.toggle("active", Number(s.dataset.value) <= selected)
+      );
     });
   });
-
-  function highlightStars(val) {
-    stars.forEach((s) =>
-      s.classList.toggle("active", Number(s.dataset.value) <= val)
-    );
-  }
 }
 
 /* ================= SUBMIT REVIEW ================= */
@@ -189,42 +204,31 @@ function setupReviewSubmit() {
       return;
     }
 
-    const rawUser = localStorage.getItem("account");
-    let id = 0;
+    let profileId = 0;
+    try {
+      profileId = Number(JSON.parse(localStorage.getItem("account"))?.id || 0);
+    } catch {}
 
-    if (rawUser) {
-      try {
-        id = Number(JSON.parse(rawUser)?.id || 0);
-      } catch {}
-    }
-    id = id || Number(localStorage.getItem("id") || 0);
-
-    if (!id) {
+    if (!profileId) {
       alert("Bạn cần đăng nhập để đánh giá.");
       return;
     }
 
-    try {
-      await postJson(`${API_BASE}/ratings`, {
-        clubId: Number(clubId),
-        profileId: id,
-        score,
-        review,
-      });
+    await postJson(`${API_BASE}/ratings`, {
+      clubId: Number(clubId),
+      profileId,
+      score,
+      review,
+    });
 
-      alert("Gửi đánh giá thành công!");
-      form.reset();
-      document.getElementById("ratingValue").value = "0";
-
-      // reload list
-      await loadRatings();
-    } catch (err) {
-      const msg = extractErrorMessage(err);
-      alert(msg);
-    }
+    alert("Gửi đánh giá thành công!");
+    form.reset();
+    document.getElementById("ratingValue").value = "0";
+    await loadRatings();
   });
 }
 
+/* ================= POST JSON ================= */
 async function postJson(url, data) {
   const token =
     localStorage.getItem("token") ||
@@ -241,30 +245,11 @@ async function postJson(url, data) {
   });
 
   if (!res.ok) {
-    let payload = null;
-    try {
-      payload = await res.json();
-    } catch {}
-    const message = payload?.message || payload?.error || `HTTP ${res.status}`;
-    const error = new Error(message);
-    error.response = { status: res.status, data: payload };
-    throw error;
+    const payload = await res.json().catch(() => null);
+    throw new Error(payload?.message || `HTTP ${res.status}`);
   }
 
-  try {
-    return await res.json();
-  } catch {
-    return true;
-  }
-}
-
-function extractErrorMessage(err) {
-  return (
-    err?.response?.data?.message ||
-    err?.response?.data?.error ||
-    err?.message ||
-    "Gửi đánh giá thất bại!"
-  );
+  return res.json().catch(() => true);
 }
 
 /* ================= UTILS ================= */

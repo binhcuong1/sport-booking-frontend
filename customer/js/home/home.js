@@ -162,11 +162,6 @@ function renderClubs(clubs) {
                 >
                   <i class="fa ${isFav ? "fa-heart" : "fa-heart-o"}"></i>
                 </button>
-
-                <button class="icon-btn" type="button"
-                        onclick="event.preventDefault(); event.stopPropagation();">
-                  <i class="fa fa-share-alt"></i>
-                </button>
               </div>
             </div>
 
