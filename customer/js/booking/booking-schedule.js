@@ -349,8 +349,8 @@ btnNext.addEventListener("click", () => {
     let account = JSON.parse(accountRaw);
 
 
-    let profileId = account.profile.profileId;
-    let profile_fullname = account.profile.fullname;
+    let profileId = account.profileId;
+    let profile_fullname = account.fullname;
 
     console.log("profileId:", profileId);
     console.log("profile_fullname:", profile_fullname);
