@@ -28,9 +28,6 @@ function authHeaders() {
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
-/**
- * fetchJson: an toàn với response empty (204/no body)
- */
 async function fetchJson(url, options = {}) {
   const res = await fetch(url, {
     headers: {

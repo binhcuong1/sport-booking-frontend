@@ -863,3 +863,116 @@ window.PageInits.clubImage = async function () {
     }
   }
 };
+
+function authHeaders() {
+  const token = localStorage.getItem("token");
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
+async function fetchJson(url, options = {}) {
+  const res = await fetch(url, {
+    headers: {
+      ...(options.headers || {}),
+    },
+    ...options,
+  });
+
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    throw new Error(`HTTP ${res.status}: ${txt}`);
+  }
+
+  if (res.status === 204) return null;
+
+  const text = await res.text().catch(() => "");
+  if (!text) return null;
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    return text;
+  }
+}
+
+/* ================= UI HELPERS ================= */
+function formatVnd(n) {
+  const num = Number(n || 0);
+  return num.toLocaleString("vi-VN") + " ₫";
+}
+
+function setStatValues({ totalClubs, pendingCount, revenueTotal }) {
+  const values = document.querySelectorAll(".card--stat .card__value");
+  if (!values || values.length < 3) return;
+
+  values[0].textContent = String(totalClubs ?? 0);
+  values[1].textContent = String(pendingCount ?? 0);
+  values[2].textContent = formatVnd(revenueTotal ?? 0);
+}
+
+/* ================= DASHBOARD INIT ================= */
+window.PageInits.dashboard = async function () {
+  const selClub = document.querySelector("#cstClub");
+  if (!selClub) return;
+
+  const clubs = JSON.parse(localStorage.getItem("clubs") || "[]");
+
+  const totalClubs = Array.isArray(clubs) ? clubs.length : 0;
+
+  let current = getCurrentClubId();
+  if (!current && clubs.length) {
+    current = Number(clubs[0].id);
+    setCurrentClubId(current);
+  }
+
+  // fill select
+  selClub.innerHTML = clubs
+    .map(
+      (c) => `
+      <option value="${c.id}" ${
+        Number(c.id) === Number(current) ? "selected" : ""
+      }>
+        ${c.name}
+      </option>
+    `
+    )
+    .join("");
+
+  selClub.addEventListener("change", () => {
+    setCurrentClubId(Number(selClub.value));
+    location.reload();
+  });
+
+  // ====== LOAD STATS THEO CLUB ======
+  try {
+    const clubId = Number(selClub.value);
+
+    const bookings =
+      (await fetchJson(`${API_BASE}/bookings/club?clubId=${clubId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          ...authHeaders(),
+        },
+        cache: "no-store",
+      })) || [];
+
+    const pendingCount = bookings.filter(
+      (b) => String(b?.status || "").toLowerCase() === "pending"
+    ).length;
+
+    const revenueTotal = bookings.reduce(
+      (sum, b) => sum + Number(b?.totalPrice || 0),
+      0
+    );
+
+    setStatValues({ totalClubs, pendingCount, revenueTotal });
+  } catch (e) {
+    console.error("Load dashboard stats lỗi:", e);
+    const clubs = JSON.parse(localStorage.getItem("clubs") || "[]");
+    setStatValues({
+      totalClubs: clubs.length || 0,
+      pendingCount: 0,
+      revenueTotal: 0,
+    });
+  }
+};
