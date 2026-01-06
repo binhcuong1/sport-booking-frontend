@@ -69,7 +69,7 @@ window.PageInits.schedule = async function () {
 
     const START_HOUR = 6;
     const END_HOUR = 22;
-    const STEP = 30;
+    const STEP = 60;
 
     const pad = (n) => String(n).padStart(2, "0");
     const minutesToTime = (m) =>
